@@ -11,5 +11,4 @@
   * [Група 3](./exercises/computer-science-3)
   * [Група 4](./exercises/computer-science-4)
 * [Практикум](./exercises/lab)
-* [Софтуерно Инжинерство](./exercises/software-engineering)
-
+* [Софтуерно Инженерство](./exercises/software-engineering)
