@@ -119,10 +119,6 @@ some-random-name
 
 (if (= 3 3) 4 5)
 
-; TODO(GEORGI): adjoint.fun/transfer/labs
-; https://github.com/triffon/fp-2019-20/exercises/lab/README.md
-; godzbanebane@gmail.com
-
 ; Syntax for the commnets below:
 ; x -- y
 ; means that x should evaluate to y
