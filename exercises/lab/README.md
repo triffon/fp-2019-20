@@ -1,47 +1,33 @@
 ## Упражнения на дисциплината "Функционално Програмиране - Практикум"
 
-### Administrivia TODO:
+### Полезна информация
 
-* $(whoami)
+##### Курсът се взима с домашни + проект
+Домашните не са задължително, проектът е.
 
-* github with stuff in it is here
-  * https://github.com/triffon/fp-2019-20/tree/master/exercises/lab
-  * this is shared with the main discipline's repo
-  * the stuff we do here (exercises at the very least) will be here
-    together with any instructions and/or supplementary materials
-  * you can look here for last years repo, this year will mostly be the same
-    unless I have some genius new ideas
-      * https://github.com/googleson78/fp-pract1819
+Домашните ще са ~7 на брой, в идеален свят.
 
-* ask for which year
-* ask for which BSc
-* ask for how many working
+Домашните ще се предават в лично github репо за всеки човек
+чрез pull request. На pull request-а ще му бъдат пускани автоматични тестове
+(и евентуално `-Wall` и линтър по-натататък).
 
-* points - hw (in a perfect world 7 or 8) + project
-  * points unknown
-    * bonus points for extra effort
-  * project MAYBE shared with main discipline
+Проектът може би ще може да е споделен с проекта за главната дисциплина.
 
-* homeworks
+##### Контакти
 
-  almost surely submission via github pull requests in private repos
-  automatic tests running on pull requests
-    * not sure about when to pass CI? 100% vs partial??
+* Mail - godzbanebane@gmail.com
+* Twitter/FB/Messenger - Georgi Lyubenov (@googleson78)
 
-* official communication - discord + mail?
-  * https://discord.gg/ySVDnV
-  * https://lists.uni-sofia.bg/cgi-bin/mailman/listinfo/fpract
+Ще ползваме discord-а, който е споделен с останалите групи по ФП, за обявления за домашни, така че очаквам да го следите.
 
-* unofficial communication
-  * use discord, in some public place so everyone can see stuff
-    * maybe a room just for us so we don't spam everyone
-  * otherwise messenger/mail/twitter
-    * Geogi Lyubenov (@googleson78)
-    * godzbanebane@gmail.com
+Ако искате да обсъждате нещо от философски въпроси до конкретни неща, в discord ще е най-яко,
+защото могат всички да го гледат и да се включват.
 
-* mention missing an exercise after two weeks
-  * come to FP meetup!!
-  * when to have an extra class - I'll make a poll
-    but it's gonna be WED/SAT/SUN, coz I can't otherwise
+**Важно** - За линк към дискорда ми пишете мейл, предпочитам да не слагам публичен на произволни места из нета.
 
-* go to lectures!!!
+##### Misc
+* [Упражненията ми/домашни от миналата година](https://github.com/googleson78/fp-pract1819)
+
+* Ходете на лекции! Трифон говори доста фундамаентални и интересни неща!
+ 
+* TODO(Georgi): prepare polls for rating class and also deciding on when to have an extra class
