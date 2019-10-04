@@ -27,11 +27,9 @@
 ; x1 = 1
 ; x2 = -1/3
 (define (is-root? x)
-  (define (calc-result x)
-    (+ -1
-       (* -2 x)
-       (* 3 (expt x 2))))
-  (= (calc-result x) 0))
+    (zero? (+ -1
+              (* -2 x)
+              (* 3 (expt x 2)))))
 
 (define (factorial n)
   (if (= n 0) 1 (* n (factorial (- n 1)))))
