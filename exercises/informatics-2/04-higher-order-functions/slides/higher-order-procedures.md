@@ -156,7 +156,7 @@ $$\sum_{x = a}^b term(x)$$
 
 ---
 
-# По-абстрактна сума
+# По-абстрактна сума, с приложения
 
 ```scheme
 (define (identity x) x)
@@ -210,7 +210,58 @@ $$\prod_{x = a}^b term(x)$$
 
 ---
 
+$$
+\sum_{x = a}^b f(x)
+\qquad
+\prod_{x = a}^b f(x)
+\qquad
+\bigwedge\limits_{x = a}^b f(x)
+\qquad
+\cdots
+$$
+
+![](images/combine.jpg)
+
+
+---
+
+# Още по-абстрактно - ние просто акумулираме
+
+$$
+\sum_{x = a}^b f(x)
+\qquad
+\prod_{x = a}^b f(x)
+\qquad
+\bigwedge\limits_{x = a}^b f(x)
+\qquad
+\cdots
+$$
+
+
+```scheme
+(define (accumulate combine term a b)
+  (if (> a b)
+      0
+      (combine (term a)
+               (accumulate combine
+                           term
+                           (+ a 1)
+                           b))))
+```
+
+## Но виждате ли проблем?
+
+---
+
 # (* Произведение 0) ?
+
+Нека дефинираме `product` в термините на `accumulate`:
+```scheme
+(define (product term a b)
+  (accumulate * term a b))
+```
+
+И нека приложим `product`:
 
 ```scheme
 (define (identity x) x)
@@ -235,19 +286,7 @@ $$\prod_{x = a}^b term(x)$$
 
 # (* Произведение 1)
 
-$$\prod_{x = a}^b term(x)$$
-
-```scheme
-(define (product term a b)
-  (if (> a b)
-      1
-      (* (f a)
-         (product term (+ a 1) b))))
-```
-
----
-
-![](images/combine.jpg)
+## Трябва да зададем началната стойност на нашия акумулатор
 
 ---
 
@@ -264,15 +303,15 @@ $$
 $$
 
 ```scheme
-(define (accumulate combiner null-value term a b)
+(define (accumulate combine null-value term a b)
   (if (> a b)
       null-value
-      (combiner (term a)
-                (accumulate combiner
-                            null-value
-                            term
-                            (+ a 1)
-                            b))))
+      (combine (term a)
+               (accumulate combine
+                           null-value
+                           term
+                           (+ a 1)
+                           b))))
 ```
 
 ---
