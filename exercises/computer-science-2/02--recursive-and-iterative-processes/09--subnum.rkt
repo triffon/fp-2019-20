@@ -17,6 +17,6 @@
                        (check-false (subnum? 5679 123456789))
                        (check-true (subnum? 3 -1234))
                        (check-false (subnum? -3 1234))
-                       (check-false (subnum? -3 -1234))
+                       (check-false (subnum? -3 -1234)))
            'verbose)
 

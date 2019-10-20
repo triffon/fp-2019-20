@@ -12,6 +12,6 @@
                        (check-eq? (bin-to-dec 0) 0)
                        (check-eq? (bin-to-dec 1) 1)
                        (check-eq? (bin-to-dec 100) 4)
-                       (check-eq? (bin-to-dec 1111) 15)
+                       (check-eq? (bin-to-dec 1111) 15))
            'verbose)
 
