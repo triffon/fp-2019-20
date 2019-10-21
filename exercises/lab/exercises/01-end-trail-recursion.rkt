@@ -66,7 +66,7 @@
 ; this also means that if we used a huge number with the first one we would probably
 ; run out of RAM and bad things would happen
 
-; EXERCISE: implement a iterative factorial
+; EXERCISE: implement an iterative factorial
 (define (fact-iter n)
   (define (help acc i)
     (if (= i 0)
