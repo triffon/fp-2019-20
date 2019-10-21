@@ -6,3 +6,4 @@
 | --- | --- | --- | --- |
 | 1 | [Въведение в Scheme. Рекурсия](01--introduction-to-scheme--recursion) | [код от часа](01--introduction-to-scheme--recursion/class.rkt) | [решения на задачите](01--introduction-to-scheme--recursion/solutions.rkt) |
 | 2 | [Среди. Рекурсивни и итеративни процеси](02--recursive-and-iterative-processes) | [код от часа](02--recursive-and-iterative-processes/class.rkt) | [решения на задачите](02--recursive-and-iterative-processes/solutions) |
+| 3 | [Функции от по-висок ред. Accumulate](03--higher-order-functions--accumulate) |
