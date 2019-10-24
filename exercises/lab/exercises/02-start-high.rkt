@@ -150,7 +150,7 @@
 
 ; Let's now implement a function that takes a "n-times application" and returns a "n+1 times application"
 (define (succ n)
-  (lambda (f v) ; since we're returning another "application" we need to write a lambda accepting our f and g
+  (lambda (f v) ; since we're returning another "application" we need to write a lambda accepting our f and v
     (f (n f v)))) ; to apply f n+1 times, we simply need to apply it n times, and then apply it once more
 
 ; Now using these tools implement the following
