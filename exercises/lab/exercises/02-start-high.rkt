@@ -161,7 +161,7 @@
 ; Write a function that takes a number and then constructs the "n-times application"
 ; HINT: Use succ and zero.
 ; EXAMPLES:
-; ((from-scm 5) (lambda (x) (+ 1 x)) 7) -- 12
+; ((from-num 5) (lambda (x) (+ 1 x)) 7) -- 12
 (define (from-num n) void)
 
 ; EXERCISE: to-num
@@ -196,21 +196,21 @@
 
 ; EXERCISE: plus
 ; EXAMPLES:
-; (to-scm (plus (from-scm 20) (from-scm 10))) -- 30
-; ((plus (from-scm 20) (from-scm 10)) (add-n 30) 69) -- 969
+; (to-num (plus (from-num 20) (from-num 10))) -- 30
+; ((plus (from-num 20) (from-num 10)) (add-n 30) 69) -- 969
 (define (plus n m) void)
 
 ; EXERCISE: mult
 ; EXAMPLES:
-; (to-scm (mult (from-scm 10) (from-scm 13))) -- 130
-; (to-scm (mult (succ (succ zero)) (succ (succ zero)))) -- 4
+; (to-num (mult (from-num 10) (from-num 13))) -- 130
+; (to-num (mult (succ (succ zero)) (succ (succ zero)))) -- 4
 (define (mult n m) void)
 
 ; Difficult bonus, give up: pred
 ; Write a function that takes the "n-times application" and gives back the "n-1 times application")
-; (without using {from,to}-scm)
+; (without using {from,to}-num)
 ;
 ; EXAMPLES:
-; (to-scm (pred one)) -- 0
-; (to-scm (pred two)) -- 1
+; (to-num (pred one)) -- 0
+; (to-num (pred two)) -- 1
 (define (pred n) void)
