@@ -99,3 +99,11 @@
   (lambda (n)
     (if (= n 0) 1 (* n (f (- n 1))))))
 (define (fact n) ((gamma fact) n))
+
+(define (fact n) (((repeated gamma (+ n 1)) 'empty) n))
+
+(define (Y g)
+  (define (gamma-inf me) (lambda (n) ((g (me me)) n)))
+  (gamma-inf gamma-inf))
+
+(define fact (Y gamma))

@@ -1,0 +1,31 @@
+(define (expt-iter x n)
+  (define (iter product counter)
+    (if (> counter n)
+        product
+        (iter (* product x)
+              (+ counter 1))))
+
+  (if (< n 0)
+      (/ 1 (expt-iter x (- n)))
+      (iter 1 1)))
+
+(load "../testing/check.scm")
+
+(check (expt-iter -2 -11) => -1/2048)
+(check (expt-iter -2 -10) => 1/1024)
+(check (expt-iter 2 -10) => 1/1024)
+(check (expt-iter 5 -3) => 1/125)
+(check (expt-iter 3 -2) => 1/9)
+(check (expt-iter 2 -2) => 1/4)
+(check (expt-iter 2 -1) => 1/2)
+(check (expt-iter 2 0) => 1)
+(check (expt-iter 2 1) => 2)
+(check (expt-iter 2 2) => 4)
+(check (expt-iter 3 2) => 9)
+(check (expt-iter 5 3) => 125)
+(check (expt-iter 2 10) => 1024)
+(check (expt-iter -2 10) => 1024)
+(check (expt-iter -2 11) => -2048)
+
+(check-report)
+(check-reset!)

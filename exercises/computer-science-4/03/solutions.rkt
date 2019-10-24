@@ -63,6 +63,7 @@
 ; 11-repeat
 (define (repeat f n)
   (if (zero? n)
-    id (lambda (x)
+    id
+    (lambda (x)
       (f ((repeat f (- n 1)) x)))))
 

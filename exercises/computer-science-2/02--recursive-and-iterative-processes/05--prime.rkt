@@ -18,6 +18,6 @@
                        (check-true (prime? 3))
                        (check-true (prime? 7))
                        (check-true (prime? 101))
-                       (check-true (prime? 2411))
+                       (check-true (prime? 2411)))
            'verbose)
 
