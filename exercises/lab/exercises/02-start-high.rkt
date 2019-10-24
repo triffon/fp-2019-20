@@ -154,6 +154,8 @@
     (f (n f v)))) ; to apply f n+1 times, we simply need to apply it n times, and then apply it once more
 
 ; Now using these tools implement the following
+; Read the *IMPORTANT* below, after reading both from-num and to-num's comments
+; but before implementing them
 
 ; EXERCISE: from-num
 ; Write a function that takes a number and then constructs the "n-times application"
