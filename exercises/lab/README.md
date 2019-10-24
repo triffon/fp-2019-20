@@ -30,4 +30,4 @@
 
 * Ходете на лекции! Трифон говори доста фундамаентални и интересни неща!
 
-* TODO(Georgi): prepare polls for rating class and also deciding on when to have an extra class
+* TODO(Georgi): prepare polls for rating class??
