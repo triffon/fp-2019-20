@@ -22,8 +22,9 @@
 прилагане на `f` `n` пъти
 
 #### Accumulate
-Напишете `(accumulate op start f begin end)` (подобна на тази от лекции), която
-пресмята `(op start (op (f begin) (op (f (+ 1 begin)) ... (op (f end))...)))`.
+Напишете `(accumulate op init f begin end)` (подобна на тази от лекции), която
+пресмята `(op (f begin) (op (f (+ 1 begin)) ... (op (f end) (f init))...))`
+(ако имаме `begin > end`, резултатът е `(f init)`)
 
 Напишете следните функции, използвайки `accumulate`:
 1. `(count pred a b)`, която връща бро числа `i` от интервала `[a, b]`, за които
