@@ -34,7 +34,7 @@
   (check-property to-from-id))
 
 (test-case
-  "Unit tests: to-k-ary"
+  "UNIT TESTS: to-k-ary"
   (test-begin
     (check-equal? (solutions.to-k-ary 2 5) 2)
     (check-equal? (solutions.to-k-ary 6 7) 6)
@@ -44,7 +44,7 @@
     (check-equal? (solutions.to-k-ary 1438091 3) 2201001200122)))
 
 (test-case
-  "Unit tests: from-k-ary"
+  "UNIT TESTS: from-k-ary"
   (test-begin
     (check-equal? (solutions.from-k-ary 0 7) 0)
     (check-equal? (solutions.from-k-ary 8 9) 8)
