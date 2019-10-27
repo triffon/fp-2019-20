@@ -52,4 +52,3 @@
     (check-equal? (solutions.from-k-ary 12312312301 6) 86058829)
     (check-equal? (solutions.from-k-ary 14321415 7) 1349913)
     (check-equal? (solutions.from-k-ary 143213001 5) 757251)))
-
