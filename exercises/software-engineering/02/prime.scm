@@ -1,14 +1,4 @@
-(define (divides? k n)
-  (= (remainder n k) 0))
-
-(define (count-divisors n)
-  (define (count-divisors-up-to k)
-    (cond ((= k 0) 0)
-          ((divides? k n)
-           (+ 1 (count-divisors-up-to (- k 1))))
-          (else (count-divisors-up-to (- k 1)))))
-
-  (count-divisors-up-to n))
+(load "./count-divisors.scm")
 
 ; Едно число е просто, ако има точно 2 делителя.
 (define (prime? n)
