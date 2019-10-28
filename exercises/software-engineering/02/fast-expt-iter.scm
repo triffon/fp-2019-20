@@ -1,3 +1,6 @@
+(define (square x)
+  (* x x))
+
 (define (fast-expt-iter x n)
   (define (iter product x n)
     (cond ((= n 0) product)
