@@ -1,4 +1,6 @@
-
+(define (double f)
+  (lambda (x)
+    (f (f x))))
 
 (load "../testing/check.scm")
 

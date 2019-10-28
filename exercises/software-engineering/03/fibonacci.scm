@@ -1,4 +1,16 @@
+(define (fibonacci n)
+  (cond ((= n 0) 0)
+        ((= n 1) 1)
+        (else (+ (fibonacci (- n 1))
+                 (fibonacci (- n 2))))))
 
+(define (fibonacci-iter n)
+  (define (iter current next counter)
+    (if (= counter n)
+        current
+        (iter next (+ current next) (+ counter 1))))
+
+  (iter 0 1 0))
 
 (load "../testing/check.scm")
 

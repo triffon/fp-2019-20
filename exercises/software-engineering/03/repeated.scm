@@ -1,4 +1,27 @@
+(load "./compose.scm")
 
+(define (repeated f n)
+  (lambda (x)
+    (if (= n 0)
+        x
+        (f ((repeated f (- n 1)) x)))))
+
+(define (repeated f n)
+  (lambda (x)
+    (if (= n 0)
+        x
+        ((compose f (repeated f (- n 1))) x))))
+
+(define (repeated f n)
+  (if (= n 0)
+      (lambda (x) x)
+      (lambda (x)
+        (f ((repeated f (- n 1)) x)))))
+
+(define (repeated f n)
+  (if (= n 0)
+      (lambda (x) x)
+      (compose f (repeated f (- n 1)))))
 
 (load "../testing/check.scm")
 

@@ -1,4 +1,9 @@
-
+(define (binomial-coefficient row index)
+  (if (or (= index 1)
+          (= index row))
+      1
+      (+ (binomial-coefficient (- row 1) (- index 1))
+         (binomial-coefficient (- row 1) index))))
 
 (load "../testing/check.scm")
 
