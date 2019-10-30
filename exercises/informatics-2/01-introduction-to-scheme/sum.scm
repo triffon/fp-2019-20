@@ -1,6 +1,11 @@
 (require rackunit rackunit/text-ui)
 
-
+; Скъсяваме интервала [start, end] отляво, докато не остане само 1 елемент
+(define (sum start end)
+  (if (= start end)
+      end
+      (+ start
+         (sum (+ start 1) end))))
 
 (define sum-tests
   (test-suite

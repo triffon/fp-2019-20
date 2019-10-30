@@ -1,6 +1,14 @@
 (require rackunit rackunit/text-ui)
 
-
+(define (count-divisors n)
+  (define (helper counter result)
+    (if (= counter 0)
+        result
+        (helper (- counter 1)
+                (if (= (remainder n counter) 0)
+                    (+ result 1)
+                    result))))
+  (helper n 0))
 
 (define count-divisors-tests
   (test-suite

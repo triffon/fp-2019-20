@@ -1,12 +1,24 @@
 (require rackunit rackunit/text-ui)
 
-; TODO: accumulate
+(define (accumulate combiner null-value term a next b)
+  (if (> a b)
+      null-value
+      (combiner (term a)
+                (accumulate combiner null-value term (next a) next b))))
 
-; TODO: accumulate-iter
+(define (accumulate-iter combiner null-value term a next b)
+  (define (iter acc a)
+    (if (> a b)
+        acc
+        (iter (combiner (term a) acc) (next a))))
 
-; TODO: sum
+  (iter null-value a))
 
-; TODO: product
+(define (sum term a next b)
+  (accumulate-iter + 0 term a next b))
+
+(define (product term a next b)
+  (accumulate-iter * 1 term a next b))
 
 (define (identity x) x)
 (define (inc x) (+ x 1))

@@ -1,6 +1,8 @@
 (require rackunit rackunit/text-ui)
 
-; TODO: compose
+(define (compose f g)
+  (lambda (x)
+    (f (g x))))
 
 (define (identity x) x)
 (define (inc x) (+ x 1))

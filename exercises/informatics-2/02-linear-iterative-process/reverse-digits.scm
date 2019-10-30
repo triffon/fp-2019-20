@@ -1,6 +1,14 @@
 (require rackunit rackunit/text-ui)
 
-
+; Докато изчерпваме цифрите от number, ги слагаме в reversed
+(define (reverse-digits n)
+  (define (helper number reversed)
+    (if (= number 0)   ; Изчерпали сме напълно number
+        reversed       ; Съответно reversed e напълнен и готов
+        (helper (quotient number 10)
+                (+ (* reversed 10)
+                   (remainder number 10)))))
+  (helper n 0))
 
 (define reverse-digits-tests
   (test-suite

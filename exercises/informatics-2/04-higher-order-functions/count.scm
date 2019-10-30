@@ -1,6 +1,28 @@
 (require rackunit rackunit/text-ui)
 
-; TODO: count
+(define (accumulate combiner null-value term a next b)
+  (define (iter acc a)
+    (if (> a b)
+        acc
+        (iter (combiner (term a) acc) (next a))))
+
+  (iter null-value a))
+
+(define (inc x) (+ x 1))
+
+; Идеята е да добавяме 1 за всеки елемент, който удовлетворява predicate, и
+; 0 за всеки елемент, който не удовлетворява predicate.
+(define (count predicate a b)
+  (accumulate + 0
+              (lambda (x) (if (predicate x) 1 0))
+              a inc b))
+
+; Друг вариант: добавяме 1 към крайния резултат (acc) само ако текущият
+; елемент от интервала удовлетворява predicate.
+(define (count predicate a b)
+  (accumulate (lambda (x acc) (if (predicate x) (+ acc 1) acc)) 0
+              (lambda (x) x)
+              a inc b))
 
 (define count-tests
   (test-suite

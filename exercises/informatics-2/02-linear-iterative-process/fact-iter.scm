@@ -1,6 +1,14 @@
 (require rackunit rackunit/text-ui)
 
+(define (fact-iter n)
+  (define (helper counter result)
+    (if (= 1 counter)
+        result
+        (helper (- counter 1) (* result counter))))
 
+  (if (<= n 1)
+      1
+      (helper n 1)))
 
 (define fact-iter-tests
   (test-suite

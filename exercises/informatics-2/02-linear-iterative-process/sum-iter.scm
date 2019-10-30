@@ -1,6 +1,14 @@
 (require rackunit rackunit/text-ui)
 
+(define (sum-iter start end)
+  (define (helper counter result)
+    (if (> counter end)
+        result
+        (helper (+ counter 1) (+ result counter))))
 
+  (if (> start end)
+      0
+      (helper start 0)))
 
 (define sum-iter-tests
   (test-suite

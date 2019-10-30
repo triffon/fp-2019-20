@@ -1,6 +1,11 @@
 (require rackunit rackunit/text-ui)
 
-
+; Просто описваме формалната дефиница на факториел.
+(define (factorial n)
+  (if (<= n 1)
+      1
+      (* n
+         (factorial (- n 1)))))
 
 (define factorial-tests
   (test-suite

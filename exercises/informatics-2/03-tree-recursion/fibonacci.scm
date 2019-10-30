@@ -1,8 +1,18 @@
 (require rackunit rackunit/text-ui)
 
-; TODO: fibonacci
+(define (fibonacci n)
+  (cond ((= n 0) 0)
+        ((= n 1) 1)
+        (else (+ (fibonacci (- n 1))
+                 (fibonacci (- n 2))))))
 
-; TODO: fibonacci-iter
+(define (fibonacci-iter n)
+  (define (iter current next count)
+    (if (= count n)
+        current
+        (iter next (+ current next) (+ count 1))))
+
+  (iter 0 1 0))
 
 (define fibonacci-tests
   (test-suite

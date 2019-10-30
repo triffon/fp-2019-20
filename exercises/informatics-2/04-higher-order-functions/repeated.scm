@@ -1,6 +1,13 @@
 (require rackunit rackunit/text-ui)
 
-; TODO: repeated
+(define (compose f g)
+  (lambda (x)
+    (f (g x))))
+
+(define (repeated f n)
+  (if (zero? n)
+      (lambda (x) x)
+      (compose f (repeated f (- n 1)))))
 
 (define (identity x) x)
 (define (inc x) (+ x 1))

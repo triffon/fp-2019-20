@@ -1,6 +1,10 @@
 (require rackunit rackunit/text-ui)
 
-; TODO: binomial-coefficient
+(define (binomial-coefficient row index)
+  (cond ((= index 1) 1)
+        ((= row index) 1)
+        (else (+ (binomial-coefficient (- row 1) (- index 1))
+                 (binomial-coefficient (- row 1) index)))))
 
 (define binomial-coefficient-tests
   (test-suite

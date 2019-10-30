@@ -1,6 +1,14 @@
 (require rackunit rackunit/text-ui)
 
+(define (expt-iter base n)
+  (define (helper exponent result)
+    (if (= exponent 1)
+        result
+        (helper (- exponent 1) (* result base))))
 
+  (if (< n 1)
+      1
+      (helper n base)))
 
 (define expt-iter-tests
   (test-suite

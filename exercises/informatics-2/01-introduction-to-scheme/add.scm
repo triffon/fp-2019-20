@@ -1,6 +1,10 @@
 (require rackunit rackunit/text-ui)
 
+; Главата и тялото на процедурата се различават само по add и +
+(define (add a b) (+ a b))
 
+; Можем директно да кажем, че add е същото като +
+(define add +)
 
 (define add-tests
   (test-suite

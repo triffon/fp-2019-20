@@ -1,6 +1,14 @@
 (require rackunit rackunit/text-ui)
 
+; Изрично връщаме #t или #f
+(define (even? x)
+  (if (= 0 (remainder x 2))
+      #t
+      #f))
 
+; Просто връщаме стойността на логическия оператор, която може да е #t или #f
+(define (odd? x)
+  (not (even? x)))
 
 (define even-odd-tests
   (test-suite
