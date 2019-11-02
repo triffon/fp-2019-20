@@ -1,15 +1,48 @@
 (require rackunit rackunit/text-ui)
 
+; Решение 1
 (define (remove-duplicates l)
-  (define (deduplicate remaining seen unique)
-    (cond ((null? remaining) unique)
-          ((member (car remaining) seen) (deduplicate (cdr remaining)
-                                          seen
-                                          unique))
-          (else (deduplicate (cdr remaining)
-                             (cons (car remaining) seen)
-                             (cons (car remaining) unique)))))
-  (reverse (deduplicate l '() '())))
+  (if (null? l)
+      '()
+      (cons (car l)
+            (remove-duplicates (filter (lambda (x)
+                                         (not (eq? x (car l))))
+                                       (cdr l))))))
+
+; Решение 2
+(define (without x l)
+  (filter (lambda (y)
+            (not (eq? y x)))
+          l))
+
+(define (remove-duplicates l)
+  (if (null? l)
+      '()
+      (cons (car l)
+            (remove-duplicates (without (car l) (cdr l))))))
+
+; Решение 3
+(define (remove-duplicates l)
+  (define (deduplicate remaining seen-once)
+    (cond ((null? remaining) seen-once)
+          ((member (car remaining) seen-once)
+            (deduplicate (cdr remaining) seen-once))
+          (else
+            (deduplicate (cdr remaining)
+                         (cons (car remaining) seen-once)))))
+  (reverse (deduplicate l '())))
+
+; Решение 4
+; Забележете, че при foldl трябва да обърнем редът на получения списък.
+; Ако ползвахме foldr, нямаше да има нужда от reverse,
+; но тогава заради обхождането отдясно-наляво щяха да останат
+; най-десните срещания на повтарящите се елементи.
+(define (remove-duplicates l)
+  (define (reduce-unique item already-seen)
+    (if (member item already-seen)
+        already-seen
+        (cons item already-seen)))
+  (reverse (foldl reduce-unique '() l)))
 
 (define remove-duplicates-tests
   (test-suite
