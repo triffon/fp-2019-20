@@ -1,5 +1,16 @@
 (require rackunit rackunit/text-ui)
 
+(define (remove-duplicates l)
+  (define (deduplicate remaining seen unique)
+    (cond ((null? remaining) unique)
+          ((member (car remaining) seen) (deduplicate (cdr remaining)
+                                          seen
+                                          unique))
+          (else (deduplicate (cdr remaining)
+                             (cons (car remaining) seen)
+                             (cons (car remaining) unique)))))
+  (reverse (deduplicate l '() '())))
+
 (define remove-duplicates-tests
   (test-suite
     "Tests for remove-duplicates"
