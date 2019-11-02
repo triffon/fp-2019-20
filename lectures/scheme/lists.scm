@@ -61,9 +61,11 @@
 (define (append l1 l2)
   (foldr cons l2 l1))
 
+(define (snoc x l) (append l (list x)))
+
 (define (reverse l)
   (if (null? l) l
-      (append (reverse (cdr l)) (list (car l)))))
+      (snoc (car l) (reverse (cdr l)))))
 
 (define (reverse l)
   (define (iter m r)
@@ -72,7 +74,7 @@
   (iter l '()))
 
 (define (reverse l)
-  (foldr (lambda (x r) (append r (list x))) '() l))
+  (foldr snoc '() l))
 
 (define (rcons l x) (cons x l)) 
 
@@ -106,3 +108,4 @@
 (define (foldl op nv l)
   (if (null? l) nv
       (foldl op (op nv (car l)) (cdr l))))
+
