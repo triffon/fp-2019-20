@@ -92,7 +92,8 @@
     (from-numeral zero) ; се оценява до 0
     (from-numeral (succ (succ (succ (succ zero))))) ; се оценява до 4
     ((to-numeral 10) (lambda (x) (* x 2)) 1) ; се оценява до 1024
-    (to-numeral (+ (from-numeral 20) (from-numeral 49))) ; се оценява до нумерала 69
+    (to-numeral (+ (from-numeral (to-numeral 20)) 
+                   (from-numeral (to-numeral 49)))) ; се оценява до нумерала 69
     ```
 
 2. (2т.) Използвайки само ламбда функции, `zero` и `succ`, имплементирайте функцията `(plus n m)`,
