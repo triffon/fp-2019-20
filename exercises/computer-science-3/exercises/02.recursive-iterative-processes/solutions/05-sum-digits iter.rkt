@@ -1,0 +1,13 @@
+(define (sum-digits number)
+  (define (sum-digits2 number result)
+    (if (< number 10)
+      (+ number result)
+      (sum-digits2 (quotient number 10) (+ result (remainder number 10)))
+    )
+    )
+  (sum-digits2 number 0)
+ )
+
+(sum-digits 5)
+(sum-digits 247)
+(sum-digits 12345)

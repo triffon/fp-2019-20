@@ -1,0 +1,25 @@
+(define (pow x n)
+  (define (pow1 x n result)
+    (if (= n 0) result
+        (pow1 x (- n 1) (* x result))
+     )
+   )
+  (pow1 x n 1)
+  )
+
+(define (to-decimal number)
+  (define (to-decimal2 number min result)
+    (cond
+      ((or (= number 0) (= number 1)) (+ result (* (pow 2 min) number)))
+      (else (to-decimal2 (quotient number 10) (+ min 1) (+ result (* (pow 2 min) (remainder number 10)))))
+      )
+    )
+  (to-decimal2 number 0 0)
+  )
+
+(to-decimal 0)
+(to-decimal 1)
+(to-decimal 11)
+(to-decimal 11001)
+(to-decimal 101011)
+(to-decimal 1100011)

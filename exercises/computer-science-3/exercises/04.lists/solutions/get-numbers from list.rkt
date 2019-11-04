@@ -1,0 +1,10 @@
+(define my-list '(1 2 3 (4 5) (6 (7 8))))
+
+(define get-one (car my-list))
+(define get-two (cadr my-list))
+(define get-three (caddr my-list))
+(define get-four (car (cadddr my-list)))
+(define get-five (cadr (cadddr my-list)))
+(define get-six (caar (cddddr my-list)))
+(define get-seven (caadar (cddddr my-list)))
+(define get-eight (car (cdadar (cddddr my-list))))
