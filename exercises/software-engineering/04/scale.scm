@@ -1,4 +1,8 @@
-
+(define (scale l x)
+  (if (null? l)
+      '()
+      (cons (* x (car l))
+            (scale (cdr l) x))))
 
 (load "../testing/check.scm")
 

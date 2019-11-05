@@ -1,4 +1,8 @@
-
+(define (add-last l x)
+  (if (null? l)
+      (list x)
+      (cons (car l)
+            (add-last (cdr l) x))))
 
 (load "../testing/check.scm")
 

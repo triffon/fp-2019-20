@@ -1,4 +1,8 @@
-
+(define (map f l)
+  (if (null? l)
+      '()
+      (cons (f (car l))
+            (map f (cdr l)))))
 
 (load "../testing/check.scm")
 

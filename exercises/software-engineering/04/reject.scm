@@ -1,4 +1,8 @@
+(load "./filter.scm")
+(load "../03/compose.scm")
 
+(define (reject p l)
+  (filter (compose not p) l))
 
 (load "../testing/check.scm")
 
