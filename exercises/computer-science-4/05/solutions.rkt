@@ -1,17 +1,26 @@
 #lang racket
 
+; take и drop не се държат така попринцип в racket,
+; а при по-голямо n биха хвърлили грешка.
+; В Haskell примерно се държат точно както са написани тук.
+
 ; take xs n
 (define (take xs n)
-  (if (zero? n)
-    '()
-    (cons (car xs)
-          (take (cdr xs) (- n 1)))))
+  (cond [(zero? n) '()]
+        [(> n (length xs)) xs]
+        [else (cons
+                (car xs)
+                (take (cdr xs)
+                      (- n 1)))]))
 
 ; drop xs n
 (define (drop xs n)
-  (if (zero? n)
-    xs
-    (drop (cdr xs) (- n 1))))
+  (cond [(zero? n) xs]
+        [(> n (length xs)) '()]
+        [else (drop (cdr xs) (- n 1))]))
+
+(take '(1 2 3) 5)
+(drop '(1 2 3) 5)
 
 ; transpose m
 (define (transpose m) (apply map list m))
