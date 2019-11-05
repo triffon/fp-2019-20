@@ -9,3 +9,4 @@
 | 3 | [Функции от по-висок ред. Accumulate](03--higher-order-functions--accumulate) | [код от часа](03--higher-order-functions--accumulate/class.rkt) | [решения на задачите](03--higher-order-functions--accumulate/solutions) |
 | 4 | [Списъци](04--lists) | [код от часа](04--lists/class.rkt) |
 | 5 | [Fold. Дълбоки списъци](05--fold--deep-lists) | [код от часа](05--fold--deep-lists/class.rkt)
+| п1 | [Подготовка за контролно 1](exam-prep-01) |
