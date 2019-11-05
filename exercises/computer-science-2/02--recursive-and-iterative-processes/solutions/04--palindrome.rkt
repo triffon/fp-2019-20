@@ -2,6 +2,8 @@
 (require rackunit)
 (require rackunit/text-ui)
 
+(provide palindrome?)
+
 (define (count-digits-iter n)
   (define (for num result)
     (if (< num 10)
