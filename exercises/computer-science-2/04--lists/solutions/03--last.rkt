@@ -6,7 +6,9 @@
 ; която намира последния елемент на списък.
 
 (define (last L)
-  (void))
+  (if (null? (cdr L))
+      (car L)
+      (last (cdr L))))
 
 
 (define l1 '(1 2 3 4 5 6 7 8))
