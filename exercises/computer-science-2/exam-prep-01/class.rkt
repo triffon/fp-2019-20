@@ -151,7 +151,7 @@
   (foldl (lambda (acc x)
            (if (atom? x)
                (op acc (term x))
-               (op acc (deep-foldl op nv term x))))
+               (deep-foldl op nv term x)))
          nv dl))
 
 (define (foldr op nv l)
