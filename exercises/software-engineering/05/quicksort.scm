@@ -1,4 +1,11 @@
-
+(define (quicksort l)
+  (if (null? l)
+      '()
+      (let ((pivot (car l))
+            (others (cdr l)))
+        (append (quicksort (filter (lambda (x) (< x pivot)) others))
+                (list pivot)
+                (quicksort (filter (lambda (x) (>= x pivot)) others))))))
 
 (load "../testing/check.scm")
 
