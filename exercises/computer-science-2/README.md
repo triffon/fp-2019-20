@@ -9,7 +9,7 @@
 |  3  | [Функции от по-висок ред. Accumulate][3e]    | [код от часа][3c]     | [решения на задачите][3s] |
 |  4  | [Списъци][4e]                                | [код от часа][4c]     | [решения на задачите][4s] |
 |  5  | [Fold. Дълбоки списъци][5e]                  | [код от часа][5c]     | [решения на задачите][5s] |
-| --- | [Подготовка за контролно 1][prep1e]          | [код от часа][prep1c] |
+| --- | [Подготовка за контролно 1][prep1e]          | [код от часа][prep1c] | [решения на задачите][prep1s] |
 
 [1e]: 01--introduction-to-scheme--recursion
 [1c]: 01--introduction-to-scheme--recursion/class.rkt
@@ -33,3 +33,4 @@
 
 [prep1e]: exam-prep-01
 [prep1c]: exam-prep-01/class.rkt
+[prep1s]: exam-prep-01/solutions
