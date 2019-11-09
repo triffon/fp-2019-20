@@ -2,8 +2,6 @@
 ### Краен срок: ?, 23:59:59
 ### Максимум точки без бонуси: 30
 
-TODO(georgi): describe dir structure when it exists
-
 ## Setup
 Инсталирайте `quickcheck`:
   * От команден ред (поне под `linux`):
