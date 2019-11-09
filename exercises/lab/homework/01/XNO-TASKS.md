@@ -390,5 +390,7 @@ hw03
     След като ги напишете много бързо ще видите че може и да е една функция, с малко абстрахиране.
 
 
+TODO(georgi): add alpha-beta bonus
+
 
 [minmax]: https://en.wikipedia.org/wiki/Minimax#Minimax_algorithm_with_alternate_moves
