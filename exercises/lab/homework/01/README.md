@@ -12,6 +12,9 @@
       2. цъкате `Package Manager`
       3. в `Package Source` полето пишете `quickcheck` и натискате `Install`
 
+В `solutions/xno.rkt` можете да използвате функциите дефинирани в `solutions/matrix.rkt`,
+благодарение на съответно `require` и `provide` извикванията.
+
 ## Running
 * От команден ред:
 

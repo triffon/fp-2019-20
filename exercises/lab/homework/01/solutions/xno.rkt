@@ -3,8 +3,8 @@
 (provide winner
          play)
 
-; TODO(georgi): require matrix stuff
-; You can use your matrix functions here, thanks to the "require" invocation above.
+(require "matrix.rkt")
+; You can use your matrix functions below, thanks to the "require" invocation above.
 
 (define (id x) x)
 
