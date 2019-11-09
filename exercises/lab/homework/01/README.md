@@ -32,3 +32,5 @@
 * От `DrRacket`
 
     Отваряте `solutions/xno-main.rkt` в `DrRacket` и цъкате `Run`
+
+TODO(georgi): add tests for matrix at least
