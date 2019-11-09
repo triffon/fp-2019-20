@@ -91,6 +91,7 @@ hw03
 ```
 
 ## TODO(georgi): Move everything above here to top level task Описание на функциите, които трябва да реализирате
+## TODO(georgi): Describe high-level overview of task (winner, play, suggested minmax)
 
 ### `(winner b)`
 `(winner b)` взима `дъска` и връща кой е `победител` на тази дъска.
