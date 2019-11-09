@@ -13,10 +13,19 @@
       3. в `Package Source` полето пишете `quickcheck` и натискате `Install`
 
 ## Running
-TODO(georgi): describe running xno gui
 * От команден ред:
 
     `racket <теста който искате да пуснете>`
 * От `DrRacket`:
 
     Отваряте `<теста който искате да пуснете>` в `DrRacket` и цъкате `Run`
+
+### Допълнителни инструкции за пускане на GUI-а към морския шах:
+
+* От команден ред:
+
+    `racket solutions/xno-main.rkt`
+
+* От `DrRacket`
+
+    Отваряте `solutions/xno-main.rkt` в `DrRacket` и цъкате `Run`
