@@ -77,31 +77,31 @@ hw03
 ```scheme
 (winner '((#f #f #f)
           (#f #f #f)
-          (#f #f #f))) -> #f
+          (#f #f #f))) ;-- #f
 
 (winner '(("X" "O" "X")
           ("O" "X" "O")
-          ("X" "O" "X"))) -> "X"
+          ("X" "O" "X"))) ;-- "X"
 
 (winner '(("O" "O" "O")
           ("X" "X" #f)
-          (#f #f "X"))) -> "O"
+          (#f #f "X"))) ;-- "O"
 
 (winner '(("O" #f "O")
           (#f "O" #f)
-          ("X" "X" "X"))) -> "X"
+          ("X" "X" "X"))) ;-- "X"
 
 (winner '(("X" "O" "O")
           ("O" "X" "O")
-          ("O" "X" "X"))) -> "X"
+          ("O" "X" "X"))) ;-- "X"
 
 (winner '(("X" "O" "X")
           ("O" "X" "O")
-          ("O" "X" "O"))) -> "D"
+          ("O" "X" "O"))) ;-- "D"
 
 (winner '(("X" "O" "X")
           ("O" "O" "X")
-          ("O" "X" #f))) -> #f
+          ("O" "X" #f))) ;-- #f
 ```
 
 ## 01. `(play curr-board curr-sign)`
@@ -222,15 +222,15 @@ hw03
     ```scheme
     (empty-spots '(("X" "O" "X")
                    ("X" "O" "O")
-                   ("O" "X" "X"))) -> '()
+                   ("O" "X" "X"))) ;-- '()
 
     (empty-spots '((#f  "O" "X")
                    ("X" "O" "O")
-                   ("O" "X" "X"))) -> '((0 . 0))
+                   ("O" "X" "X"))) ;-- '((0 . 0))
 
     (empty-spots '((#f  "O" "X")
                    ("X" "O" "O")
-                   ("O" #f  "X"))) -> '((0 . 0) (2 . 1))
+                   ("O" #f  "X"))) ;-- '((0 . 0) (2 . 1))
     ```
 
     За реализацията на тази функция може да ви е полезно да имате "индексна матрица" –
@@ -243,17 +243,17 @@ hw03
     Примери:
 
     ```scheme
-    (grade "D" #t) -> 0
+    (grade "D" #t) ;-- 0
 
-    (grade "D" #f) -> 0
+    (grade "D" #f) ;-- 0
 
-    (grade "X" #f) -> -1
+    (grade "X" #f) ;-- -1
 
-    (grade "X" #t) -> 1
+    (grade "X" #t) ;-- 1
 
-    (grade "O" #f) -> 1
+    (grade "O" #f) ;-- 1
 
-    (grade "O" #t) -> -1
+    (grade "O" #t) ;-- -1
     ```
 
 03. `(maximum-on f xs)`
@@ -263,13 +263,13 @@ hw03
     Примери:
 
     ```scheme
-    (maximum-on id '(1 2 3)) -> 3
+    (maximum-on id '(1 2 3)) ;-- 3
 
-    (maximum-on (lambda (x) (-x)) '(1 2 3)) -> 1
+    (maximum-on (lambda (x) (-x)) '(1 2 3)) ;-- 1
 
-    (maximum-on car '((1 . 1337) (0 . 20000) (10 . 4))) -> (10 . 4)
+    (maximum-on car '((1 . 1337) (0 . 20000) (10 . 4))) ;-- (10 . 4)
 
-    (maximum-on cdr '((1 . 1337) (0 . 20000) (10 . 4))) -> (0 . 20000)
+    (maximum-on cdr '((1 . 1337) (0 . 20000) (10 . 4))) ;-- (0 . 20000)
     ```
 
 04. `(maximise board curr-player me)` и `(minimise board curr-player me)`
