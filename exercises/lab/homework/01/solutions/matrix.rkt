@@ -7,6 +7,7 @@
          cols
          matrix-ref
          set
+         place
          diag
          diags
          map-matrix
@@ -35,6 +36,9 @@
 
 ; 06.
 (define (set xs i x) void)
+
+; 07.
+(define (place xss i j x) void)
 
 ; 08.
 (define (diag xss) void)
