@@ -15,9 +15,9 @@
 (define (deep-repeat l)
   (deep-repeat-help l 1))
 
-(define max-metric-tests
+(define deep-repeat-tests
   (test-suite
-    "Tests for max-metric"
+    "Tests for deep-repeat"
 
     (check-equal? (deep-repeat '())
                                '())
@@ -28,4 +28,4 @@
     (check-equal? (deep-repeat '(1 (2 3) 4 (5 (6))))
                                '(1 (2 2 3 3) 4 (5 5 (6 6 6))))))
 
-(run-tests max-metric-tests)
+(run-tests deep-repeat-tests)
