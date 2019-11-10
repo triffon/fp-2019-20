@@ -7,6 +7,7 @@
 
 (define (deep-repeat-help l level)
   (cond ((null? l) '())
+        ((null? (car l)) (cons '() (deep-repeat-help (cdr l) level))) ; corner case
         ((pair? (car l)) (cons (deep-repeat-help (car l) (+ level 1))
                                (deep-repeat-help (cdr l) level)))
         (else (append (repeat level (car l))
@@ -21,6 +22,8 @@
 
     (check-equal? (deep-repeat '())
                                '())
+    (check-equal? (deep-repeat '(((())))) ; tricky corner case
+                               '(((()))))
     (check-equal? (deep-repeat '(((6))))
                                '(((6 6 6))))
     (check-equal? (deep-repeat '((2 3) 4 ((6))))
