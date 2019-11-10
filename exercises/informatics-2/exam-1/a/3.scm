@@ -19,6 +19,12 @@
   (test-suite
     "Tests for max-metric"
 
+    (check-equal? (deep-repeat '())
+                               '())
+    (check-equal? (deep-repeat '(((6))))
+                               '(((6 6 6))))
+    (check-equal? (deep-repeat '((2 3) 4 ((6))))
+                               '((2 2 3 3) 4 ((6 6 6))))
     (check-equal? (deep-repeat '(1 (2 3) 4 (5 (6))))
                                '(1 (2 2 3 3) 4 (5 5 (6 6 6))))))
 
