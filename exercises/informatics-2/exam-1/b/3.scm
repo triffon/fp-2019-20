@@ -1,15 +1,11 @@
 (require rackunit rackunit/text-ui)
 
-(define (atom? x)
-  (and (not (null? x))
-       (not (pair? x))))
-
 (define (deep-delete-help l level)
   (cond ((null? l) '())
+        ((null? (car l)) (cons '() (deep-delete-help (cdr l) level)))
         ((pair? (car l)) (cons (deep-delete-help (car l) (+ level 1))
                                (deep-delete-help (cdr l) level)))
-        ((and (atom? (car l)) ; <- ensure we don't have an empty list here
-              (< (car l) level)) (deep-delete-help (cdr l) level))
+        ((< (car l) level) (deep-delete-help (cdr l) level))
         (else (cons (car l)
                     (deep-delete-help (cdr l) level)))))
 
