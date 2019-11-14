@@ -33,6 +33,9 @@
 -- brackets for priority
 --
 -- TODO: declarations (datatypes - DATA) vs definitions (functions - OPERATIONS)
+-- general syntax
+-- example datatype: languages?direction?
+-- zero one two
 -- pattern matching? say about warn incomplete/unused -- case?
 -- show holes? (tuple swap example is good)
 -- wildcards
@@ -41,30 +44,69 @@
 -- show pattern matching on bool for not and or?
 -- maybe show how pattern matching relates to laziness
 
+-- TODO: nats + lists again (deriving show!)
+data Nat -- TODO
+
+predNat :: Nat -> Nat
+predNat = undefined
+
+-- use error here probably
+integerToNat :: Integer -> Nat
+integerToNat = undefined
+
+natToInteger :: Nat -> Integer
+natToInteger = undefined
+
+data List a -- TODO
+
+sumList :: List Integer -> Integer
+sumList = undefined
+
 -- EXERCISE: Implication
+-- Make it as lazy as possible!
 implies :: Bool -> Bool -> Bool
 implies = undefined
 
+-- EXERCISE: And
+-- Make it as lazy as possible!
+and :: Bool -> Bool -> Bool
+and = undefined
+
 -- EXERCISE: If
+-- EXAMPLES:
+-- myIf True 5 3 -- 5
+-- myIf False 5 3 -- 3
 myIf :: Bool -> a -> a -> a
 myIf = undefined
 
--- EXERCISE: Add numbers
-
--- write nats and lists
--- nats + lists again? (deriving show!)
--- show pred on nats
--- show from,toInteger for nats?
--- show summing for lists?
---
 -- EXERCISE: Plus
+-- As usual.
+plus :: Nat -> Nat -> Nat
+plus = undefined
 -- EXERCISE: Mult
+-- You know the drill
+mult :: Nat -> Nat -> Nat
+mult = undefined
 -- EXERCISE: Apppend
+-- yup
+append :: List a -> List a -> List a
+append = undefined
 -- EXERCISE: Reverse
--- EXERCISE: Maximum (use max?)
--- EXERCISE: Sort?
+-- Do the naive version - we'll talk about local definitions later.
+-- Or write an additional top-level helper - whatever.
+-- 's are a completely ok part of an identifier (as long as it's not at the start)
+reverse' :: List a -> List a
+reverse' = undefined
 
--- bitvectors? for exercise
+-- EXERCISE: Maximum (use max)
+-- You can use
+-- maxBound :: Int
+-- for the empty list case.
+-- This value gives you "the largest Int" on your machine.
+maximum :: List Int -> Int
+maximum = undefined
+
+----------------------------- BITVECTORS -------------------------------------
 -- | Let's have bits
 -- This is *the same* as Bools - but we will use them in a different context.
 -- The B prefix is because we can't have constructors with duplicate names.
