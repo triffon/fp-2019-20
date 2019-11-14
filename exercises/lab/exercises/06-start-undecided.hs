@@ -34,7 +34,23 @@
 --
 -- TODO: declarations (datatypes - DATA) vs definitions (functions - OPERATIONS)
 -- general syntax
--- example datatype: languages?direction?
+data Language
+
+goodLanguage :: Language -> Bool
+goodLanguage = undefined
+
+data CoupleOfInts
+
+sumCouple :: CoupleOfInts -> Int
+sumCouple = undefined
+
+data Direction
+
+flipHorizontally :: Direction -> Direction
+flipHorizontally = undefined
+
+flipVertically :: Direction -> Direction
+flipVertically = undefined
 -- zero one two
 -- pattern matching? say about warn incomplete/unused -- case?
 -- show holes? (tuple swap example is good)
