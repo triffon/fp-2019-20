@@ -30,6 +30,8 @@
 * Плагиатствам от [този курс](https://github.com/bobatkey/CS316-19)
 * [Книгата](http://www.cs.nott.ac.uk/~pszgmh/pih.html) на която е базиран горният курс (и също я смятам за добър ресурс)
 * Хубав talk/demo за неща които често ти се налагат често и как се правят те в Haskell - [цък](https://www.youtube.com/watch?v=idU7GdlfP9Q)
+* [Hoogle](https://hoogle.haskell.org/) - търсене за хаскел функции(идентификатори) (по типове!)
+* [Hackage](http://hackage.haskell.org/) - търсене за хаскел пакети
 * [LYAH](http://learnyouahaskell.com/) - може би най-популярният `Haskell` ресурс
 
   Става за бързо четене, но малко остаряло + няма задачи/повече примери.
