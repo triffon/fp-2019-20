@@ -2,3 +2,4 @@
 -- TODO: ping about homework 01, maybe show it? start it early!
 -- TODO: motivate to PR as soon as possible so we I can comment earlier
 -- TODO: ask people to NOT merge themselves
+-- TODO: tell people about resources
