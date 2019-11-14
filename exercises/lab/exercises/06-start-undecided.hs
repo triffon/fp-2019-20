@@ -23,6 +23,7 @@
 -- TODO: show types (NO IMPLICIT CASTING!!!)
 -- Int, Integer, Bool, Char, String, (a,b) (fst/snd), [a] (head/tail), etc
 -- undefined -- will use to fill stuff in sometimes
+-- error -- use for now
 -- TODO: show laziness? (vs scheme maybe?)
 -- TODO: type variables
 -- a -> a
@@ -33,19 +34,37 @@
 --
 -- TODO: declarations (datatypes - DATA) vs definitions (functions - OPERATIONS)
 -- pattern matching? say about warn incomplete/unused -- case?
+-- show holes? (tuple swap example is good)
 -- wildcards
 -- show examples? (programming languages?)
 -- show bool
 -- show pattern matching on bool for not and or?
 -- maybe show how pattern matching relates to laziness
+
+-- EXERCISE: Implication
+implies :: Bool -> Bool -> Bool
+implies = undefined
+
+-- EXERCISE: If
 myIf :: Bool -> a -> a -> a
 myIf = undefined
 
--- HOLES (example with tuple swap?)
+-- EXERCISE: Add numbers
 
 -- write nats and lists
 -- nats + lists again? (deriving show!)
--- bitvectors?
+-- show pred on nats
+-- show from,toInteger for nats?
+-- show summing for lists?
+--
+-- EXERCISE: Plus
+-- EXERCISE: Mult
+-- EXERCISE: Apppend
+-- EXERCISE: Reverse
+-- EXERCISE: Maximum (use max?)
+-- EXERCISE: Sort?
+
+-- bitvectors? for exercise
 --
 --
 --
