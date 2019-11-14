@@ -12,7 +12,6 @@
   (check-equal? (product-digits 76398743) 762048))
 
 (describe largest-diff
-  (check-equal? (largest-diff 28 35) 10)
   (check-equal? (largest-diff 28 35) 19))
 
 
