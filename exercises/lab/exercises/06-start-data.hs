@@ -25,32 +25,33 @@
 -- undefined -- will use to fill stuff in sometimes
 -- error -- use for now
 -- TODO: show laziness? (vs scheme maybe?)
--- TODO: type variables
--- a -> a
--- a -> b
 -- TODO: show syntax (shell syntax!)
 -- priority on fn application; infix!
 -- brackets for priority
 --
 -- TODO: declarations (datatypes - DATA) vs definitions (functions - OPERATIONS)
 -- general syntax
+
 data Language
+  = C
+  | Java
+  | Haskell
+  | Rails
+  | Agda
+  deriving Show
 
 goodLanguage :: Language -> Bool
-goodLanguage = undefined
+goodLanguage Haskell = True
+goodLanguage Agda = True
+goodLanguage _ = False
 
-data CoupleOfInts
+data CoupleOfInts = Pesho Int Int
+  deriving Show
 
 sumCouple :: CoupleOfInts -> Int
-sumCouple = undefined
+sumCouple (Pesho x y) = x + y
 
-data Direction
-
-flipHorizontally :: Direction -> Direction
-flipHorizontally = undefined
-
-flipVertically :: Direction -> Direction
-flipVertically = undefined
+data Zero
 -- zero one two
 -- pattern matching? say about warn incomplete/unused -- case?
 -- show holes? (tuple swap example is good)
@@ -61,22 +62,33 @@ flipVertically = undefined
 -- maybe show how pattern matching relates to laziness
 
 -- TODO: nats + lists again (deriving show!)
-data Nat -- TODO
+data Nat
+  = Zero
+  | Succ Nat
+  deriving Show
 
 predNat :: Nat -> Nat
-predNat = undefined
+predNat Zero = Zero
+predNat (Succ n) = n
 
 -- use error here probably
-integerToNat :: Integer -> Nat
-integerToNat = undefined
+--integerToNat :: Integer -> Nat
+--integerToNat = undefined
+--
+--natToInteger :: Nat -> Integer
+--natToInteger = undefined
 
-natToInteger :: Nat -> Integer
-natToInteger = undefined
-
-data List a -- TODO
+-- TODO: type variables
+-- a -> a
+-- a -> b
+data List a
+  = Nil
+  | Cons a (List a)
+  deriving Show
 
 sumList :: List Integer -> Integer
-sumList = undefined
+sumList Nil = 0
+sumList (Cons x xs) = x + sumList xs
 
 -- EXERCISE: Implication
 -- Make it as lazy as possible!
