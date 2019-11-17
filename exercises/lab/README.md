@@ -2,6 +2,8 @@
 
 ### Полезна информация
 
+#### [Таблица с точки](https://docs.google.com/spreadsheets/d/1VNdiwvn6Tqm-iy28EjHntu64GgUSxcdcFGe7LiZJ38U)
+
 ##### Курсът се взима с домашни + проект
 Домашните не са задължителни, проектът е.
 
