@@ -294,4 +294,4 @@
 
 (test-case
   "PROPERTY: zip-matrixing and then concat-ing is the same as concat-ing and then zipping"
-  (check-property concat-zip-matrix-same-as-zip-flatten))
+  (check-property concat-zip-matrix-same-as-zip-concat))
