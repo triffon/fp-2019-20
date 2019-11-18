@@ -1,3 +1,4 @@
 -- TODO: ask about additional exercises, because we're skipping two due to new years stuff
 -- TODO: show let where case lambdas
 -- TODO: talk about bitvectors, think about whether to change the constructor
+-- TODO: remind about homework; tell people to use HOF
