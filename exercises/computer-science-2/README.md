@@ -13,6 +13,7 @@
 |  5  | [Fold. Дълбоки списъци][5e]                  | [код от часа][5c]     | [решения на задачите][5s]     |
 | --- | [Подготовка за контролно 1][prep1e]          | [код от часа][prep1c] | [решения на задачите][prep1s] |
 |  6  | [Структури от данни][6e]                     | [код от часа][6c]     |
+|  7  | [Графи. Потоци][7e]                          | 
 
 [1e]: 01--introduction-to-scheme--recursion
 [1c]: 01--introduction-to-scheme--recursion/class.rkt
@@ -40,3 +41,5 @@
 
 [6e]: 06--ads
 [6c]: 06--ads/class.rkt
+
+[7e]: 07--graphs--streams
