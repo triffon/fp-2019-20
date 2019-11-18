@@ -6,6 +6,7 @@
 
 (describe sum-common-divisors
   (check-equal? (sum-common-divisors 2 2) 3)
+  (check-equal? (sum-common-divisors 4 2) 3)
   (check-equal? (sum-common-divisors 12 6) 12))
 
 (describe greatest-sum

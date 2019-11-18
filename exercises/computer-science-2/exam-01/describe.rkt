@@ -11,7 +11,8 @@
                   (test-suite
                     (string-append "Tests for "
                                    (symbol->string (syntax->datum #'id)))
-                    l ...))
+                    l ...)
+                  'verbose)
                 (void))
          #'(display
              (string->symbol

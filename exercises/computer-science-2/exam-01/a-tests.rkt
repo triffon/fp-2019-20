@@ -12,7 +12,10 @@
   (check-equal? (product-digits 76398743) 762048))
 
 (describe largest-diff
-  (check-equal? (largest-diff 28 35) 19))
+  (check-equal? (largest-diff 28 28) 0)
+  (check-equal? (largest-diff 28 35) 19)
+  (check-equal? (largest-diff 31 35) 8))
+
 
 
 (display "\n=== a - 2 ===\n")
@@ -37,6 +40,8 @@
                              '(((()))))
   (check-equal? (deep-repeat '(((6))))
                              '(((6 6 6))))
+  (check-equal? (deep-repeat '(1 2 (3) () (() 5) 4))
+                             '(1 2 (3 3) () (() 5 5) 4))
   (check-equal? (deep-repeat '((2 3) 4 ((6))))
                              '((2 2 3 3) 4 ((6 6 6))))
   (check-equal? (deep-repeat '(1 (2 3) 4 (5 (6))))
