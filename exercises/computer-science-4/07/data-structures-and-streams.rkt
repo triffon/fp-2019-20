@@ -7,11 +7,8 @@
 ; ще си дефинираме функции за работа двоични дървета
 
 (define (tree? t)
-  (and (list? t)))
-
-(define (tree? t)
   (or (null? t)
-      (and (list t)
+      (and (list? t)
            (= (length t) 3)
            (tree? (cadr t))
            (tree? (caddr t)))))
@@ -26,7 +23,7 @@
 
 (define (leaf? t)
   (and (empty? (left t))
-       (empty? (right))))
+       (empty? (right t))))
 
 
 ; Имплементирайте следните функции за двоични дървета:
