@@ -164,8 +164,6 @@ sumCouple (Pesho x y) = x + y
 -- server :: Zero
 -- We really mean that "server is something that will never return a value"
 data Zero
--- pattern matching? say about warn incomplete/unused -- case?
--- show holes? (tuple swap example is good)
 
 -- The datatype Bool is actually also defined as
 -- data Bool = False | True
