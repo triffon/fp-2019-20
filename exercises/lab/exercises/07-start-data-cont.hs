@@ -1,0 +1,8 @@
+-- TODO: ask about additional exercises, because we're skipping two due to new years stuff
+-- TODO: show let where case lambdas
+-- TODO: talk about bitvectors, think about whether to change the constructor
+-- TODO: remind about homework; tell people to use HOF
+--
+-- TODO: talk about zero one two + *?
+-- TODO: DEFINITELY say that matches are looked at top to bottom
+--       and also MAYBE laziness via pattern matching

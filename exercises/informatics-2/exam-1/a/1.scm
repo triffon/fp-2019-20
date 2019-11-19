@@ -46,6 +46,10 @@
   (test-suite
     "Tests for largest-diff"
 
+    (check-equal? (largest-diff 1 2) 0)
+    (check-equal? (largest-diff 9 10) 10)
+    (check-equal? (largest-diff 13 26) 10)
+    (check-equal? (largest-diff 130 262) 148)
     (check-equal? (largest-diff 28 35) 19)))
 
 (run-tests largest-diff-tests)
