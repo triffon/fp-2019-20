@@ -4,9 +4,16 @@
 
 (load "../testing/check.scm")
 
-(check (count-leaves '()) => 0)
-(check (count-leaves '(1 () ())) => 1)
-(check (count-leaves '(1 (2 (4 () ()) (5 () ())) (3 () ()))) => 3)  
+(define tree
+  (make-tree 1
+             (make-tree 2
+                        (leaf 4)
+                        (leaf 5))
+             (leaf 3)))
+
+(check (count-leaves empty-tree) => 0)
+(check (count-leaves (leaf 1)) => 1)
+(check (count-leaves tree) => 3)
 
 (check-report)
 (check-reset!)
