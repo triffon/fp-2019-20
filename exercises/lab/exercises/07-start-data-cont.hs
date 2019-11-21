@@ -61,6 +61,8 @@ uncurry' f = \(x, y) -> f x y
 -- TODO: show holes? (with e.g. (.))
 
 -- taken from the standard library
+(.) :: (b -> c) -> (a -> b) -> a -> c
+(.) = undefined
 infixr 9 .
 
 -- TODO: talk about bitvectors
