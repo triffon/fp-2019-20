@@ -27,6 +27,8 @@ import Prelude hiding (const, id, flip, (.), ($))
 -- taken from the standard library
 infixr 9 .
 
+-- TODO: talk about bitvectors
+
 -- EXERCISE: Identity
 -- EXAMPLES:
 -- id 5 -- 5
@@ -104,7 +106,6 @@ on = undefined
 -- taken from the standard library (Data.Function)
 infixl 0 `on`
 
--- TODO: talk about bitvectors
 ----------------------------- BITVECTORS -------------------------------------
 -- | Let's have bits
 -- This is *the same* as Bools - but we will use them in a different context.
