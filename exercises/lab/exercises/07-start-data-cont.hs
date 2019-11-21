@@ -225,6 +225,3 @@ bitVectorToInteger = undefined
 -- addBitVector (End :. One :. Zero) (End :. One :. Zero :. Zero) -- End :. One :. One :. Zero
 addBitVector :: BitVector -> BitVector -> BitVector
 addBitVector = undefined
-
---- TODO: Maybe?
---- TODO: Tree?
