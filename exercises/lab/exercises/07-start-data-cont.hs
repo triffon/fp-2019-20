@@ -4,8 +4,38 @@
 {-# OPTIONS_GHC -fwarn-name-shadowing #-}          -- use different names!
 {-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-} -- warn about incomplete patterns v2
 
+import Prelude hiding (const, id, flip, (.), ($))
+
 -- TODO: remind about homework; tell people to use HOF
 -- TODO: talk about projects! give deadline for choosing
+
+
+-- TODO: comment on this at home
+--data List a
+--  = Nil
+--  | Cons a (List a)
+--
+--reverse :: List Int -> List Int
+--reverse Nil = Nil
+--reverse (Cons x xs) = append (reverse xs) (Cons x Nil)
+--
+--data [a]
+--  = []
+--  | (:) a [a]
+
+reverse' :: [Int] -> [Int]
+reverse' ys = reverseHelper ys []
+  where
+    reverseHelper :: [Int] -> [Int] -> [Int]
+    reverseHelper [] acc = acc
+    reverseHelper (x:xs) acc = reverseHelper xs (x:acc)
+
+-- TODO: talk about case
+--append :: [a] -> [a] -> [a]
+--append xs ys =
+--  case xs of
+--    [] -> ys
+--    x:xs -> x : (append xs ys)
 
 
 -- TODO: tell about [] vs our List (constructors, show example)
@@ -13,7 +43,15 @@
 
 -- TODO: show let where case lambdas (with reverse?)
 
-import Prelude hiding (const, id, flip, (.), ($))
+
+plus :: Int -> (Int -> Int)
+plus x y = x + y
+
+curry' :: ((a, b) -> c) -> (a -> b -> c)
+curry' f = \x y -> f (x, y)
+
+uncurry' :: (a -> b -> c) -> ((a, b) -> c)
+uncurry' f = \(x, y) -> f x y
 
 --- Functiony stuff ??
 -- TODO: talk about currying...
@@ -21,8 +59,6 @@ import Prelude hiding (const, id, flip, (.), ($))
 -- TODO: ask about (a -> a), (a -> b) inhabitants
 --
 -- TODO: show holes? (with e.g. (.))
-(.) :: (b -> c) -> (a -> b) -> a -> c
-(.) = undefined
 
 -- taken from the standard library
 infixr 9 .
