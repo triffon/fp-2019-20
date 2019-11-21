@@ -28,7 +28,6 @@
 -- * :i(nfo) x - this will give you "more info" about x (useful later)
 -- * :l(oad) "filename" - load a filename
 
--- TODO: show types (NO IMPLICIT CASTING!!!)
 -- Haskell has types. It also has no implicit casting.
 -- Unlike scheme where you can do
 -- (define (omega x) (x x))
