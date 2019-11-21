@@ -1,5 +1,3 @@
--- TODO: show let where case lambdas
--- TODO: talk about bitvectors, think about whether to change the constructor
 {-# OPTIONS_GHC -fwarn-incomplete-patterns #-}     -- cover all cases!
 {-# OPTIONS_GHC -fwarn-unused-matches #-}          -- use all your pattern matches!
 {-# OPTIONS_GHC -fwarn-missing-signatures #-}      -- write all your toplevel signatures!
@@ -8,10 +6,106 @@
 
 -- TODO: remind about homework; tell people to use HOF
 -- TODO: talk about projects! give deadline for choosing
---
--- TODO: DEFINITELY say that matches are looked at top to bottom
---       and also MAYBE laziness via pattern matching
 
+
+-- TODO: tell about [] vs our List (constructors, show example)
+-- TODO: DEFINITELY say that matches are looked at top to bottom
+
+-- TODO: show let where case lambdas (with reverse?)
+
+import Prelude hiding (const, id, flip, (.), ($))
+
+--- Functiony stuff ??
+-- TODO: talk about currying...
+-- TODO: say about infix functions + sections???
+-- TODO: ask about (a -> a), (a -> b) inhabitants
+--
+-- id (.) ($) (<<<) (>>>) flip on
+-- TODO: show holes? (with e.g. (.))
+(.) :: (b -> c) -> (a -> b) -> a -> c
+(.) = undefined
+
+-- taken from the standard library
+infixr 9 .
+
+-- EXERCISE: Identity
+-- EXAMPLES:
+-- id 5 -- 5
+id :: a -> a
+id = undefined
+
+-- EXERCISE: Const
+-- This is useful when you want to "replace" all values with a given one.
+-- EXAMPLES:
+-- map (const 10) [1,2,3] -- [10,10,10]
+const :: a -> b -> a
+const = undefined
+
+-- EXERCISE: Application
+--
+-- f $ x applies f to x
+--
+-- This is useful when chaining a lot of functions one after another
+-- to save on writing a lot of brackets.
+-- Instead of
+-- not (True && False)
+-- we can write
+-- not $ True && False
+--
+-- This works because the ($) operator associates to the right and also has a *very low* precedence
+--
+-- EXAMPLES:
+-- (*10) $ (+5) $ 10 -- 150
+($) :: (a -> b) -> a -> b
+($) = undefined
+
+-- taken from the standard library
+infixr 0 $
+
+-- EXERCISE: Composition
+-- Not really new, same as (.), but a different name.
+-- The arrows point in the "direction in which we are processing"
+-- right-to-left
+-- EXAMPLES:
+-- ((*10) <<< (+5)) 10 -- 150
+-- (*10) <<< (+10) $ 10 -- 200
+(<<<) :: (b -> c) -> (a -> b) -> a -> c
+(<<<) = undefined
+
+infixr 1 <<<
+
+-- EXERCISE: Diagrammatic composition
+-- Same as above, but left-to-right
+-- EXAMPLES:
+-- ((*10) >>> (+5)) 10 -- 105
+-- (*10) >>> (+10) $ 10 -- 110
+(>>>) :: (a -> b) -> (b -> c) -> a -> c
+(>>>) = undefined
+
+infixr 1 >>>
+
+-- EXERCISE: Argument flipping
+-- Flip the arguments of a function
+-- EXAMPLES:
+-- flip (-) 3 5 -- 2
+flip :: (a -> b -> c) -> b -> a -> c
+flip = undefined
+
+-- EXERCISE: Apply a binary function after doing some transformation first
+-- This is used infix very often.
+-- EXAMPLES:
+-- (on (+) succ) 0 1 -- 3 -- btw we can omit the brackets here
+-- ((&&) `on` even) 2 4 -- True
+-- ((||) `on` odd) 2 4 -- False
+-- ((<) `on` fst) (1, 10000) (2, 0) -- True
+-- ((<) `on` snd) (1, 10000) (2, 0) -- False
+on :: (b -> b -> c) -> (a -> b) -> a -> a -> c
+on = undefined
+
+-- taken from the standard library (Data.Function)
+infixl 0 `on`
+
+-- TODO: talk about bitvectors
 ----------------------------- BITVECTORS -------------------------------------
 -- | Let's have bits
 -- This is *the same* as Bools - but we will use them in a different context.
@@ -131,3 +225,6 @@ bitVectorToInteger = undefined
 -- addBitVector (End :. One :. Zero) (End :. One :. Zero :. Zero) -- End :. One :. One :. Zero
 addBitVector :: BitVector -> BitVector -> BitVector
 addBitVector = undefined
+
+--- TODO: Maybe?
+--- TODO: Tree?
