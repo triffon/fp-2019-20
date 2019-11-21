@@ -20,7 +20,6 @@ import Prelude hiding (const, id, flip, (.), ($))
 -- TODO: say about infix functions + sections???
 -- TODO: ask about (a -> a), (a -> b) inhabitants
 --
--- id (.) ($) (<<<) (>>>) flip on
 -- TODO: show holes? (with e.g. (.))
 (.) :: (b -> c) -> (a -> b) -> a -> c
 (.) = undefined
