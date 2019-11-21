@@ -1,5 +1,11 @@
 -- TODO: show let where case lambdas
 -- TODO: talk about bitvectors, think about whether to change the constructor
+{-# OPTIONS_GHC -fwarn-incomplete-patterns #-}     -- cover all cases!
+{-# OPTIONS_GHC -fwarn-unused-matches #-}          -- use all your pattern matches!
+{-# OPTIONS_GHC -fwarn-missing-signatures #-}      -- write all your toplevel signatures!
+{-# OPTIONS_GHC -fwarn-name-shadowing #-}          -- use different names!
+{-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-} -- warn about incomplete patterns v2
+
 -- TODO: remind about homework; tell people to use HOF
 -- TODO: talk about projects! give deadline for choosing
 --
