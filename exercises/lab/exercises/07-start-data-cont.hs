@@ -3,7 +3,6 @@
 -- TODO: remind about homework; tell people to use HOF
 -- TODO: talk about projects! give deadline for choosing
 --
--- TODO: talk about zero one two + *?
 -- TODO: DEFINITELY say that matches are looked at top to bottom
 --       and also MAYBE laziness via pattern matching
 
