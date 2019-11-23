@@ -1,4 +1,7 @@
-
+(define (nth l n)
+  (if (= n 0)
+      (car l)
+      (nth (cdr l) (- n 1))))
 
 (load "../testing/check.scm")
 

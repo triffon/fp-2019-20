@@ -65,37 +65,3 @@
                       (cdr lst))]))
   (help '() '() lst))
 
-; 9. reverse
-(define (reverse* lst)
-  (define (help acc lst)
-    (if (null? lst)
-      acc
-      (help (cons (car lst) acc)
-            (cdr lst))))
-  (help '() lst))
-
-; 10. foldr
-(define (foldr* op acc lst)
-  (if (null? lst)
-    acc
-    (op (car lst)
-        (foldr* op acc (cdr lst)))))
-
-; 11. foldl
-(define (foldl* op acc lst)
-  (if (null? lst)
-    acc
-    (foldl* op
-            (op acc (car lst))
-            (cdr lst))))
-
-; 12. length
-(define (length** lst)
-  (foldl* (lambda (x _) (+ x 1)) 0 lst))
-
-; 13. count-atoms
-(define (count-atoms lst)
-  (cond [(null? lst) 0]
-        [(not (pair? lst)) 1]
-        [else (+ (count-atoms (car lst))
-                 (count-atoms (cdr lst)))]))

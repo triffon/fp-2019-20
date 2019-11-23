@@ -18,6 +18,6 @@
              (check-eq? (last l1)
                         8)
              (check-equal? (last l2)
-                           '(21 21)))
+                           '(21 22)))
            'verbose)
 

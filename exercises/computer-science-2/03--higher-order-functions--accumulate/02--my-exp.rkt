@@ -9,8 +9,8 @@
   void)
 
 (run-tests (test-suite "my-exp tests"
-             (check-= (my-exp 15 1) (exp 1) 0.0001)
-             (check-= (my-exp 15 2) (exp 2) 0.0001)
-             (check-= (my-exp 15 6) (exp 6) 0.0001))
+             (check-= (my-exp 25 1) (exp 1) 0.0001)
+             (check-= (my-exp 25 2) (exp 2) 0.0001)
+             (check-= (my-exp 25 6) (exp 6) 0.0001))
            'verbose)
 

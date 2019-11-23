@@ -8,9 +8,9 @@
   void)
 
 (run-tests (test-suite "n-choose-k tests"
-             (chech-eq? (n-choose-k 15 0)
+             (check-eq? (n-choose-k 15 0)
                         1)
-             (chech-eq? (n-choose-k 15 15)
+             (check-eq? (n-choose-k 15 15)
                         1)
              (check-eq? (n-choose-k 15 5)
                         3003)

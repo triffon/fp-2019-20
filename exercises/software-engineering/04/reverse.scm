@@ -1,4 +1,20 @@
+(load "./add-last.scm")
 
+(define (reverse l)
+  (if (null? l)
+      '()
+      (add-last (reverse (cdr l))
+                (car l))))
+
+; Решение с линейна итерация
+(define (reverse l)
+  (define (iter reversed l)
+    (if (null? l)
+        reversed
+        (iter (cons (car l) reversed)
+              (cdr l))))
+
+  (iter '() l))
 
 (load "../testing/check.scm")
 

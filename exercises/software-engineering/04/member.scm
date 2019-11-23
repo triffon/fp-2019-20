@@ -1,4 +1,7 @@
-
+(define (member? x l)
+  (and (not (null? l))
+       (or (equal? (car l) x)
+           (member? x (cdr l)))))
 
 (load "../testing/check.scm")
 

@@ -8,13 +8,13 @@
   void)
 
 (run-tests (test-suite "variations tests"
-             (chech-eq? (variations 0 3)
+             (check-eq? (variations 0 3)
                         1)
-             (chech-eq? (variations 1 15)
+             (check-eq? (variations 1 15)
                         15)
-             (chech-eq? (variations 2 15)
+             (check-eq? (variations 2 15)
                         210)
-             (chech-eq? (variations 5 15)
+             (check-eq? (variations 5 15)
                         360360))
            'verbose)
 
