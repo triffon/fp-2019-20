@@ -1,6 +1,6 @@
 # Домашно 1 – 10т.
 
-Предаваме го в (moodle)[https://learn.fmi.uni-sofia.bg/mod/assign/view.php?id=130159]. Там пише и краен срок.
+Предаваме го в [moodle](https://learn.fmi.uni-sofia.bg/mod/assign/view.php?id=130159). Там пише и краен срок.
 
  - Задача 1 – [fun-with-digits](01-fun-with-digits.rkt)
  - Задача 2 – [prefixes](02-prefixes.rkt)
