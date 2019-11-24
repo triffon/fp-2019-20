@@ -34,7 +34,7 @@
     (date->string (make-date 21 11 2019)) -> "21.11.2019"
     (date->string (make-date 1 2 -1239)) -> "1.2.2019"
     ```
-[numberstring]: https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._number-~3estring%29%29
+[number-string]: https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._number-~3estring%29%29
 [racket-strings]: https://docs.racket-lang.org/reference/strings.html
     
  4. Напишете функция `next-day`, която по дадена дата връща датата на следващия ден. Ако се надхвърлят допустимите дни/месеци, датата преминава в следващия месец/година.
