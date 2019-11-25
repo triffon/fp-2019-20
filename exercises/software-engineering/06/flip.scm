@@ -1,4 +1,6 @@
-
+(define (flip fn)
+  (lambda args
+    (apply fn (reverse args))))
 
 (load "../testing/check.scm")
 (load "./compose.scm")

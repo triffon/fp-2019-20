@@ -1,4 +1,8 @@
-
+(define (juxt . fns)
+  (lambda args
+    (map (lambda (fn)
+           (apply fn args))
+         fns)))
 
 (load "../testing/check.scm")
 

@@ -1,4 +1,14 @@
+(define (identity x) x)
 
+(define (compose-two f g)
+  (lambda (x)
+    (f (g x))))
+
+(define (compose . fns)
+  (if (null? fns)
+      identity
+      (compose-two (car fns)
+                   (apply compose (cdr fns)))))
 
 (load "../testing/check.scm")
 
