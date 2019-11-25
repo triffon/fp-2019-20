@@ -1,6 +1,10 @@
 (load "./binary-tree.scm")
 
-
+(define (level n tree)
+  (cond ((empty-tree? tree) empty-tree)
+        ((= n 0) (list (root-tree tree)))
+        (else (append (level (- n 1) (left-tree tree))
+                      (level (- n 1) (right-tree tree))))))
 
 (load "../testing/check.scm")
 

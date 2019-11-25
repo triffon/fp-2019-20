@@ -1,6 +1,11 @@
 (load "./binary-tree.scm")
 
-
+(define (map-tree fn tree)
+  (if (empty-tree? tree)
+      empty-tree
+      (make-tree (fn (root-tree tree))
+                 (map-tree fn (left-tree tree))
+                 (map-tree fn (right-tree tree)))))
 
 (load "../testing/check.scm")
 

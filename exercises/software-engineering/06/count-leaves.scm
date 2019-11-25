@@ -1,6 +1,10 @@
 (load "./binary-tree.scm")
 
-
+(define (count-leaves tree)
+  (cond ((empty-tree? tree) 0)
+        ((leaf? tree) 1)
+        (else (+ (count-leaves (right-tree tree))
+                 (count-leaves (left-tree tree))))))
 
 (load "../testing/check.scm")
 
