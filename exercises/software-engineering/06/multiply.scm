@@ -1,4 +1,15 @@
+(load "./transpose.scm")
 
+(define (multiply-vectors u v)
+  (apply + (map * u v)))
+
+(define (multiply a b)
+  (let ((b-transpose (transpose b)))
+    (map (lambda (row)
+           (map (lambda (column)
+                  (multiply-vectors row column))
+                b-transpose))
+         a)))
 
 (load "../testing/check.scm")
 

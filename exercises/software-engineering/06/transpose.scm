@@ -1,4 +1,21 @@
+(load "./nth-column.scm")
 
+(define (enumerate-interval from to)
+  (if (> from to)
+      '()
+      (cons from
+            (enumerate-interval (+ from 1) to))))
+
+(define (transpose matrix)
+  (define number-of-columns (length (car matrix)))
+
+  (map (lambda (column-index)
+         (nth-column matrix column-index))
+       (enumerate-interval 0 (- number-of-columns 1))))
+
+; Друго решение: използваме map с произволен брой списъци
+(define (transpose matrix)
+  (apply map list matrix))
 
 (load "../testing/check.scm")
 

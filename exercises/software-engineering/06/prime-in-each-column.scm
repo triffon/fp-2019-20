@@ -1,4 +1,19 @@
+(define (divides? k n)
+  (= (remainder n k) 0))
 
+(define (prime? n)
+  (define (iter k)
+    (or (= k n)
+        (and (not (divides? k n))
+             (iter (+ k 1)))))
+
+  (and (not (= n 1)) (iter 2)))
+
+(define (prime-in-each-column? matrix)
+  (define (prime-exists? l)
+    (any? prime? l))
+
+  (for-all-columns? prime-exists? matrix))
 
 (load "../testing/check.scm")
 

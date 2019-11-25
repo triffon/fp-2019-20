@@ -1,4 +1,12 @@
+(load "./transpose.scm")
 
+(define (every? p l)
+  (or (null? l)
+      (and (p (car l))
+           (every? p (cdr l)))))
+
+(define (for-all-columns? p matrix)
+  (every? p (transpose matrix)))
 
 (load "../testing/check.scm")
 

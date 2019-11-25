@@ -1,4 +1,7 @@
-
+(define (nth-column matrix n)
+  (map (lambda (row)
+         (list-ref row n))
+       matrix))
 
 (load "../testing/check.scm")
 

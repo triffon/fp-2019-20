@@ -1,4 +1,6 @@
-
+(define (dimensions matrix)
+  (cons (length matrix)
+        (length (car matrix))))
 
 (load "../testing/check.scm")
 

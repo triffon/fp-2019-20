@@ -1,4 +1,5 @@
-
+(define (reverse-columns matrix)
+  (map reverse matrix))
 
 (load "../testing/check.scm")
 
