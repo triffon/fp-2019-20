@@ -1,0 +1,16 @@
+(load "./association-list.scm")
+
+(define (unique l)
+  (if (null? l)
+      '()
+      (cons (car l)
+            (unique (filter (lambda (x)
+                              (not (equal? x (car l))))
+                            l)))))
+
+(define (group-by f l)
+  (make-alist (lambda (key)
+                (filter (lambda (x)
+                          (equal? (f x) key))
+                        l))
+              (unique (map f l))))
