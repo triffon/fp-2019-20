@@ -1,4 +1,5 @@
-{-# OPTIONS_GHC -fwarn-incomplete-patterns #-}      -- cover all cases!  --{-# OPTIONS_GHC -fwarn-unused-matches #-}           -- use all your pattern matches!
+{-# OPTIONS_GHC -fwarn-incomplete-patterns #-}      -- cover all cases!
+{-# OPTIONS_GHC -fwarn-unused-matches #-}           -- use all your pattern matches!
 {-# OPTIONS_GHC -fwarn-missing-signatures #-}       -- write all your toplevel signatures!
 {-# OPTIONS_GHC -fwarn-name-shadowing #-}           -- use different names!
 {-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-}  -- no incomplete patterns in lambdas!
@@ -143,25 +144,28 @@ fib n
 -- само с готови конструкции за работа със списъци
 
 -- модул от n
-abs' n = undefined
+abs' = undefined
 
 -- най-голям общ делител на n и m
-gcd' n m = undefined
+-- използвайте div за целочислено делене
+gcd' = undefined
 
 -- най-малко общо кратно
-lcd' n m = undefined
+lcd' = undefined
 
 -- прилага дадена (едноаргументна) функция над даден аргумент
-apply f x = undefined
+apply = undefined
 
 -- за дадени две функции връща композицията им
-compose f g = undefined
+compose = undefined
 
 -- проверява дали първия списък е префикс на втория
-prefix xs ys = undefined
+-- Списъците са само от числа
+prefix = undefined
 
 -- проверява дали първия списък е суфикс на втория
-suffix xs ys = undefined
+-- Списъците са само от числа
+suffix = undefined
 
 -- по дадени списък xs, предикат p и функция f
 -- връща списък от елементите на xs, за които е изпълнен предиката p,
