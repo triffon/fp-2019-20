@@ -178,23 +178,6 @@ quickSort = undefined
 group :: [Integer] -> [[Integer]]
 group = undefined
 
-groupBy :: (a -> a -> Bool) -> [a] -> [[a]]
-groupBy = undefined
-
--- TODO: maybe not?
-data ComparisonResult
-  = LessThan
-  | Equal
-  | GreaterThan
-
-insertBy :: (a -> a -> ComparisonResult) -> a -> [a] -> [a]
-insertBy = undefined
-
-sortBy :: (a -> a -> ComparisonResult) -> [a] -> [a]
-sortBy = undefined
-
-classify :: (a -> Integer) -> [a] -> [[a]]
-classify = undefined
 
 -- TODO: Maybe not below here?
 from :: Integer -> [Integer]
