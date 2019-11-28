@@ -191,10 +191,10 @@ fromTo = undefined
 -- The [a, a1, ..b] syntax is syntactic sugar for this
 -- (so [a, a1..b] is equivalent to deltaFromTo (a1 - a) a b)
 -- EXAMPLES:
--- delteFromTo 2 1 5 -- [1, 3, 5]
--- delteFromTo 24 1 101 -- [1,25,49,73,97]
-fromThenTo :: Integer -> Integer -> Integer -> [Integer]
-fromThenTo = undefined
+-- deltaFromTo 2 1 5 -- [1, 3, 5]
+-- deltaFromTo 24 1 101 -- [1,25,49,73,97]
+deltaFromTo :: Integer -> Integer -> Integer -> [Integer]
+deltaFromTo = undefined
 
 -- EXERCISE: Interleaving lists
 -- Take turns in taking elements from lists.
