@@ -8,7 +8,6 @@
 -- TODO: extend deadline?
 
 import Prelude hiding (concat, map, filter, foldl, foldr, takeWhile, dropWhile)
-import qualified Data.List
 
 ----------------------------- BITVECTORS -------------------------------------
 -- | Let's have bits
