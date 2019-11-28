@@ -10,10 +10,6 @@
 import Prelude hiding (concat, map, filter, foldl, foldr, takeWhile, dropWhile)
 
 
--- adjoint.fun/transfer
--- 08-blablabla
--- github
-
 ----------------------------- BITVECTORS -------------------------------------
 -- | Let's have bits
 -- This is *the same* as Bools - but we will use them in a different context.
@@ -32,6 +28,8 @@ data BitVector
   -- We put the bit on the right, because that's how we write them out on paper.
   -- Otherwise we will have to remember that the vector is "flipped"
   deriving Show
+
+-- Examples for pattern matching
 
 isEnd :: BitVector -> Bool
 isEnd End = True
