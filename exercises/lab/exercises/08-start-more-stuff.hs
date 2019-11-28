@@ -161,7 +161,7 @@ map = undefined
 
 -- EXERCISE: Filter
 -- EXAMPLES:
--- map even [1,2,3] -- [2]
+-- filter even [1,2,3] -- [2]
 filter :: (a -> Bool) -> [a] -> [a]
 filter = undefined
 
