@@ -10,6 +10,7 @@
   (test-suite
     "Tests for product-digits"
 
+    (check-equal? (product-digits 0) 0)
     (check-equal? (product-digits 2) 2)
     (check-equal? (product-digits 123) 6)
     (check-equal? (product-digits 321) 6)
