@@ -9,6 +9,11 @@
 
 import Prelude hiding (concat, map, filter, foldl, foldr, takeWhile, dropWhile)
 
+
+-- adjoint.fun/transfer
+-- 08-blablabla
+-- github
+
 ----------------------------- BITVECTORS -------------------------------------
 -- | Let's have bits
 -- This is *the same* as Bools - but we will use them in a different context.
@@ -18,7 +23,7 @@ data Bit = Zero | One
 -- | Before (with Nat) we had "unary" natural numbers - they were encoded in a 1-ary counting system.
 -- We can also represent natural numbers in a more familiar to you way - binary.
 -- A number is then a list of bits. We will call this a BitVector.
---
+
 data BitVector
   = End -- ^ The empty bit vector - the number 0
   | BitVector :. Bit
@@ -27,6 +32,20 @@ data BitVector
   -- We put the bit on the right, because that's how we write them out on paper.
   -- Otherwise we will have to remember that the vector is "flipped"
   deriving Show
+
+isEnd :: BitVector -> Bool
+isEnd End = True
+isEnd (_ :. _) = False
+
+-- 1101 -> 110
+-- shiftRight (End :. One :. One :. Zero :. One)
+-- shiftRight (bv                        :. One)
+-- ->
+-- End :. One :. One :. Zero
+--
+shiftRight :: BitVector -> BitVector
+shiftRight End = End
+shiftRight (bv :. _) = bv
 
 infixl 6 :.
 -- Not important for you right now, but
@@ -185,8 +204,7 @@ fromThenTo = undefined
 -- interleave [1,3..10] [2,4..8] -- [1,2,3,4,5,6,7,8,9]
 -- interleave [1,3..7] [2,4..10] -- [1,2,3,4,5,6,7,8,10]
 interleave :: [a] -> [a] -> [a]
-interleave [] ys = ys
-interleave (x:xs) ys = x : interleave ys xs
+interleave = undefined
 -- HINT: You don't need to do matching on both of them
 
 -- EXERCISE: Something weird
@@ -198,7 +216,7 @@ interleave (x:xs) ys = x : interleave ys xs
 -- filter (\x -> x `mod` 3 == 1) $ megaInterleave [[1,4..20], [2,5..20], [3,6..20]] -- [1,4,7,10,13,16,19]
 -- filter (\x -> x `mod` 3 == 2) $ megaInterleave [[1,4..20], [2,5..20], [3,6..20]] -- [2,5,8,11,14,17,20]
 megaInterleave :: [[a]] -> [a]
-megaInterleave = foldr interleave []
+megaInterleave = undefined
 -- HINT: Use foldr
 
 -- EXERCISE: Concatenate lists
