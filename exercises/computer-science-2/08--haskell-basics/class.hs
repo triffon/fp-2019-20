@@ -1,9 +1,9 @@
 -- Следните редове включват някои полезни предупреждения в ghc:
--- {-# OPTIONS_GHC -fwarn-incomplete-patterns #-}      -- cover all cases!
--- {-# OPTIONS_GHC -fwarn-unused-matches #-}           -- use all your pattern matches!
--- {-# OPTIONS_GHC -fwarn-missing-signatures #-}       -- write all your toplevel signatures!
--- {-# OPTIONS_GHC -fwarn-name-shadowing #-}           -- use different names!
--- {-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-}  -- no incomplete patterns in lambdas!
+{-# OPTIONS_GHC -fwarn-incomplete-patterns #-}      -- cover all cases!
+{-# OPTIONS_GHC -fwarn-unused-matches #-}           -- use all your pattern matches!
+{-# OPTIONS_GHC -fwarn-missing-signatures #-}       -- write all your toplevel signatures!
+{-# OPTIONS_GHC -fwarn-name-shadowing #-}           -- use different names!
+{-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-}  -- no incomplete patterns in lambdas!
 
 -- Пишем в любим текстов редактор (примерно vim или vscode)
 -- и пускаме програмите с ghci (или ги компилираме с ghc)
@@ -47,8 +47,8 @@
 -- Типовете винаги започват с главна буква.
 
 ---- Константи
-x :: Int
-x = 5
+x :: Float
+x = 5.01
 
 -- Ако не укажем типа на идентификатор,
 -- Haskell ще се опита сам да го измисли, т.нар. type inference.
@@ -58,6 +58,10 @@ x = 5
 ---- Функции на 1 аргумент
 plusTen :: Int -> Int 
 plusTen x = x + 10
+
+-- целочислено деление
+div' :: Int -> Int -> Int
+div' x y = floor (fromIntegral x / fromIntegral y)
 
 -- Идентификаторите (тоест имената на константите и функциите)
 -- винаги започват с малка буква ('_' се води малка буква)
@@ -70,7 +74,8 @@ plusTen x = x + 10
 mult :: Int -> Int -> Int
 mult a b = a * b
 
--- Прилагането на функции в Haskell е с най-висок приоритет и е ляво асоциативно.
+-- Прилагането на функции в Haskell е с най-висок приоритет
+-- и е ляво асоциативно.
 
 -- mult 2 3 + 7  -- 13
 -- ((mult 2) 3) + 7
@@ -85,13 +90,36 @@ mult a b = a * b
 -- Сравняваме числа с (==), (/=), (<), (>), (<=) и т.н.
 
 -- модул от n
-abs' = undefined
+abs' :: Integer -> Integer
+abs' n = if n < 0 then -n else n
 -- целочислено деление на 2
-half = undefined
+--half :: Integer -> Integer
+--half x
+--  | even x = fromIntegral x / 2.0
+--  | otherwise = (x-1) / 2
 
 -- разглеждане на случаи - guards
-fact = undefined
-fib = undefined
+fact :: Integer -> Integer
+fact n =
+    if n == 0
+    then 1
+    else n * fact (n-1)
+
+fact' :: Integer -> Integer
+fact' n | n == 0 = 1 | otherwise = n * fact (n-1)
+
+fact'' :: Integer -> Integer
+fact'' 0 = 1
+fact'' n = n * fact (n-1)
+
+fib n
+  | n == 0 = 0
+  | n == 1 = 1
+  | otherwise = fib (n-1) + fib (n-2)
+
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
 
 -- най-голям общ делител на n и m
 -- използвайте div за целочислено делене
@@ -108,72 +136,3 @@ sumDigits = undefined
 
 -- от друга страна всеки оператор можем да го използваме като функция:
 -- (+) 2 3
---
--- Нека разгледаме типа на следната функци
--- plus :: Int -> Int -> Int
--- Типа на plus би изглеждал по-скоро така:
--- plus :: Int -> (Int -> Int)
--- Приема число и връща функция на 2 аргумента: ((plus 1) 2)
--- Тоест функциите на повече аргументи са функции от по-висок ред.
--- (->) е дясно асоциативна операция над типове
--- Заради начина по който се прилагат функциите в Haskell
--- няма нужда от скоби, пишем просто:
--- plus 1 2
-
----- Функции от по-висок ред
--- неподвижна точка
--- на Scheme е така
--- (define (fixpoint? f x) (= x (f x)))
-isFixpoint = undefined
-
--- производна
--- на Scheme е така
--- (define (derive f dx)
---   (lambda (x) (/ (- (f (+ x dx)) (f x)) dx)))
-derive = undefined
-
--- ламбда функции
--- (\ arg1 ... argn -> expr)
--- Пример:
--- square = (\ x -> x * x)
-
--- [1,2,3] - списък
-
-
-
----- Имплементирайте следните функции на Haskell, като пишете и типови декларации.
-
--- * Решете задачите със списъци без рекурсия,
--- само с готови конструкции за работа със списъци
-
-
--- за дадени две функции връща композицията им
-compose = undefined
-(.) = undefined
-
--- намира дължина на списък
-length' = undefined
-
--- намира максималния елемент в списък
-maximum' = undefined
-
--- проверява дали първия списък е префикс на втория
--- Списъците са само от числа
-isPrefix = undefined
-
--- проверява дали първия списък е суфикс на втория
--- Списъците са само от числа
-isSuffix = undefined
-
--- по дадени списък xs, предикат p и функция f
--- връща списък от елементите на xs, за които е изпълнен предиката p,
--- като над тези елементи е приложена функцията f.
-weakListComprehension = undefined
-
--- по даден списък xs и функция f
--- връща списък от тези елементи x на xs, за които f(x) е от xs
-closed = undefined
-
--- По даден списък от двойки (интервали) (a,b), връща списък
--- от всички подинтервали на най-дългият интервал
-longestIntervalSubset = undefined

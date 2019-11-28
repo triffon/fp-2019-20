@@ -57,6 +57,7 @@
       '()
       (cons (first-column m)
             (below-diag (delete-first-column (delete-first-row m))))))
+
 (define (main-diagonal m)
   (map car (above-diag m1)))
 
