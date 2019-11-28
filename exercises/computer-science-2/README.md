@@ -14,6 +14,7 @@
 | --- | [Подготовка за контролно 1][prep1e]          | [код от часа][prep1c] | [решения на задачите][prep1s] |
 |  6  | [Структури от данни][6e]                     | [код от часа][6c]     |
 |  7  | [Графи. Потоци][7e]                          | [код от часа][7c]     |
+|  8  | [Основни понятия в Haskell][8e]              | [код от часа][8c]     |
 
 [1e]: 01--introduction-to-scheme--recursion
 [1c]: 01--introduction-to-scheme--recursion/class.rkt
@@ -44,3 +45,6 @@
 
 [7e]: 07--graphs--streams
 [7c]: 07--graphs--streams/class.rkt
+
+[8e]: 08--haskell-basics
+[8c]: 08--haskell-basics/class.hs
