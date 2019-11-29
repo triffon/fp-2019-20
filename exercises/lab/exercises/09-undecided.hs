@@ -1,3 +1,4 @@
+-- TODO: hoogle
 -- TODO: Maybe?
 -- TODO: Tree?
 from :: Integer -> [Integer]
