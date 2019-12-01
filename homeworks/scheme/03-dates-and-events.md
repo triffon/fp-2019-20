@@ -32,7 +32,7 @@
  3. Напишете функция `date->string`, която по дадена дата връща низа `"<ден>.<месец>.<година>"`. Може да използвате [`number->string`][number-string] и [функциите за работа с низове][racket-strings].
     ```scheme
     (date->string (make-date 21 11 2019)) -> "21.11.2019"
-    (date->string (make-date 1 2 -1239)) -> "1.2.2019"
+    (date->string (make-date 1 2 -1239)) -> "1.2.-1239"
     ```
 [number-string]: https://docs.racket-lang.org/reference/generic-numbers.html#%28def._%28%28quote._~23~25kernel%29._number-~3estring%29%29
 [racket-strings]: https://docs.racket-lang.org/reference/strings.html
