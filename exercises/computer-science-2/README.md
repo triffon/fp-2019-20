@@ -17,6 +17,7 @@
 |  6  | [Структури от данни][6e]                     | [код от часа][6c]     |
 |  7  | [Графи. Потоци][7e]                          | [код от часа][7c]     |
 |  8  | [Основни понятия в Haskell][8e]              | [код от часа][8c]     |
+|  9  | [Функции и оператори в Haskell][9e]          | [код от часа][9c]     |
 
 [1e]: 01--introduction-to-scheme--recursion
 [1c]: 01--introduction-to-scheme--recursion/class.rkt
@@ -38,9 +39,9 @@
 [5c]: 05--fold--deep-lists/class.rkt
 [5s]: 05--fold--deep-lists/solutions
 
-[prep1e]: exam-prep-01
-[prep1c]: exam-prep-01/class.rkt
-[prep1s]: exam-prep-01/solutions
+[prep1e]: exam-01/prep
+[prep1c]: exam-01/prep/class.rkt
+[prep1s]: exam-01/prep/solutions
 
 [6e]: 06--ads
 [6c]: 06--ads/class.rkt
@@ -50,3 +51,6 @@
 
 [8e]: 08--haskell-basics
 [8c]: 08--haskell-basics/class.hs
+
+[9e]: 09--haskell-functions-and-operators
+[9c]: 09--haskell-functions-and-operators/class.hs
