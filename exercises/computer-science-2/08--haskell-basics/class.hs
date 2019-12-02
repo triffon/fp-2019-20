@@ -1,7 +1,7 @@
 -- Следните редове включват някои полезни предупреждения в ghc:
 {-# OPTIONS_GHC -fwarn-incomplete-patterns #-}      -- cover all cases!
 {-# OPTIONS_GHC -fwarn-unused-matches #-}           -- use all your pattern matches!
-{-# OPTIONS_GHC -fwarn-missing-signatures #-}       -- write all your toplevel signatures!
+--{-# OPTIONS_GHC -fwarn-missing-signatures #-}       -- write all your toplevel signatures!
 {-# OPTIONS_GHC -fwarn-name-shadowing #-}           -- use different names!
 {-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-}  -- no incomplete patterns in lambdas!
 
@@ -47,8 +47,8 @@
 -- Типовете винаги започват с главна буква.
 
 ---- Константи
-x :: Float
-x = 5.01
+z :: Float
+z = 5.01
 
 -- Ако не укажем типа на идентификатор,
 -- Haskell ще се опита сам да го измисли, т.нар. type inference.
@@ -117,9 +117,9 @@ fib n
   | n == 1 = 1
   | otherwise = fib (n-1) + fib (n-2)
 
-fib 0 = 0
-fib 1 = 1
-fib n = fib (n-1) + fib (n-2)
+fib' 0 = 0
+fib' 1 = 1
+fib' n = fib (n-1) + fib (n-2)
 
 -- най-голям общ делител на n и m
 -- използвайте div за целочислено делене
