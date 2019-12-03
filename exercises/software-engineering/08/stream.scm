@@ -6,7 +6,7 @@
                  (cons h (delay t)))))
 
 (define (empty-stream? s)
-  (equal? s the-empty-stream))
+  (equal? s empty-stream))
 
 (define head car)
 
