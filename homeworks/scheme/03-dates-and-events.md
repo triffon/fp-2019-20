@@ -63,7 +63,7 @@
     
  7. Напишете функция `next-weekday`, която приема ден от седмицата и дата `d`. Функцията връща най-ранната дата след `d`, падаща се на подадения ден от седмицата.
     ```scheme
-    (date->string (next-weekday 'Thursday (make-date 21 11 2019))) -> "21.11.2019"
+    (date->string (next-weekday 'Thursday (make-date 21 11 2019))) -> "28.11.2019"
     (date->string (next-weekday 'Tuesday (make-date 21 11 2019))) -> "26.11.2019"
     ```
 
