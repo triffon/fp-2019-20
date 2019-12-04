@@ -67,9 +67,24 @@ A за любопитните има няколко задачи върху [ф�
 
 ## FAQ
 
+### За Haskell
+
+#### Как да програмирам на Haskell на моята машина
+
+- VSCode
+  - [Setting up Haskell in VS Code on a Unix-based OS](https://medium.com/@dogwith1eye/setting-up-haskell-in-vs-code-on-macos-d2cc1ce9f60a)
+  - Extensions like Haskero, Haskell Highliting
+- GHCi за интерпретатор
+  - Нужно ви е да инсталирате [Haskell Platform](https://www.haskell.org/platform/)
+- repl.it/haskell - в Интернет
+
 ### За Scheme
 
-#### Кои редактори мога да ползвам за Scheme
+#### Как да програмирам на Scheme на моята машина
+
+- DrRacket
+- VSCode + Racket build task (или команда в терминала)
+- repl.it/scheme - в Интернет
 
 #### Как да накарам VSCode да интерпретира Scheme файлове
 
