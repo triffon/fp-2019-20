@@ -123,7 +123,7 @@ plus = \x -> \y -> \z -> x + y + z
 -- scheme: (define (compose f g)
 --           (lambda (x) (f (g x))))
 
-compose :: 
+--compose :: 
 --compose = \f -> \g -> \x -> f (g x)
 compose f g x = f (g x)
 (.) = compose

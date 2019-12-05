@@ -18,6 +18,7 @@
 |  7  | [Графи. Потоци][7e]                          | [код от часа][7c]     |
 |  8  | [Основни понятия в Haskell][8e]              | [код от часа][8c]     |
 |  9  | [Функции и оператори в Haskell][9e]          | [код от часа][9c]     |
+| 10  | [Списъци и кортежи в Haskell][10e]           | [код от часа][10c]    |
 
 [1e]: 01--introduction-to-scheme--recursion
 [1c]: 01--introduction-to-scheme--recursion/class.rkt
@@ -54,3 +55,6 @@
 
 [9e]: 09--haskell-functions-and-operators
 [9c]: 09--haskell-functions-and-operators/class.hs
+
+[10e]: 10--haskell-lists
+[10c]: 10--haskell-lists/class.hs
