@@ -3,6 +3,16 @@
 
 ---------------------------- SORTING
 
+foldr' :: (a -> b -> b) -> b -> [a] -> b
+foldr' _ nv [] = nv
+foldr' f nv (x:xs) = f x (foldr' f nv xs)
+
+foldl' :: (b -> a -> b) -> b -> [a] -> b
+foldl' _ acc [] = acc
+foldl' f acc (x:xs) = foldl' f (f acc x) xs
+
+-- adjoint.fun/books/haskell/fold.pdf
+
 -- EXERCISE: Inserting into an ordered list
 -- EXAMPLES:
 -- insert 5 [1,7,10] -- [1,5,7,10]
