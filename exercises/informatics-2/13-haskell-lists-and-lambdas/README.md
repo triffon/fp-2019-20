@@ -97,3 +97,50 @@ Haskell
 
     Например, `runLengthEncode [8, 7, 7, 2, 2, 2, 2, 3, 3, 2]`
     връща асоциативния списък `[(8, 1), (7, 2), (2, 4), (3, 2), (2, 1)]`.
+
+Още списъци
+-----------
+
+Реализирайте следните функции върху списъци от [модула Prelude](https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#g:13):
+
+1. `last :: [a] -> a`
+1. `init :: [a] -> [a]`
+1. `(!!) :: [a] -> Int -> a`
+
+1. `take :: Int -> [a] -> [a]`
+1. `drop :: Int -> [a] -> [a]`
+1. `splitAt :: Int -> [a] -> ([a], [a])`
+1. `chunk :: Int -> [a] -> [[a]]` - `chunk n l` разделя дадения списък l на списък от под-списъци с дължини `n`.
+
+1. `takeWhile :: (a -> Bool) -> [a] -> [a]`
+1. `dropWhile :: (a -> Bool) -> [a] -> [a]`
+
+1. `zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]`
+1. `unzip :: [(a, b)] -> ([a], [b])`
+
+1. `scanr :: (a -> b -> b) -> b -> [a] -> [b]`
+
+Реализирайте следните функции върху списъци от [модула Data.List](https://hackage.haskell.org/package/base-4.12.0.0/docs/Data-List.html)
+
+1. `group :: Eq a => [a] -> [[a]]`
+2. `inits :: [a] -> [[a]]`
+3. `tails :: [a] -> [[a]]`
+
+4. `subsequences :: [a] -> [[a]]`
+5. `isSubsequenceOf :: Eq a => [a] -> [a] -> Bool`
+6. `permutations :: [a] -> [[a]]`
+
+7. `partition :: (a -> Bool) -> [a] -> ([a], [a])`
+8. `find :: (a -> Bool) -> [a] -> Maybe a`
+9. `findIndex :: (a -> Bool) -> [a] -> Maybe Int`
+10. `findIndices :: (a -> Bool) -> [a] -> [Int]`
+
+11. `nub :: Eq a => [a] -> [a]`
+12. `delete :: Eq a => a -> [a] -> [a]`
+13. `(\\) :: Eq a => [a] -> [a] -> [a]`
+14. `union :: Eq a => [a] -> [a] -> [a]`
+15. `intersect :: Eq a => [a] -> [a] -> [a]`
+
+16. `sort :: Ord a => [a] -> [a]`
+17. `sortOn :: Ord b => (a -> b) -> [a] -> [a]`
+18. `insert :: Ord a => a -> [a] -> [a]`
