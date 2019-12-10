@@ -29,7 +29,7 @@ import Prelude hiding (pi)
 -- enumFromTo n m
 -- TODO: Примери
 
--- Списък от елементите от n до най-много m, и стъпка m-n
+-- Списък от елементите от n до най-много k, и стъпка m-n
 -- [n,m..k]
 -- enumFromThenTo n m k
 -- TODO: Примери
