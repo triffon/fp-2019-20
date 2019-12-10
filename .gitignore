@@ -1,2 +1,4 @@
 *.log
 compiled
+.stack-work
+exercises/lab/homework/02/third-hw.cabal
