@@ -10,7 +10,7 @@
 (define (children v g)
   (cdr (assoc v g)))
 (define (edge? u v g)
-  (member v (children u)))
+  (member v (children u g)))
 
 (define (map-children v f g)
   (map f (children v g)))
