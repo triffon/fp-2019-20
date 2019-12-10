@@ -37,15 +37,15 @@ sortBySpec = describe "sortBy" do
 
 groupBySpec :: Spec
 groupBySpec = describe "groupBy" do
-  let withPred eq eqName = do
+  let withPred eq eqName = describeWithFun eqName do
         prop
-          do "Concatting after grouping should yield the original list when using " ++ eqName
+          do "Concatting after grouping should yield the original list"
           \(xs :: [Int]) -> concat (groupBy eq xs) == xs
         prop
-          do "Groups shouldn't be empty when using " ++ eqName
+          do "Groups shouldn't be empty"
           \(xs :: [Int]) -> all (not . null) $ groupBy eq xs
         prop
-          do "Groups should contain only equal elements when using " ++ eqName
+          do "Groups should contain only equal elements"
           \(xs :: [Int]) -> allEqBy eq $ groupBy eq xs
 
   withPred (==) "default equality"
@@ -60,15 +60,15 @@ sortOnSpec = pure ()
 groupOnSpec :: Spec
 groupOnSpec = describe "groupOn" do
   let withTransform :: Eq b => (Int -> b) -> String -> Spec
-      withTransform f fName = do
+      withTransform f fName = describeWithFun fName do
         prop
-          do "Concatting after grouping should yield the original list when using " ++ fName
+          do "Concatting after grouping should yield the original list"
           \(xs :: [Int]) -> concat (groupOn f xs) == xs
         prop
-          do "Groups shouldn't be empty when using " ++ fName
+          do "Groups shouldn't be empty"
           \(xs :: [Int]) -> all (not . null) $ groupOn f xs
         prop
-          do "Groups should contain only fual elements when using " ++ fName
+          do "Groups should contain only equal elements"
           \(xs :: [Int]) -> allEqBy (==) $ map (map f) $ groupOn f xs
 
   withTransform id "id"
@@ -82,3 +82,6 @@ classifyOnSpec = pure ()
 
 allEqBy :: (a -> a -> Bool) -> [[a]] -> Bool
 allEqBy eq = all (\ys -> let y' = head ys in all (eq y') ys)
+
+describeWithFun :: String -> Spec -> Spec
+describeWithFun fName = describe ("for " ++ fName ++ ":")
