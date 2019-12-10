@@ -32,5 +32,6 @@ groupOn = undefined
 (&&&) :: (a -> b) -> (a -> c) -> a -> (b, c)
 (&&&) = undefined
 
+-- Bonus: use Eq b instead
 classifyOn :: Ord b => (a -> b) -> [a] -> [[a]]
 classifyOn = undefined
