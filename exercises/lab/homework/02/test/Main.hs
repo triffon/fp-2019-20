@@ -34,7 +34,22 @@ groupSpec = describe "group" do
 
 sortBySpec :: Spec
 sortBySpec = describe "sortBy" do
-  pure ()
+  let withCmp :: (Int -> Int -> Ordering) -> String -> Spec
+      withCmp cmp cmpName = describeWithFun cmpName do
+        prop
+          do "Sorting preserves the elements in the list"
+          \(xs :: [Int]) -> xs `sortEq` sortBy cmp xs
+        prop
+          do "Sorting creates a sorted list"
+          \(xs :: [Int]) ->
+            let xs' = sortBy cmp xs
+             in all (/=GT) $ zipWith cmp xs' (drop 1 xs')
+
+  withCmp compare "id"
+  withCmp (compare `on` even) "even"
+  withCmp (compare `on` odd) "odd"
+  withCmp (compare `on` (`div` 13)) "(`div` 13)"
+  withCmp (compare `on` (`mod` 42)) "(`mod` 42)"
 
 groupBySpec :: Spec
 groupBySpec = describe "groupBy" do
@@ -56,7 +71,23 @@ groupBySpec = describe "groupBy" do
   withPred ((==) `on` (`mod` 42)) "equality (`mod` 42)"
 
 sortOnSpec :: Spec
-sortOnSpec = pure ()
+sortOnSpec = describe "sortOn" do
+  let withTransform :: Ord b => (Int -> b) -> String -> Spec
+      withTransform f fName = describeWithFun fName do
+        prop
+          do "Sorting preserves the elements in the list"
+          \(xs :: [Int]) -> xs `sortEq` sortOn f xs
+        prop
+          do "Sorting creates a sorted list"
+          \(xs :: [Int]) ->
+            let xs' = sortOn f xs
+             in all (/=GT) $ zipWith (compare `on` f) xs' (drop 1 xs')
+
+  withTransform id "id"
+  withTransform even "even"
+  withTransform odd "odd"
+  withTransform (`div` 13) "(`div` 13)"
+  withTransform (`mod` 42) "(`mod` 42)"
 
 groupOnSpec :: Spec
 groupOnSpec = describe "groupOn" do
