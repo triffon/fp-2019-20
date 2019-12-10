@@ -37,15 +37,7 @@ sortBySpec = describe "sortBy" do
 
 groupBySpec :: Spec
 groupBySpec = describe "groupBy" do
-  prop "Works the same way as group when using the default (==)"
-    \(xs :: [Int]) -> groupBy (==) xs == group xs
-
   let withPred eq eqName = do
-        it
-          do "Works on an example when using " ++ eqName
-          do groupBy eq [1,3,1,2,4,5,1,10,142,42,42,42,69,42,1337,1337]
-               `shouldBe`
-               [[1,3,1],[2,4],[5,1],[10,142,42,42,42],[69],[42],[1337,1337]]
         prop
           do "Concatting after grouping should yield the original list when using " ++ eqName
           \(xs :: [Int]) -> concat (groupBy eq xs) == xs
@@ -56,24 +48,19 @@ groupBySpec = describe "groupBy" do
           do "Groups should contain only equal elements when using " ++ eqName
           \(xs :: [Int]) -> allEqBy eq $ groupBy eq xs
 
+  withPred (==) "default equality"
   withPred ((==) `on` even) "evenness"
   withPred ((==) `on` odd) "oddness"
+  withPred ((==) `on` (`div` 13)) "equality (`div` 13)"
+  withPred ((==) `on` (`mod` 42)) "equality (`mod` 42)"
 
 sortOnSpec :: Spec
 sortOnSpec = pure ()
 
 groupOnSpec :: Spec
 groupOnSpec = describe "groupOn" do
-  prop "Works the same way as group when using the default id"
-    \(xs :: [Int]) -> groupOn id xs == group xs
-
-  let withPred :: Eq b => (Int -> b) -> String -> Spec
-      withPred f fName = do
-        it
-          do "Works on an example when using " ++ fName
-          do groupOn f [1,3,1,2,4,5,1,10,142,42,42,42,69,42,1337,1337]
-               `shouldBe`
-               [[1,3,1],[2,4],[5,1],[10,142,42,42,42],[69],[42],[1337,1337]]
+  let withTransform :: Eq b => (Int -> b) -> String -> Spec
+      withTransform f fName = do
         prop
           do "Concatting after grouping should yield the original list when using " ++ fName
           \(xs :: [Int]) -> concat (groupOn f xs) == xs
@@ -84,8 +71,11 @@ groupOnSpec = describe "groupOn" do
           do "Groups should contain only fual elements when using " ++ fName
           \(xs :: [Int]) -> allEqBy (==) $ map (map f) $ groupOn f xs
 
-  withPred even "even"
-  withPred odd "odd"
+  withTransform id "id"
+  withTransform even "even"
+  withTransform odd "odd"
+  withTransform (`div` 13) "(`div` 13)"
+  withTransform (`mod` 42) "(`mod` 42)"
 
 classifyOnSpec :: Spec
 classifyOnSpec = pure ()
