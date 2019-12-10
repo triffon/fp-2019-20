@@ -5,6 +5,7 @@ module Main where
 
 import Stuff
 
+import Data.List (sort)
 import Data.Function (on)
 import Test.Hspec
 import Test.Hspec.QuickCheck
@@ -78,10 +79,30 @@ groupOnSpec = describe "groupOn" do
   withTransform (`mod` 42) "(`mod` 42)"
 
 classifyOnSpec :: Spec
-classifyOnSpec = pure ()
+classifyOnSpec = describe "classifyOn" do
+  let withTransform :: Ord b => (Int -> b) -> String -> Spec
+      withTransform f fName = describeWithFun fName do
+        prop
+          do "Classification preserves the elements in the list"
+          \(xs :: [Int]) -> xs `sortEq` concat (classifyOn f xs)
+        prop
+          do "Classification groups shouldn't be empty"
+          \(xs :: [Int]) -> all (not . null) $ classifyOn f xs
+        prop
+          do "Classification groups contain only equal elements"
+          \(xs :: [Int]) -> allEqBy (==) $ map (map f) $ classifyOn f xs
+
+  withTransform id "id"
+  withTransform even "even"
+  withTransform odd "odd"
+  withTransform (`div` 13) "(`div` 13)"
+  withTransform (`mod` 42) "(`mod` 42)"
 
 allEqBy :: (a -> a -> Bool) -> [[a]] -> Bool
 allEqBy eq = all (\ys -> let y' = head ys in all (eq y') ys)
+
+sortEq :: Ord a => [a] -> [a] -> Bool
+sortEq = (==) `on` sort
 
 describeWithFun :: String -> Spec -> Spec
 describeWithFun fName = describe ("for " ++ fName ++ ":")
