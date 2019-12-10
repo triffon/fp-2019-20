@@ -33,75 +33,86 @@
        (empty? (right t))))
 
 
-; Пример:
-;   1
-;  / \
-; 2   3
-;      \
-;       4
-;
-; Бихме го записали:
-'(1 (2 () ())
-    (3 ()
-       (4 () ())))
+; ЗАДАЧИ
+; count-leaves
+(define (count-leaves tree)
+  (cond [(empty? tree) 0]
+        [(leaf? tree) 1]
+        [else (+ (count-leaves (left tree))
+                 (count-leaves (right tree)))]))
 
+; map-tree
+(define (map-tree f tree)
+  (if (empty? tree)
+    '()
+    (make-tree (f (root tree))
+               (map-tree (left tree))
+               (map-tree (right tree)))))
 
-; Имплементирайте следните функции за двоични дървета:
+; level
+(define (level n tree)
+  (cond [(empty? tree) '()]
+        [(zero? n) (list (root tree))]
+        [else (append (level (- n 1) (left tree))
+                      (level (- n 1) (right tree)))]))
 
-; Намира броя на листата в tree.
-(define (count-leaves tree) void)
+; pre-order
+(define (pre-order tree)
+  (if (empty? tree)
+    '()
+    (append (list (root tree))
+            (pre-order (left tree))
+            (pre-order (right tree)))))
 
-; Връща ново дърво, в което f е приложена над всеки връх от tree.
-(define (map-tree f tree) void)
+; in-order
+(define (in-order tree)
+  (if (empty? tree)
+    '()
+    (append (pre-order (left tree))
+            (list (root tree))
+            (pre-order (right tree)))))
 
-; Връща списък от всички върхове на разстояние n от корена на tree.
-(define (level n tree) void)
-
-; Обхождане на дърво, функциите да връщат списък от върховете в реда на обхождането им
-
-; корен-ляво-дясно
-(define (pre-order t) void)
-
-; ляво-корен-дясно
-(define (in-order t) void)
-
-; ляво-дясно-корен
-(define (post-order t) void)
+; post-order
+(define (post-order tree)
+  (if (empty? tree)
+    '()
+    (append (pre-order (left tree))
+            (pre-order (right tree))
+            (list (root tree)))))
 
 
 ; Асоциативен списък ще наричаме списък от двойки от вида (key . value)
 ; Още познато като map или dictionary (речник)
 
-; Ето и някой основни функции, за да можем
-; като за начало да конструираме такива списъци
+; Ето и някой основни функции
 
-; По функция и списък от ключове, ще направим асоциативен списък
-; с елементи от вида (key . fn(key))
 (define (make-alist fn keys)
   (map (lambda (key)
          (cons key (fn key)))
        keys))
 
-; Вече можем и да добавяме елементи в нашия списък
 (define (add-assoc key value alist)
   (cons (cons key value)
         alist))
 
-(add-assoc 'purpose 42 '()) ; '((purpose . 42))
-
-; Ще е хубаво да имаме и функции с които да вземем
-; само ключовете или само стойностите на списъка
 (define (alist-keys alist)
   (map car alist))
-
 
 ; Имплементирайте следните функции за работа със асоциативни списъци
 
 ; Връща списък от стойностите на асоциативен списък
-(define (alist-values alist) void)
+(define (alist-values alist)
+  (map cdr alist))
 
 ; По дадени ключ и асоциативен списък, връща стойността от първата намерена двойка с ключа
-(define (alist-assoc key alist) void)
+(define (alist-assoc key alist)
+  (cond [(null? alist) '()]
+        [(equal? (caar alist) key) (cdar alist)]
+        [else (alist-assoc key (cdr alist))]))
 
 ; По даден ключ изтрива първата съответстваща двойка със същия ключ
-(define (del-assoc key alist) void)
+(define (del-assoc key alist)
+  (filter (lambda (alist-pair)
+            (not (equal? (car alist-pair) key)))
+          alist))
+
