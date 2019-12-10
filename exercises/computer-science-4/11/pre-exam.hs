@@ -119,19 +119,21 @@ circleArea r = pi * r * r
 -- ЗАДАЧИ
 -- няколко за загрявка
 
--- compress
-compress :: (Eq a) => [a] -> [a]
-compress = undefined
+--nub
+-- за списък от числа връща списък само от уникалните
+nub :: (Eq a) => [a] -> [a]
+nub = undefined
 
 -- quicksort
 quicksort :: (Ord a) => [a] -> [a]
 quicksort = undefined
 
--- prime
+-- prime?
 prime :: Int -> Bool
 prime = undefined
 
 -- primes
+-- За дадено число n връща списък от първите n прости числа
 primes :: Int -> [Int]
 primes = undefined
 
