@@ -2,6 +2,10 @@
 ### Краен срок: ?, 23:59:59
 ### Максимум точки без бонуси: 10
 
+## Structure
+"Скелетът" на главните задачи се намира в `src/Stuff.hs`,
+а пък този на бонуса в `src/StuffNonEmpty.hs`.
+
 ## Setup
 Инсталирайте `stack`:
   * Ако сте си инсталирали `ghc` посредством [`Haskell Platform`](https://www.haskell.org/platform/),
