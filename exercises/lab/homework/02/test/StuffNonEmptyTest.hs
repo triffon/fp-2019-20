@@ -51,7 +51,7 @@ groupOnNonEmptySpec = describe "groupOnNonEmpty" do
           \(xs :: [Int]) -> concatNonEmpty (groupOnNonEmpty f xs) == xs
         prop
           do "Groups should contain only equal elements"
-          \(xs :: [Int]) -> allEqByNonEmpty (==) $ map (mapNonEmpty f) $ groupOnNonEmpty f xs
+          \(xs :: [Int]) -> allEq (==) $ map (map f . toList) $ groupOnNonEmpty f xs
 
   withTransform id "id"
   withTransform even "even"
@@ -68,7 +68,7 @@ classifyOnNonEmptySpec = describe "classifyOn" do
           \(xs :: [Int]) -> xs `sortEq` concatNonEmpty (classifyOnNonEmpty f xs)
         prop
           do "Classification groups contain only equal elements"
-          \(xs :: [Int]) -> allEqByNonEmpty (==) $ map (mapNonEmpty f) $ classifyOnNonEmpty f xs
+          \(xs :: [Int]) -> allEq (==) $ map (map f . toList) $ classifyOnNonEmpty f xs
 
   withTransform id "id"
   withTransform even "even"
