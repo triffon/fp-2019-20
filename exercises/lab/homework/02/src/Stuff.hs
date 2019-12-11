@@ -25,14 +25,14 @@ groupBy = undefined
 on :: (b -> b -> c) -> (a -> b) -> a -> a -> c
 on = undefined
 
+(&&&) :: (a -> b) -> (a -> c) -> a -> (b, c)
+(&&&) = undefined
+
 sortOn :: Ord b => (a -> b) -> [a] -> [a]
 sortOn = undefined
 
 groupOn :: Eq b => (a -> b) -> [a] -> [[a]]
 groupOn = undefined
-
-(&&&) :: (a -> b) -> (a -> c) -> a -> (b, c)
-(&&&) = undefined
 
 classifyOn :: Ord b => (a -> b) -> [a] -> [[a]]
 classifyOn = undefined
