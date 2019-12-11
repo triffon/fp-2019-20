@@ -60,3 +60,11 @@
                          (square (cadr triple)))
                       (square (caddr triple))))
                  triples))
+
+(load "../testing/check.scm")
+
+(check (stream->list (take-stream 5 pythagorean-triples))
+       => '((3 4 5) (6 8 10) (5 12 13) (9 12 15) (8 15 17)))
+
+(check-report)
+(check-reset!)
