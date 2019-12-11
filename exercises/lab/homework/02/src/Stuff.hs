@@ -5,6 +5,8 @@ module Stuff
   , sortOn
   , groupOn
   , classifyOn
+  , (&&&)
+  , on
   ) where
 
 group :: Eq a => [a] -> [[a]]
@@ -16,7 +18,6 @@ insertBy = undefined
 sortBy :: (a -> a -> Ordering) -> [a] -> [a]
 sortBy = undefined
 
--- Bonus: use NonEmpty inside
 groupBy :: (a -> a -> Bool) -> [a] -> [[a]]
 groupBy = undefined
 
