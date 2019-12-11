@@ -27,3 +27,13 @@ tests:
     - third-hw
     - QuickCheck
     - hspec
+
+flags:
+  nonempty:
+    description: Run nonempty tests
+    manual: true
+    default: false
+
+when:
+- condition: flag(nonempty)
+  cpp-options: -DNONEMPTY

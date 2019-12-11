@@ -1,4 +1,5 @@
 {-# LANGUAGE BlockArguments #-}
+{-# LANGUAGE CPP #-}
 
 module Main
   ( main
@@ -18,4 +19,6 @@ import Util
 main :: IO ()
 main = hspec do
   stuffSpec
+#ifdef NONEMPTY
   stuffNonEmptySpec
+#endif
