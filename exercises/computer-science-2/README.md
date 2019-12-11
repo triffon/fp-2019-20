@@ -19,6 +19,7 @@
 |  8  | [Основни понятия в Haskell][8e]              | [код от часа][8c]     |
 |  9  | [Функции и оператори в Haskell][9e]          | [код от часа][9c]     |
 | 10  | [Списъци и кортежи в Haskell][10e]           | [код от часа][10c]    |
+| --- | [Подготовка за контролно 2][prep2e]          | [Scheme][prep2cscm] [Haskell][prep2chs] |
 
 [1e]: 01--introduction-to-scheme--recursion
 [1c]: 01--introduction-to-scheme--recursion/class.rkt
@@ -58,3 +59,7 @@
 
 [10e]: 10--haskell-lists
 [10c]: 10--haskell-lists/class.hs
+
+[prep2e]: exam-02/prep
+[prep2cscm]: exam-02/prep/class.rkt
+[prep2chs]: exam-02/prep/class.hs
