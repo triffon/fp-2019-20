@@ -152,8 +152,6 @@ sortOn :: Ord b => (a -> b) -> [a] -> [a]
 [5,10,15,20,1,6,11,16,2,7,12,17,3,8,13,18,4,9,14,19]
 
 -- cool example
--- you're welcome to demonstrate how long this
--- transformation would be in <your favourite language>
 > data Down a = Down a deriving Eq
 > instance Ord a => Ord (Down a) where compare (Down x) (Down y) = compare y x
 > sortOn Down [1..10]
