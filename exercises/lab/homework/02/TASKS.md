@@ -40,7 +40,7 @@ data Ordering = LT | EQ | GT
 Ще искаме той да означава "резултат от сравнение на две неща".
 Функцията `compare` от типовия клас `Ord` връща `Ordering`.
 
-Примери:
+Примери за `compare`:
 ```haskell
 > compare 5 10
 LT
@@ -62,6 +62,20 @@ LT
 LT
 > compare 'a' 'A'
 GT
+```
+
+Примери за `sortBy`:
+```haskell
+> sortBy compare [10,9..1]
+[1,2,3,4,5,6,7,8,9,10]
+> sortBy (\_ _ -> EQ) [5,1,3,4,1,2,4]
+[5,1,3,4,1,2,4]
+> sortBy (flip compare) [1..10]
+[10,9,8,7,6,5,4,3,2,1]
+> sortBy (\x y -> if x < y then LT else if x == y then EQ else GT) [1,2,31,3,1,2,1]
+[1,1,1,2,2,3,31]
+> sortBy (\x y -> odd x `compare` odd y) [1..10]
+[2,4,6,8,10,1,3,5,7,9]
 ```
 
 ## 02. (?т.) `groupBy`
