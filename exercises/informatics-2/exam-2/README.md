@@ -268,7 +268,7 @@ mostFrequent [[1,1,3,2],[1,5,5],[1,5],[1,1,1,3]] → 0
 
 ```haskell
 shows = [(“A”,(11,0),120),(“B”,(12,0),15),(“C”,(10,30),90)]
-lastShow shows → “B”
+lastShow shows → “A”
 longestProgram shows → [(“A”,(11,0),120))]
 ```
 
