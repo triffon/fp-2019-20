@@ -12,6 +12,7 @@ module Stuff
 group :: Eq a => [a] -> [[a]]
 group = undefined
 
+-- Not mandatory, delete if you don't want this.
 insertBy :: (a -> a -> Ordering) -> a -> [a] -> [a]
 insertBy = undefined
 
