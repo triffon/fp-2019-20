@@ -4,45 +4,82 @@
 {-# OPTIONS_GHC -fwarn-name-shadowing #-}          -- use different names!
 {-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-} -- warn about incomplete patterns v2
 
-import Prelude hiding (Eq(..), Bool(..), Ord(..), Ordering(..), Semigroup(..), Monoid(..), foldMap)
+import Prelude hiding (Semigroup(..), Monoid(..), foldMap)
 
 -- Uncomment this bit out if you want tests
 --import Data.Function (on)
 --import Test.QuickCheck
-
--- TODO: if two functions are nearly the same factor out the common bits!!
--- TODO: project deadlines
--- TODO: third homework
--- TODO: this sunday
-
-
--- TODO: talk what a typeclass is (interfaces, sets of types, predicates)
--- Num and Show are special
--- motivation for typeclasses
--- typeclasses vs abstract classes
--- reverse (parametric) vs sort (ad-hoc)
-
-data Bool = False | True
-
--- show how to define a typeclass (myeq)
-class Eq a where -- == or /=
-
--- TODO: mention derived instances!
-data Ordering = LT | EQ | GT
-
-class Eq a => Ord a where -- <= or compare
--- show how to instance a typeclass
-
--- TODO: COMMENT THE STUFF ABOVE OUT BEFORE STARTING TASKS + REMOVE HIDING!!!!!
--- TODO: COMMENT THE STUFF ABOVE OUT BEFORE STARTING TASKS + REMOVE HIDING!!!!!
--- TODO: COMMENT THE STUFF ABOVE OUT BEFORE STARTING TASKS + REMOVE HIDING!!!!!
--- TODO: COMMENT THE STUFF ABOVE OUT BEFORE STARTING TASKS + REMOVE HIDING!!!!!
-
-
--- TODO: show examples here (Eq, Ord)
--- TODO: show NUM convenience on this
+--
+--
+--
+---- TODO: if two functions are nearly the same factor out the common bits!!
+---- TODO: project deadlines
+---- TODO: third homework
+---- TODO: this sunday
+--
+--
+---- TODO: talk what a typeclass is (interfaces, sets of types, predicates)
+--
+--
+---- Num and Show are special
+---- motivation for typeclasses
+---- typeclasses vs abstract classes
+---- reverse (parametric) vs sort (ad-hoc)
+----reverse' :: [a] -> [a]
+----sort :: Ord a => [a] -> [a]
+--
+---- show how to define a typeclass (myeq)
+--class Eq a where -- == or /=
+--  (==) :: a -> a -> Bool
+--  x == y = not (x /= y)
+--  (/=) :: a -> a -> Bool
+--  x /= y = not (x == y)
+--
+---- TODO: mention derived instances!
+--data Ordering = LT | EQ | GT
+--
+--instance Eq Ordering where
+--  LT == LT = True
+--  EQ == EQ = True
+--  GT == GT = True
+--  _ == _ = False
+--
+---- compare 5 10 == LT -- 5 less than 10
+---- compare 10 10 == EQ -- 10 equal to 10
+---- compare 15 10 == GT -- 15 equal to 10
+--class Eq a => Ord a where -- <= or compare
+--  compare :: a -> a -> Ordering
+--  compare x y
+--    | x <= y && y <= x = EQ
+--    | x <= y = LT
+--    | otherwise = GT
+--  (<=) :: a -> a -> Bool
+--  x <= y = case compare x y of
+--            LT -> True
+--            EQ -> True
+--            GT -> False
+---- show how to instance a typeclass
+--
+---- TODO: COMMENT THE STUFF ABOVE OUT BEFORE STARTING TASKS + REMOVE HIDING!!!!!
+---- TODO: COMMENT THE STUFF ABOVE OUT BEFORE STARTING TASKS + REMOVE HIDING!!!!!
+---- TODO: COMMENT THE STUFF ABOVE OUT BEFORE STARTING TASKS + REMOVE HIDING!!!!!
+---- TODO: COMMENT THE STUFF ABOVE OUT BEFORE STARTING TASKS + REMOVE HIDING!!!!!
+--
+--
+---- TODO: show examples here (Eq, Ord)
+---- TODO: show NUM convenience on this
 data Bit = Zero | One
-  deriving Show
+  deriving (Eq, Ord, Show)
+
+--instance Eq Bit where
+--  (==) One Zero = False
+--  (==) Zero One = False
+--  (==) _ _ = True
+--
+--instance Ord Bit where
+--  compare One Zero = GT
+--  compare Zero One = LT
+--  compare _ _ = EQ
 
 -- TODO: talk about laws
 -- example: EQ laws
