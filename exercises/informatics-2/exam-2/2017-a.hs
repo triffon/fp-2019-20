@@ -23,6 +23,13 @@ findMedoid' :: [Point] -> Point
 findMedoid' points = points |> sortOn metric |> head
   where metric x = points |> map (distance x) |> map (** 2) |> sum
 
+sumLast :: Int -> Int -> [Int]
+sumLast k n = generate initialMemory
+  where zeros = [0, 0..]
+        initialMemory = k : take (n - 1) zeros
+        generate memory = nextNumber : generate nextMemory
+           where nextNumber = sum memory
+                 nextMemory = tail memory ++ [nextNumber]
 
 main :: IO ()
 main = print ":)"
