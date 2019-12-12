@@ -35,7 +35,7 @@ data Tree a = Node (Tree a) a (Tree a) | Empty
 instance (Show a) => Show (Tree a) where
   show Empty = ""
   show (Node Empty leaf Empty) = "(" ++ show leaf ++ ")"
-  show (Node left value root) = "(" ++ show left ++ ", " ++ show value ++ ", " ++ show root ++ ")"
+  show (Node left root right) = "(" ++ show left ++ ", " ++ show root ++ ", " ++ show right ++ ")"
 
 makeLeaf :: a -> Tree a
 makeLeaf x = Node Empty x Empty
