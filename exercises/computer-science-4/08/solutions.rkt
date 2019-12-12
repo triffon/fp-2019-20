@@ -1,24 +1,10 @@
 #lang racket
 
-; Отложени операции
-; delay от даден израз прави отложена операция
-; или още promise
-(delay (+ 1 2)) ; #<promise>
-
-; Как обаче да вземем резултата когато ни потрябва.
-(define some-expression (delay (+ 1 2)))
-; force взима дадена отложена операция (promise)
-; и я оценява
-(force some-expression) ; 3
-
-; С помощта на тези 2 функции можем да си дефинираме потоци.
 ; Поток е списък, чиито елементи се оценяват отложено
 ; 1) '() е поток
 ; 2) (h. t) е поток точно когато:
 ;   - h е произволен елемент
 ;   - t е promise за поток.
-
-(define empty-stream '())
 
 (define-syntax cons-stream
   (syntax-rules () ((cons-stream h t)
@@ -40,7 +26,6 @@
     (cons (head s)
           (stream-take (- n 1) (tail s)))))
 
-
 ; Имплементирайте следните функции, генериращи безкрайни потоци
 
 ; Генерира безкраен поток от стойности v
@@ -48,46 +33,60 @@
 ; (1 . #<promise>)
 ; (stream-take 5 (repeat 1))
 ; (1 1 1 1 1)
-(define (repeat v) void)
+(define (repeat v)
+  (cons-stream v (repeat v)))
 
 ; Генерира безкрайния поток x, f(x), f(f(x)), ...
-(define (iterate f x)  void)
+(define (iterate f x)
+  (cons-stream x (iterate f (f x))))
 
 ; Генерира безкраен поток от елементите на lst
 ; (cycle '(1 2 3)) би създало потока:
 ; 1, 2, 3, 1, 2, 3, 1 ...
-(define (cycle lst) void)
+(define (cycle lst)
+  (define (help lst-tmp)
+    (if (null? lst-tmp)
+      (help lst)
+      (cons-stream (car lst-tmp)
+                   (help (cdr lst-tmp)))))
+  (help lst))
+
+
+; Функциите от миналия път за асоциативни списъци
+
+(define (make-alist fn keys)
+  (map (lambda (key)
+         (cons key (fn key)))
+       keys))
+
+(define (add-assoc key value alist)
+  (cons (cons key value)
+        alist))
+
+(define (alist-keys alist)
+  (map car alist))
+
+(define (alist-values alist)
+  (map cdr alist))
+
+(define (alist-assoc key alist)
+  (cond [(null? alist) '()]
+        [(equal? (caar alist) key) (cdar alist)]
+        [else (alist-assoc key (cdr alist))]))
+
+(define (del-assoc key alist)
+  (filter (lambda (alist-pair)
+            (not (equal? (car alist-pair) key)))
+          alist))
 
 
 ; Граф ще представяме като списък на съседство
-; Тоест списък от списъци от върхове.
-; За връх v ще дефинираме списък (v v1 .. vn)
-; Където v1 до v1 са върховете до които v има ребро
-; За всеки връх ще пазим такъв списък.
-; Списъка от тези списъци ще е нашият граф.
-;
-; 1 --> 2
-; |     |
-; v     v
-; 3 --> 4 --> 5
-;
-; Бихме го записали:
-'((1 2 3) ; 1 има ребро до 2 и 3
-  (2 4)   ; 2 има ребро до 4
-  (3 4)   ; 3 има ребро до 4
-  (4 5)   ; 4 има ребро до 5
-  (5))    ; 5 няма ребра до други върхове
 
-'() ; празен граф
-'((1 2 3) (2)) ; Невалидно защото твърдим че 1 има ребро до 3,
-               ; но не сме включили списък за реброто 3
-
-; Как да си създадем граф?
-; Може да го конструираме само с върхове и без ребра
+; Няколко функции за работа с графи:
+;
+; Можем да конструираме граф само с върхове и без ребра
 (define (make-graph vs)
   (map list vs))
-
-; Още няколко функции за работа с графи:
 
 ; проверява дали графа g е празен.
 (define empty-graph? null?)
@@ -104,50 +103,112 @@
 
 ; Дефинирайте следните функции за работа с графи
 ; Може да ползвате горните функции за асоциативни списъци
-; Не забравяйте че списъците са двойки,
-; тоест списък от списъци всъщност е асоциативен списък.
-; (стига да няма празни списъци като елементи)
-; !!! Но си вземете решенията от миналото упражнение
 
 ; връща списък от всички ребра на графа g.
-(define (edges g) void)
+(define (children-edges vs)
+  (map (lambda (v) (cons (car vs) v))
+       (cdr vs)))
 
-; проверява дали има ребро от върха u до върха v в g.
-(define (edge? u v g) void)
+(define (edges g)
+  (apply append (map children-edges g)))
 
 ; връща списък от децата на върха v в g.
-(define (children v g) void)
+(define (children v g)
+  (alist-assoc v g))
+
+; проверява дали има ребро от върха u до върха v в g.
+(define (edge? u v g)
+  (not (null? (member v (children u g)))))
 
 ; връща списък от прилаганията на функцията f върху децата на v в g.
-(define (map-children v f g) void)
+(define (map-children v f g)
+  (map f (children v g)))
 
 ; връща първото дете на v в g, което е вярно за предиката p.
-(define (search-child v p g) void)
+(define (search-child v p g)
+  (define (help-search vs)
+    (cond [(null? vs) '()]
+          [(p (car vs)) (car vs)]
+          [else (help-search (cdr vs))]))
+  (help-search (children v g)))
 
 ; премахване на върха v от графа g заедно с ребрата до него.
-(define (remove-vertex v g) void)
+(define (remove-vertex v g)
+  (map (lambda (xs)
+         (filter (lambda (x) (not (equal? x v))) xs))
+       (del-assoc v g)))
 
 ; добавяне на ребро от u до v в g.
-(define (add-edge u v g) void)
+(define (add-if-missing x l)
+  (if (member x l)
+      l
+      (cons x l)))
+
+(define (add-edge u v g)
+  (let ((g-with-u-v (add-vertex v (add-vertex u g))))
+    (add-assoc u
+               (add-if-missing v (children u g-with-u-v))
+               g-with-u-v)))
 
 ; премахване на ребро от u до v в g.
-(define (remove-edge u v g) void)
-
+(define (remove-edge u v g)
+  (add-assoc u
+             (remove v (children u g))
+             g))
 
 ; Имплементирайте следните функции за графи.
 
 ; връща степента на върха v в графа g.
-(define (degree v g) void)
+(define (degree v g)
+  (length (alist-assoc v g)))
 
 ; проверява дали графа g е симетричен.
-(define (symmetric? g) void)
+(define (every? p l)
+  (or (null? l)
+      (and (p (car l))
+           (every? p (cdr l)))))
+
+(define (symmetric? g)
+  (every? (lambda (edge)
+            (edge? (cadr edge) (car edge) g))
+          (edges g)))
 
 ; инвертира графа g. Тоест за всяко ребро (u,v) в g новият граф ще има реброто (v,u).
-(define (invert g) void)
+(define (invert g)
+  (foldl (lambda (edge g-inverted)
+           (add-edge (cadr edge) (car edge) g-inverted))
+         (make-graph (vertices g))
+         (edges g)))
 
 ; проверява дали има път между върховете u и v в графа g.
-(define (path? u v g) void)
+(define (search p l)
+  (and (not (null? l))
+       (or (p (car l))
+           (search p (cdr l)))))
+
+(define (path? u v g)
+  (define (dfs path)
+    (let ((current (car path)))
+      (or (equal? current v)
+          (and (not (member current (cdr path)))
+               (search-child current
+                             (lambda (child)
+                               (dfs (cons child path)))
+                             g)))))
+    (not (search (lambda (vertex)
+                 (dfs (list vertex)))
+               (vertices g))))
 
 ; проверява дали графа g е ацикличен.
-(define (acyclic? g) void)
+(define (acyclic? g)
+  (define (dfs path)
+    (let ((current (car path)))
+      (or (member current (cdr path))
+          (search-child current
+                        (lambda (child)
+                          (dfs (cons child path)))
+                        g))))
+    (not (search (lambda (vertex)
+                 (dfs (list vertex)))
+               (vertices g))))
 
