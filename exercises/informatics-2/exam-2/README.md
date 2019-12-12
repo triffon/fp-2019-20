@@ -177,9 +177,9 @@ sumLast 3 5 → [3, 3, 6, 12, 24, 48, 93, 183, ... ]
 Scheme:
 
 ```scheme
-(define G ‘((a 2 b c)))
-            (b 4 a c)))
-            (c 1 a b))))
+(define G '((a 2 b c)
+            (b 4 a c)
+            (c 1 a b))
 ```
 
 Haskell:
@@ -219,7 +219,7 @@ multLast 2 3 → [2, 4, 8, 64, 2048, ... ]
 Scheme:
 
 ```scheme
-(define G ‘((a 2 b c)))
+(define G '((a 2 b c)))
             (b 4 a c)))
             (c 1 a b))))
 ```
