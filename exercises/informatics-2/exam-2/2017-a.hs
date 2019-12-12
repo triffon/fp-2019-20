@@ -31,5 +31,27 @@ sumLast k n = generate initialMemory
            where nextNumber = sum memory
                  nextMemory = tail memory ++ [nextNumber]
 
+data Tree a = Node (Tree a) a (Tree a) | Empty
+
+instance (Show a) => Show (Tree a) where
+  show Empty = "()"
+  show (Node Empty leaf Empty) = "(" ++ show leaf ++ ")"
+  show (Node left root right) = "(" ++ show left ++ ", " ++ show root ++ ", " ++ show right ++ ")"
+
+testTree :: Tree Int
+testTree = Node (Node Empty 3 Empty) 1 (Node Empty 2 (Node Empty 5 Empty))
+
+transformCount :: Tree Int -> Tree Int
+transformCount tree = fst $ transformCount' tree
+
+transformCount' :: Tree Int -> (Tree Int, Int)
+transformCount' Empty = (Empty, 0)
+transformCount' (Node Empty _ Empty) = (Node Empty 1 Empty, 1)
+transformCount' (Node left _ right) = (newTree, count)
+  where (newLeftTree, leftCount) = transformCount' left
+        (newRightTree, rightCount) = transformCount' right
+        count = 1 + leftCount + rightCount
+        newTree = Node newLeftTree count newRightTree
+
 main :: IO ()
 main = print ":)"
