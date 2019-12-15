@@ -301,6 +301,52 @@ instance Ord BitVector where
               x -> x
               -- ^ if the tails actually aren't equal, then the current bits
               -- don't matter, because they are less significant
+              --
+-- EXERCISE: Booleans, but a monoid under (&&)
+--
+-- EXAMPLES:
+-- All False <> All True == All False
+-- foldMap All [True, True, True] == All True
+-- foldMap All [True, True, False] == All False
+newtype All = All Bool
+  deriving Show
+
+getAll :: All -> Bool
+getAll (All x) = x
+
+instance Monoid All where
+  zero :: All
+  zero = All True
+  (<>) :: All -> All -> All
+  All x <> All y = All $ x && y
+
+-- EXERCISE: all, using All
+-- Use foldMap and All to define all
+all :: (a -> Bool) -> [a] -> Bool
+all f = getAll . foldMap (All . f)
+
+-- EXERCISE: Booleans, but a monoid under (||)
+--
+-- EXAMPLES:
+-- Any False <> Any True == Any True
+-- foldMap Any [True, False, False] == Any True
+-- foldMap Any [False, False, False] == Any False
+newtype Any = Any Bool
+  deriving Show
+
+getAny :: Any -> Bool
+getAny (Any x) = x
+
+instance Monoid Any where
+  zero :: Any
+  zero = Any False
+  (<>) :: Any -> Any -> Any
+  Any x <> Any y = Any $ x || y
+
+-- EXERCISE: any, using Any
+-- Use foldMap and Any to define any
+any :: (a -> Bool) -> [a] -> Bool
+any f = getAny . foldMap (Any . f)
 
 -- EXERCISE: Merge monoid
 -- This is a "party trick" monoid, which we can use to implement merge sort.
