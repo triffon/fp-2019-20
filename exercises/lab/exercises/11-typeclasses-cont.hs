@@ -351,7 +351,7 @@ instance Ord a => Monoid (Merge a) where
   (<>) :: Merge a -> Merge a -> Merge a
   (<>) = undefined
     where
-      merge :: [a] -> [a] -> [a]
+      merge :: Ord a => [a] -> [a] -> [a]
       merge = undefined
 
 -- EXERCISE: Merge sort, using Merge
