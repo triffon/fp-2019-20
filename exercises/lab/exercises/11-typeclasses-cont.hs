@@ -134,7 +134,7 @@ foldMap = undefined
 -- We use this datatype as a wrapper,
 -- so we can easily create a Monoid instance for this type.
 -- Think about the types!
-data Endo a = Endo (a -> a)
+newtype Endo a = Endo (a -> a)
 
 getEndo :: Endo a -> a -> a
 getEndo (Endo f) = f
