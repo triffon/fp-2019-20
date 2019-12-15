@@ -11,6 +11,9 @@ import Prelude hiding (Semigroup(..), Monoid(..), foldMap, all, any)
 -- TODO: newtypes
 -- TODO: mention InstanceSigs
 -- with example
+--
+-- TODO: mention typeclassopedia
+-- https://wiki.haskell.org/Typeclassopedia
 
 -- REMINDER:
 
