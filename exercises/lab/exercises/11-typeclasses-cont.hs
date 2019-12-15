@@ -6,7 +6,7 @@
 {-# OPTIONS_GHC -fwarn-name-shadowing #-}          -- use different names!
 {-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-} -- warn about incomplete patterns v2
 
-import Prelude hiding (Semigroup(..), Monoid(..), foldMap)
+import Prelude hiding (Semigroup(..), Monoid(..), foldMap, all, any)
 
 -- TODO: newtypes
 -- TODO: mention InstanceSigs
@@ -258,19 +258,74 @@ instance Ord BitVector where
 --        go (bv :. One) = 1 + 2 * go bv
 
 
--- TODO: Any, All, Add, Mult, bitvectors, Endo?
--- foldmap with this :P
---data Merge a = Merge [a]
+-- EXERCISE: Booleans, but a monoid under (&&)
 --
---getMerge :: Merge a -> [a]
---getMerge (Merge xs) = xs
+-- EXAMPLES:
+-- All False <> All True == All False
+-- monoidConcat [All True, All True, All True] == All True
+-- monoidConcat [All True, All True, All False] == All False
+newtype All = All Bool
+  deriving Show
+
+getAll :: All -> Bool
+getAll (All x) = x
+
+instance Monoid All where
+  zero :: All
+  zero = undefined
+  (<>) :: All -> All -> All
+  (<>) = undefined
+
+-- EXERCISE: all, using All
+-- Use foldMap and All to define all
+all :: (a -> Bool) -> [a] -> Bool
+all = undefined
+
+-- EXERCISE: Booleans, but a monoid under (||)
 --
---instance Ord a => Monoid (Merge a) where
---  zero = []
---  Merge x <> Merge y = Merge $ merge x y
---    where
---      merge [] ys = ys
---      merge xs [] = xs
---      merge (x:xs) (y:ys)
---        | x <= y = x : merge xs (y:ys)
---        | otherwise = y : merge (x:xs) ys
+-- EXAMPLES:
+-- Any False <> Any True == Any True
+-- monoidConcat [Any True, Any False, Any False] == Any True
+-- monoidConcat [Any False, Any False, Any False] == Any False
+newtype Any = Any Bool
+  deriving Show
+
+getAny :: Any -> Bool
+getAny (Any x) = x
+
+instance Monoid Any where
+  zero :: Any
+  zero = undefined
+  (<>) :: Any -> Any -> Any
+  (<>) = undefined
+
+-- EXERCISE: any, using Any
+-- Use foldMap and Any to define any
+any :: (a -> Bool) -> [a] -> Bool
+any = undefined
+
+-- EXERCISE: Merge monoid
+-- This is a "party trick" monoid, which we can use to implement merge sort.
+-- Our idea is that we will hold lists, but instead of the usual
+-- concatenation monoid that we have for lists, we will use the
+-- "merge" part of merge sort to implement our Monoid instance.
+newtype Merge a = Merge [a]
+  deriving Show
+
+getMerge :: Merge a -> [a]
+getMerge (Merge xs) = xs
+
+-- Assume that the lists inside Merge are sorted!
+instance Ord a => Monoid (Merge a) where
+  zero :: Merge a
+  zero = undefined
+  (<>) :: Merge a -> Merge a -> Merge a
+  (<>) = undefined
+    where
+      merge :: [a] -> [a] -> [a]
+      merge = undefined
+
+-- EXERCISE: Merge sort, using Merge
+-- Implement merge sort by using the Merge monoid and foldMap
+mergeSort :: [a] -> [a]
+mergeSort = undefined
