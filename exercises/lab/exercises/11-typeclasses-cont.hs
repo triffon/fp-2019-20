@@ -53,6 +53,32 @@ infixr 6 <>
 -- TODO: mention typeclassopedia
 -- https://wiki.haskell.org/Typeclassopedia
 
+
+--N, 0, +
+newtype Add = Add Int
+
+getAdd :: Add -> Int
+getAdd (Add x) = x
+
+instance Monoid Add where
+  zero :: Add
+  zero = Add 0
+  (<>) :: Add -> Add -> Add
+  (<>) (Add x) (Add y) = Add (x + y)
+
+--N, 1, *
+newtype Mult = Mult Int
+
+getMult :: Mult -> Int
+getMult (Mult x) = x
+
+instance Monoid Mult where
+  zero :: Mult
+  zero = Mult 1
+  (<>) :: Mult -> Mult -> Mult
+  (<>) (Mult x) (Mult y) = Mult (x * y)
+
+
 -- TODO: newtypes (single instance, examples: Add, Mult)
 -- TODO: mention InstanceSigs
 -- with example
