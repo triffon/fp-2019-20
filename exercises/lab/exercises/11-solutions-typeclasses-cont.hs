@@ -301,3 +301,38 @@ instance Ord BitVector where
               x -> x
               -- ^ if the tails actually aren't equal, then the current bits
               -- don't matter, because they are less significant
+
+-- EXERCISE: Merge monoid
+-- This is a "party trick" monoid, which we can use to implement merge sort.
+-- Our idea is that we will hold lists, but instead of the usual
+-- concatenation monoid that we have for lists, we will use the
+-- "merge" part of merge sort to implement our Monoid instance.
+newtype Merge a = Merge [a]
+  deriving Show
+
+getMerge :: Merge a -> [a]
+getMerge (Merge xs) = xs
+
+-- Assume that the lists inside Merge are sorted!
+instance Ord a => Monoid (Merge a) where
+  zero :: Merge a
+  zero = Merge []
+  (<>) :: Merge a -> Merge a -> Merge a
+  Merge l1 <> Merge l2 = Merge $ merge l1 l2
+    where
+      merge :: Ord a => [a] -> [a] -> [a]
+      merge [] ys = ys
+      merge xs [] = xs
+      merge (x:xs) (y:ys)
+        | x <= y = x:merge xs (y:ys)
+        | otherwise = y:merge (x:xs) ys
+
+-- EXERCISE: Merge sort, using Merge
+-- Implement merge sort by using the Merge monoid and foldMap
+-- NOTE: As pointed out, this isn't really merge sort, because of how
+-- lists are constructed (you always end up merging "to the right",
+-- instead of splitting down the middle)
+mergeSort :: Ord a => [a] -> [a]
+mergeSort = getMerge . foldMap (Merge . singleton)
+  where
+    singleton x = [x]
