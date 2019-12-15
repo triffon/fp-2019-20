@@ -8,6 +8,7 @@
 
 import Prelude hiding (Semigroup(..), Monoid(..), foldMap)
 
+-- TODO: newtypes, records
 -- TODO: mention InstanceSigs
 -- with example
 
@@ -68,6 +69,11 @@ instance Num Nat where
   fromInteger :: Integer -> Nat
   fromInteger 0 = Naught
   fromInteger n = Succ $ fromInteger $ n - 1
+  (+) = undefined
+  (*) = undefined
+  abs = undefined
+  signum = undefined
+  negate = undefined
 
 -- EXERCISE: Equality for Nats
 instance Eq Nat where
@@ -181,12 +187,17 @@ instance Eq BitVector where
   (==) = undefined
 
 -- Same as above - a convenient way to write number literals instead of BitVectors
--- hacky but convenient!
+-- Hacky but convenient!
 -- define only @fromInteger@
 instance Num BitVector where
   fromInteger :: Integer -> BitVector
   fromInteger 0 = End
   fromInteger n = fromInteger (n `div` 2) :. if n `rem` 2 == 0 then Zero else One
+  (+) = undefined
+  (*) = undefined
+  abs = undefined
+  signum = undefined
+  negate = undefined
 
 -- EXERCISE: Adding Bitvectors
 -- use bitvector addition for this!
@@ -247,7 +258,6 @@ instance Ord BitVector where
 --        go (bv :. One) = 1 + 2 * go bv
 
 
--- TODO: newtypes, records
 -- TODO: Any, All, Add, Mult, bitvectors, Endo?
 -- foldmap with this :P
 --data Merge a = Merge [a]
