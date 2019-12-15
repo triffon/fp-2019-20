@@ -8,13 +8,6 @@
 
 import Prelude hiding (Semigroup(..), Monoid(..), foldMap, all, any)
 
--- TODO: newtypes
--- TODO: mention InstanceSigs
--- with example
---
--- TODO: mention typeclassopedia
--- https://wiki.haskell.org/Typeclassopedia
-
 -- REMINDER:
 
 --class Eq a where -- == or /=
@@ -47,9 +40,6 @@ import Prelude hiding (Semigroup(..), Monoid(..), foldMap, all, any)
 --  antisymmetry - x <= y & y <= x -> x == y
 --  transitivity - x <= y & y <= z -> x <= z
 
-data Bit = Zero | One
-  deriving (Eq, Ord, Show)
-
 -- LAWS:
 class Monoid a where
   zero :: a
@@ -60,6 +50,13 @@ class Monoid a where
 -- (<>) is associative - (x <> y) <> z == x <> (y <> z)
 
 infixr 6 <>
+
+-- TODO: newtypes
+-- TODO: mention InstanceSigs
+-- with example
+--
+-- TODO: mention typeclassopedia
+-- https://wiki.haskell.org/Typeclassopedia
 
 -- Use Naught instead of Zero so we can use Zero for bits
 data Nat = Naught | Succ Nat
@@ -159,6 +156,10 @@ instance Monoid (Endo a) where
   (<>) = undefined
 
 ------ BITVECTOR INSTANCES
+
+data Bit = Zero | One
+  deriving (Eq, Ord, Show)
+
 -- your favourite
 data BitVector
   = End
