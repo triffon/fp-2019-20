@@ -270,12 +270,6 @@ succBitVector (bv :. One) = succBitVector bv :. Zero
 
 -- This is a bit tricky
 -- Canonicalise them first!
-
--- You can run a test by uncommenting the quickcheck import up top
--- and writing `quickCheck prop_compareWorksBitVector`
--- in ghci
--- The test checks precisely the condition above, for randomly generated
--- canonical bitvectors.
 instance Ord BitVector where
   compare :: BitVector -> BitVector -> Ordering
   compare = go `on` canonicalise
