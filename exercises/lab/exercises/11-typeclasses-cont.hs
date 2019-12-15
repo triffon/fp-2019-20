@@ -71,7 +71,7 @@ instance Num Nat where
 
 -- EXERCISE: Equality for Nats
 instance Eq Nat where
-  (==) :: Nat -> Nat -> Nat
+  (==) :: Nat -> Nat -> Bool
   (==) = undefined
 
 -- EXERCISE: Ordering for Nats
@@ -220,7 +220,7 @@ instance Ord BitVector where
   -- choose one to implement, you can delete the other one
   compare :: BitVector -> BitVector -> Ordering
   compare = undefined
-  compare :: BitVector -> BitVector -> Bool
+  (<=) :: BitVector -> BitVector -> Bool
   (<=) = undefined
 
 -- Uncomment below here if you want tests
