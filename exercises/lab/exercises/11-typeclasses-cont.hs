@@ -8,7 +8,7 @@
 
 import Prelude hiding (Semigroup(..), Monoid(..), foldMap)
 
--- TODO: newtypes, records
+-- TODO: newtypes
 -- TODO: mention InstanceSigs
 -- with example
 
@@ -43,7 +43,7 @@ import Prelude hiding (Semigroup(..), Monoid(..), foldMap)
 --  reflexivity - x <= x
 --  antisymmetry - x <= y & y <= x -> x == y
 --  transitivity - x <= y & y <= z -> x <= z
---
+
 data Bit = Zero | One
   deriving (Eq, Ord, Show)
 
