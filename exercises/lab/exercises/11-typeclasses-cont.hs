@@ -263,30 +263,6 @@ instance Ord BitVector where
   (<=) :: BitVector -> BitVector -> Bool
   (<=) = undefined
 
--- Uncomment below here if you want tests
---instance Arbitrary Bit where
---  arbitrary = elements [Zero, One]
---
---instance Arbitrary BitVector where
---  arbitrary = (canonicalise . listToBv) <$> listOf arbitrary
---    where
---      listToBv :: [Bit] -> BitVector
---      listToBv [] = End
---      listToBv (b:bs) = listToBv bs :. b
---
---prop_compareWorksBitVector :: BitVector -> BitVector -> Bool
---prop_compareWorksBitVector bv1 bv2 =
---  compare bv1 bv2 == (compare `on` bitVectorToInteger) bv1 bv2
---  where
---    bitVectorToInteger :: BitVector -> Integer
---    bitVectorToInteger = go . canonicalise
---      where
---        go :: BitVector -> Integer
---        go End = 0
---        go (bv :. Zero) = 2 * go bv
---        go (bv :. One) = 1 + 2 * go bv
-
-
 -- EXERCISE: Booleans, but a monoid under (&&)
 --
 -- EXAMPLES:
