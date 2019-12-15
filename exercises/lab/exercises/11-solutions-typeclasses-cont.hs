@@ -277,7 +277,6 @@ succBitVector (bv :. One) = succBitVector bv :. Zero
 -- The test checks precisely the condition above, for randomly generated
 -- canonical bitvectors.
 instance Ord BitVector where
-  -- choose one to implement, you can delete the other one
   compare :: BitVector -> BitVector -> Ordering
   compare = go `on` canonicalise
     where
