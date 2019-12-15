@@ -1,4 +1,4 @@
-{-# LANGUAGE InstanceSigs #-}
+{-# LANGUAGE InstanceSigs #-} -- allows us to write signatures in instance declarations
 
 {-# OPTIONS_GHC -fwarn-incomplete-patterns #-}     -- cover all cases!
 {-# OPTIONS_GHC -fwarn-unused-matches #-}          -- use all your pattern matches!
