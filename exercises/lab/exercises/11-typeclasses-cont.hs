@@ -291,8 +291,8 @@ instance Ord BitVector where
 --
 -- EXAMPLES:
 -- All False <> All True == All False
--- monoidConcat [All True, All True, All True] == All True
--- monoidConcat [All True, All True, All False] == All False
+-- foldMap All [True, True, True] == All True
+-- foldMap All [True, True, False] == All False
 newtype All = All Bool
   deriving Show
 
@@ -314,8 +314,8 @@ all = undefined
 --
 -- EXAMPLES:
 -- Any False <> Any True == Any True
--- monoidConcat [Any True, Any False, Any False] == Any True
--- monoidConcat [Any False, Any False, Any False] == Any False
+-- foldMap Any [True, False, False] == Any True
+-- foldMap Any [False, False, False] == Any False
 newtype Any = Any Bool
   deriving Show
 
