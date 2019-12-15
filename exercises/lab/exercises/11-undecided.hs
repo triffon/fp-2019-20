@@ -1,7 +1,5 @@
 -- TODO: newtypes, records
 -- TODO: Any, All, Add, Mult, bitvectors, Endo?
--- TODO: Maybe?
--- TODO: Tree?
 
 -- foldmap with this :P
 --data Merge a = Merge [a]
