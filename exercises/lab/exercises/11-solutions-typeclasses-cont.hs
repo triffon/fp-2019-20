@@ -293,15 +293,15 @@ instance Ord BitVector where
         | bit1 == bit2 = go bv1 bv2
         -- ^ if the last bit is the same, then their comparison
         -- only depends on the comparison of the tails
-          | otherwise = case go bv1 bv2 of
-          -- ^ otherwise we need to look at the recursive result of the comparison
-              EQ -> compare bit1 bit2
-              -- ^ if the tails are equal, then the only determining factor
-              -- are the current bits
-              x -> x
-              -- ^ if the tails actually aren't equal, then the current bits
-              -- don't matter, because they are less significant
-              --
+        | otherwise = case go bv1 bv2 of
+        -- ^ otherwise we need to look at the recursive result of the comparison
+            EQ -> compare bit1 bit2
+            -- ^ if the tails are equal, then the only determining factor
+            -- are the current bits
+            x -> x
+            -- ^ if the tails actually aren't equal, then the current bits
+            -- don't matter, because they are less significant
+            --
 -- EXERCISE: Booleans, but a monoid under (&&)
 --
 -- EXAMPLES:
