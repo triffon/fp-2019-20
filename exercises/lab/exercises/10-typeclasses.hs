@@ -151,7 +151,7 @@ foldMap = undefined
 
 ------ ENDO
 
--- Endo means from one thing to itself
+-- Endo means "from one thing to itself"
 -- We use this datatype as a wrapper,
 -- so we can easily create a Monoid instance for this type.
 -- Think about the types!
@@ -167,7 +167,6 @@ getEndo (Endo f) = f
 instance Monoid (Endo a) where
 
 ------ BITVECTOR INSTANCES
-
 -- your favourite
 data BitVector
   = End
