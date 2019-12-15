@@ -21,7 +21,7 @@ import Prelude hiding (Semigroup(..), Monoid(..), foldMap, all, any)
 -- reflexivity - x == x
 -- symmetry -  x == y -> y == x
 -- transitivity - x == y && y == z -> x == z
---
+
 --class Eq a => Ord a where -- <= or compare
 --  compare :: a -> a -> Ordering
 --  compare x y
@@ -40,7 +40,6 @@ import Prelude hiding (Semigroup(..), Monoid(..), foldMap, all, any)
 --  antisymmetry - x <= y & y <= x -> x == y
 --  transitivity - x <= y & y <= z -> x <= z
 
--- LAWS:
 class Monoid a where
   zero :: a
   (<>) :: a -> a -> a
