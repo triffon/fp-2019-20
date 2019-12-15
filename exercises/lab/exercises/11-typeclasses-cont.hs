@@ -356,5 +356,8 @@ instance Ord a => Monoid (Merge a) where
 
 -- EXERCISE: Merge sort, using Merge
 -- Implement merge sort by using the Merge monoid and foldMap
+-- NOTE: As pointed out, this isn't really merge sort, because of how
+-- lists are constructed (you always end up merging "to the right",
+-- instead of splitting down the middle)
 mergeSort :: [a] -> [a]
 mergeSort = undefined
