@@ -54,7 +54,8 @@ infixr 6 <>
 -- https://wiki.haskell.org/Typeclassopedia
 
 
---N, 0, +
+-- Ints as a Monoid under addition
+-- N, 0, +
 newtype Add = Add Int
 
 getAdd :: Add -> Int
@@ -66,7 +67,8 @@ instance Monoid Add where
   (<>) :: Add -> Add -> Add
   (<>) (Add x) (Add y) = Add (x + y)
 
---N, 1, *
+-- Ints as a Monoid under multiplication
+-- N, 1, *
 newtype Mult = Mult Int
 
 getMult :: Mult -> Int
@@ -77,11 +79,6 @@ instance Monoid Mult where
   zero = Mult 1
   (<>) :: Mult -> Mult -> Mult
   (<>) (Mult x) (Mult y) = Mult (x * y)
-
-
--- TODO: newtypes (single instance, examples: Add, Mult)
--- TODO: mention InstanceSigs
--- with example
 
 -- Use Naught instead of Zero so we can use Zero for bits
 data Nat = Naught | Succ Nat
