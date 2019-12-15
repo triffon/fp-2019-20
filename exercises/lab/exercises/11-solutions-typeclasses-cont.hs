@@ -49,8 +49,8 @@ class Monoid a where
 -- (<>) is associative - (x <> y) <> z == x <> (y <> z)
 
 infixr 6 <>
---
--- TODO: mention typeclassopedia
+
+-- Resource on typeclasses:
 -- https://wiki.haskell.org/Typeclassopedia
 
 
