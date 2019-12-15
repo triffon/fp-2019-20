@@ -49,13 +49,13 @@ class Monoid a where
 -- (<>) is associative - (x <> y) <> z == x <> (y <> z)
 
 infixr 6 <>
-
--- TODO: newtypes
--- TODO: mention InstanceSigs
--- with example
 --
 -- TODO: mention typeclassopedia
 -- https://wiki.haskell.org/Typeclassopedia
+
+-- TODO: newtypes (single instance, examples: Add, Mult)
+-- TODO: mention InstanceSigs
+-- with example
 
 -- Use Naught instead of Zero so we can use Zero for bits
 data Nat = Naught | Succ Nat
