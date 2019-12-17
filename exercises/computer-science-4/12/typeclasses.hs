@@ -1,11 +1,10 @@
-{-# OPTIONS_GHC -fwarn-incomplete-patterns #-}      -- cover all cases!
-{-# OPTIONS_GHC -fwarn-unused-matches #-}           -- use all your pattern matches!
-{-# OPTIONS_GHC -fwarn-missing-signatures #-}       -- write all your toplevel signatures!
-{-# OPTIONS_GHC -fwarn-name-shadowing #-}           -- use different names!
-{-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-}  -- no incomplete patterns in lambdas!
-{-# LANGUAGE InstanceSigs #-}                       -- allows us to write signatures in instance declarations
+{-# OPTIONS_GHC -fwarn-incomplete-patterns #-}     -- cover all cases!
+{-# OPTIONS_GHC -fwarn-unused-matches #-}          -- use all your pattern matches!
+{-# OPTIONS_GHC -fwarn-missing-signatures #-}      -- write all your toplevel signatures!
+{-# OPTIONS_GHC -fwarn-name-shadowing #-}          -- use different names!
+{-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-} -- no incomplete patterns in lambdas!
+{-# LANGUAGE InstanceSigs #-}                      -- allows us to write signatures in instance declarations
 
--- TODO: case _ of _
 -- Една конструцият която не съм ви показал е
 -- case <expr> of {<case-match>}+
 fib :: Int -> Int
@@ -31,6 +30,7 @@ fib n = case n of
 -- (.) :: (b -> c) -> (a -> b) -> a -> c
 -- Пример: отрицание на предикат
 -- complement p = (\x -> not $ p x)
+-- complement p x = not $ p x
 -- complement p = not . p
 
 -- TODO: pointfree
@@ -88,7 +88,7 @@ data Parity
 -- за да бъде типа инстанция на изброените класове
 
 -- Нека разгледаме няколко основни класа - Num, Eq, Ord
--- И ще видим как да направим Bit тяхна инстанция
+-- И ще видим как да направим Parity тяхна инстанция
 
 -- TODO: флаг за декларации
 
@@ -156,7 +156,8 @@ instance Ord Parity where
 -- ЗАДАЧИ:
 
 data Nat
-  = Zero | Succ Nat
+  = Zero
+  | Succ Nat
   deriving Show
 
 -- Имплементирайте нужните функции за да бъде
@@ -191,7 +192,7 @@ instance Ord Nat where
 -- Hint: list comprehension ще ви е полезно в доста от задачите
 
 -- Имплементирайте едноименния алгоритъм за сортиране mergeSort
-mergeSort :: Ord => [a] -> [a]
+mergeSort :: Ord a => [a] -> [a]
 mergeSort = undefined
 
 -- Декартово произведение на 2 произволни списъка
