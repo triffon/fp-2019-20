@@ -90,6 +90,8 @@ data Parity
 -- Нека разгледаме няколко основни класа - Num, Eq, Ord
 -- И ще видим как да направим Bit тяхна инстанция
 
+-- TODO: флаг за декларации
+
 -- Num
 -- За да можем да кастваме числа към Parity
 -- ни стига да имплементираме fromIntegral
@@ -209,8 +211,8 @@ secondaryDiag :: [[a]] -> [a]
 secondaryDiag = undefined
 
 -- Питагорова тройка е (a,b,c), където a^2 + b^2 = c^2
--- Намерете първите n такива, за които е изпълнено че сбора им е m
-pythagoreanTriples :: Integral a => a -> a -> [(a, a, a)]
+-- Намерете първите n такива
+pythagoreanTriples :: Integral a => a -> [(a, a, a)]
 pythagoreanTriples = undefined
 
 -- За даден списък xs връща списък от всички негови пермутации
