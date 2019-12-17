@@ -213,7 +213,7 @@ secondaryDiag = undefined
 
 -- Питагорова тройка е (a,b,c), където a^2 + b^2 = c^2
 -- Намерете първите n такива
-pythagoreanTriples :: Integral a => a -> [(a, a, a)]
+pythagoreanTriples :: Integral a => Int -> [(a, a, a)]
 pythagoreanTriples = undefined
 
 -- За даден списък xs връща списък от всички негови пермутации
