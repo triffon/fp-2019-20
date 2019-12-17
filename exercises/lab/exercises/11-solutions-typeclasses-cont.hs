@@ -155,7 +155,7 @@ monoidConcat = foldr (<>) zero
 -- EXERCISE: One Fun to rule them all, One Fun to find them, One Fun to bring them all and in the darkness bind them
 --
 -- EXAMPLES:
--- foldMap fromInteger [1,2,3] == <6 as a Nat>
+-- foldMap (fromInteger :: Integer -> Nat) [1,2,3] == <6 as a Nat>
 -- foldMap (`repeatMonoid` [1,2]) [1,2,3] == [1,2 1,2,1,2, 1,2,1,2,1,2]
 foldMap :: (Monoid b) => (a -> b) -> [a] -> b
 foldMap f = monoidConcat . map f
