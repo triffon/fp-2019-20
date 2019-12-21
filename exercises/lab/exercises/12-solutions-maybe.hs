@@ -96,6 +96,7 @@ listToMaybe (x:_) = Just x
 -- sumMaybe (Just 5) == 5
 sumMaybe :: Num a => Maybe a -> a
 sumMaybe = getSum . foldMaybe . mapMaybe Sum
+           -- ^ imported from Data.Monoid
 
 -- EXERCISE: Apply a function on a value, if there is any
 -- Note that this function in base does a different thing!
