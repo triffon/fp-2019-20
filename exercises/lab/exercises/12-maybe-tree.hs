@@ -52,7 +52,7 @@ stripPrefix = undefined
 -- EXERCISE: Lookup in an associative list
 --
 -- EXAMPLES:
--- lookup 5 [(10, 'a'), (5,'c')] == Just 5
+-- lookup 5 [(10, 'a'), (5,'c')] == Just 'c'
 -- lookup 13 [(10, 'a'), (5,'c')] == Nothing
 lookup :: Eq k => k -> [(k, v)] -> Maybe v
 lookup = undefined
@@ -104,7 +104,7 @@ mapMaybe = undefined
 --
 -- EXAMPLES:
 -- foldMaybe (Just [1,2,3]) == [1,2,3]
--- foldMaybe (Nothing :: [Int]) == []
+-- foldMaybe (Nothing :: Maybe [Int]) == []
 foldMaybe :: Monoid a => Maybe a -> a
 foldMaybe = undefined
 
@@ -125,7 +125,7 @@ catMaybes = undefined
 -- This is what Data.Maybe.mapMaybe does.
 -- Contrast this with filter!
 --
--- mapListMaybe safeUncons [[], [1,2], [], [2,3]] == [Just (1, [2]), Just (2, [3])]
+-- mapListMaybe safeUncons [[], [1,2], [], [2,3]] == [(1, [2]), (2, [3])]
 mapListMaybe :: (a -> Maybe b) -> [a] -> [b]
 mapListMaybe = undefined
 
@@ -133,13 +133,16 @@ mapListMaybe = undefined
 --
 -- EXAMPLES:
 -- (onBool even) 3 == Nothing
--- (onBool even) 3 == Just 3
+-- (onBool even) 4 == Just 4
 onBool :: (a -> Bool) -> a -> Maybe a
 onBool = undefined
 
 -- EXERCISE: Conditional execution
 --
 -- (note how this looks like flip concatMap :: [a] -> (a -> [b]) -> [b] !)
+--
+-- The idea is that, if at any point one of our computations returns a Nothing,
+-- we fail the whole thing early.
 --
 -- EXAMPLES:
 -- xs == [(2, "k"), (3, "e"), (42, "k")]
