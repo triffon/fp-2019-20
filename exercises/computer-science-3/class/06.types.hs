@@ -1,3 +1,5 @@
+import Prelude hiding (any, Maybe, Just, Nothing)
+
 member :: Int -> [Int] -> Bool
 member _ [] = False
 member e (x:xs)
