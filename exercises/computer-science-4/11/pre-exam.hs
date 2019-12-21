@@ -120,7 +120,7 @@ circleArea r = pi * r * r
 -- няколко за загрявка
 
 --nub
--- за списък от числа връща списък само от уникалните
+-- за списък от числа, премахва дубликатите
 nub :: (Eq a) => [a] -> [a]
 nub = undefined
 
@@ -128,7 +128,7 @@ nub = undefined
 quicksort :: (Ord a) => [a] -> [a]
 quicksort = undefined
 
--- prime?
+-- Проверява дали число е просто
 prime :: Int -> Bool
 prime = undefined
 
