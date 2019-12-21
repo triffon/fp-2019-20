@@ -146,14 +146,14 @@ onBool = undefined
 -- x = lookup 2 xs `ifJust` (\x ->
 --     lookup 3 xs `ifJust` (\y ->
 --     lookup 42 xs `ifJust` (\z ->
---     x ++ y ++ z)))
+--     Just $ x ++ y ++ z)))
 -- x == Just "kek"
 --
 -- xs == [(13, "k"), (3, "e"), (42, "k")]
 -- x = lookup 2 xs `ifJust` (\x ->
 --     lookup 3 xs `ifJust` (\y ->
 --     lookup 42 xs `ifJust` (\z ->
---     x ++ y ++ z)))
+--     Just $ x ++ y ++ z)))
 -- x == Nothing
 ifJust :: (Maybe a) -> (a -> Maybe b) -> Maybe b
 ifJust = undefined
