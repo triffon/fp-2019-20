@@ -187,13 +187,13 @@ instance Eq a => Eq (Tree a) where
 -- * left root right
 -- * etc..
 -- Let's implement "left root right" traversal everywhere in our functions
--- So we want treeToList (Node 5 (Tree 2 Empty Empty) (Tree 7 Empty Empty))
+-- So we want treeToList (Node 5 (Node 2 Empty Empty) (Node 7 Empty Empty))
 -- to be [2,5,7]
 
 -- EXERCISE: Flattening a tree
 --
 -- EXAMPLES:
--- treeToList (Node 5 (Tree 2 Empty Empty) (Tree 7 Empty Empty)) == [2, 5, 7]
+-- treeToList (Node 5 (Node 2 Empty Empty) (Node 7 Empty Empty)) == [2, 5, 7]
 treeToList :: Tree a -> [a]
 treeToList = undefined
 
@@ -217,7 +217,7 @@ listToTree = undefined
 -- EXERCISE: Summing a tree
 --
 -- EXAMPLES:
--- sumTree (Node 5 (Tree 2 Empty Empty) (Tree 7 Empty Empty)) == 14
+-- sumTree (Node 5 (Node 2 Empty Empty) (Node 7 Empty Empty)) == 14
 sumTree :: Num a => Tree a -> a
 sumTree = undefined
 
@@ -226,7 +226,7 @@ mapTree :: (a -> b) -> Tree a -> Tree b
 mapTree = undefined
 
 -- EXERCISE: Does the entire tree "satisfy" a predicate?
---(Node 5 (Tree 2 Empty Empty) (Tree 7 Empty Empty))
+--(Node 5 (Node 2 Empty Empty) (Node 7 Empty Empty))
 allTree :: (a -> Bool) -> Tree a -> Bool
 allTree = undefined
 
