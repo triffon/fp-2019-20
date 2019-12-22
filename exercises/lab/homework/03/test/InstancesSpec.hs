@@ -92,3 +92,5 @@ fluxSpec = describe "Flux" do
     prop "for a nonempty list: shows changes as many as there are Data.List.groups - 1" do
       \(xs :: [Int]) ->
         not (null xs) ==> changes (foldMap flux xs) `shouldBe` length (group xs) - 1
+    it "works on an example" do
+      foldMap flux [1,2,1,2,3,3,3,3,4] `shouldBe` Flux (Just (1, 4)) 5
