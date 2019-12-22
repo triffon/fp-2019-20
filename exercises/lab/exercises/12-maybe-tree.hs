@@ -202,7 +202,7 @@ treeToList = undefined
 -- EXAMPLES:
 -- insertOrdered 5 Empty == Node 5 Empty Empty
 -- insertOrdered 5 (Node 10 Empty Empty) == Node 10 (Node 5 Empty Empty) Empty
--- insertOrdered 5 (Node 3 Empty Empty) == Node 10 Empty (Node 5 Empty Empty)
+-- insertOrdered 5 (Node 3 Empty Empty) == Node 3 Empty (Node 5 Empty Empty)
 insertOrdered :: Ord a => a -> Tree a -> Tree a
 insertOrdered = undefined
 
