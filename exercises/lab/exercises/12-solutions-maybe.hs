@@ -118,7 +118,10 @@ foldMaybe = foldMapMaybe id
 
 -- EXERCISE: Analogue of foldMap for lists
 foldMapMaybe :: Monoid b => (a -> b) -> Maybe a -> b
-foldMapMaybe f = foldMaybe . mapMaybe f
+foldMapMaybe _ Nothing = mempty
+foldMapMaybe f (Just x) = f x
+-- alternative, if we didn't use foldMapMaybe for foldMaybe
+-- foldMapMaybe f Nothing = foldMaybe . mapMaybe f
 
 -- EXERCISE: Get all the Justs from a list
 --
