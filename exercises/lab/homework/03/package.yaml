@@ -1,0 +1,47 @@
+name: fourth-hw
+
+dependencies:
+- base >= 4.7 && < 5
+- QuickCheck
+- hspec
+- hspec-discover
+
+ghc-options:
+- -Werror                   # warnings are errors
+- -Wincomplete-patterns     # cover all cases!
+- -Wunused-binds            # use all your bindings
+- -Wunused-matches          # use all your pattern matches!
+- -Wmissing-signatures      # write all your toplevel signatures!
+- -Wname-shadowing          # use different names!
+- -Wincomplete-uni-patterns # warn about incomplete patterns v2
+
+library:
+  source-dirs: src
+
+tests:
+  test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - fourth-hw
+
+flags:
+  instances:
+    description: Run instances tests
+    manual: true
+    default: false
+  trees:
+    description: Run trees tests
+    manual: true
+    default: false
+
+when:
+- condition: flag(instances)
+  cpp-options: -DINSTANCES
+- condition: flag(trees)
+  cpp-options: -DTREES
+
