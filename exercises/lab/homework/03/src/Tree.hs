@@ -3,7 +3,7 @@
 module Tree where
 
 import Prelude
-import Data.Monoid (Sum(..), All(..), First(..))
+import Data.Monoid (Sum(..), All(..), Any(..), First(..))
 import Data.Maybe (isJust)
 
 data Tree a
@@ -43,30 +43,24 @@ foldTree = undefined
 foldMapTree :: Monoid b => (a -> b) -> Tree a -> b
 foldMapTree = undefined
 
--- sum monoid hint
 sumTree :: Num a => Tree a -> a
 sumTree = undefined
 
--- all monoid hint
 allTree :: (a -> Bool) -> Tree a -> Bool
 allTree = undefined
 
--- [] monoid hint
 treeToList :: Tree a -> [a]
 treeToList = undefined
 
--- could use findPred
 elemTree :: Eq a => a -> Tree a -> Bool
 elemTree = undefined
 
 onMaybe :: (a -> Bool) -> a -> Maybe a
 onMaybe p x = if p x then Just x else Nothing
 
--- first monoid hint
 findPred :: (a -> Bool) -> Tree a -> Maybe a
 findPred = undefined
 
--- list monoid hint
 findAll :: (a -> Bool) -> Tree a -> [a]
 findAll = undefined
 
@@ -74,7 +68,6 @@ ifJust :: Maybe a -> (a -> Maybe b) -> Maybe b
 ifJust Nothing _ = Nothing
 ifJust (Just x) f = f x
 
--- use ifJust hint
 validateTree :: (a -> Maybe b) -> Tree a -> Maybe (Tree b)
 validateTree = undefined
 
@@ -86,6 +79,5 @@ data Direction
 fetch :: [Direction] -> Tree a -> Maybe a
 fetch = undefined
 
--- hint: make a function : Tree a -> Tree (a, [Direction])
 paths :: Tree a -> [(a, [Direction])]
 paths = undefined
