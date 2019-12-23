@@ -240,6 +240,12 @@ instance (Eq a) => Monoid (Flux a) where
 > flux 1
 Flux {sides = Just (1,1), changes = 0}
 
+> flux 2
+Flux {sides = Just (2,2), changes = 0}
+
+> flux 1 <> flux 2
+Flux {sides = Just (1,2), changes = 1}
+
 > flux 1 <> flux 2 <> flux 3
 Flux {sides = Just (1,3), changes = 2}
 
