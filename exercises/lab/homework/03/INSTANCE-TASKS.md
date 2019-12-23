@@ -14,10 +14,13 @@ instance (Ord a, Ord b) => Ord (Pointwise a b) where
 ```haskell
 > Pointwise (3,5) < Pointwise (4,6)
 True
+
 > Pointwise (3,5) < Pointwise (4,1)
 False
+
 > Pointwise ('a','b') <= Pointwise ('A','z')
 False
+
 > Pointwise ('a','b') <= Pointwise ('a','z')
 True
 ```
@@ -41,12 +44,16 @@ instance (Ord a, Ord b) => Ord (Lexicographic a b) where
 ```haskell
 > Lexicographic (3,5) < Lexicographic (4,6)
 True
+
 > Lexicographic (3,5) < Lexicographic (4,1)
 True
+
 > Lexicographic ('a','b') <= Lexicographic ('A','z')
 False
+
 > Lexicographic ('a','b') <= Lexicographic ('a','z')
 True
+
 > Lexicographic ('a','b') <= Lexicographic ('a','b')
 True
 ```
@@ -70,12 +77,16 @@ instance (Monoid b) => Monoid (Fun a b) where
 ```haskell
 > getFun (Fun reverse <> Fun (++[1,2,3])) []
 [1,2,3]
+
 > getFun (Fun reverse <> Fun (++[1,2,3])) [69]
 [69,69,1,2,3]
+
 > getFun (Fun ("what the "++) <> Fun (++" is this")) "fun"
 "what the funfun is this"
+
 > getFun (Fun reverse <> Fun reverse) [4,5,6]
 [6,5,4,6,5,4]
+
 > getFun (Fun reverse <> Fun id) [4,5,6]
 [6,5,4,4,5,6]
 ```
@@ -105,6 +116,7 @@ instance Monoid (Last a) where
 ```haskell
 > First (Just "nice") <> First undefined
 First {getFirst = Just "nice"}
+
 > Last undefined <> Last (Just "nice")
 Last {getLast = Just "nice"}
 
@@ -150,12 +162,14 @@ Pair {getPair = (Sum {getSum = 11},Product {getProduct = 30})}
             -- (Pair . ((First . matches k) &&& (Last . matches k)))
 -- ^ there is actually a cleaner way to do unwrapping
 -- but we won't discuss it here
+
 > :t findFirstLast
 findFirstLast
   :: (Eq a1) => a1 -> [(a1, a)] -> (Maybe a, Maybe a)
 
 > findFirstLast 1 [(1, "MGLA"), (2, "nice"), (1, "GY!BE")]
 (Just "MGLA",Just "GY!BE")
+
 > findFirstLast 1 [(1, "MGLA"), (2, "nice"), (1, "lil peep"), (1, "GY!BE")]
 (Just "MGLA",Just "GY!BE")
 ```
@@ -183,10 +197,13 @@ reverse :: [a] -> [a]
 ```haskell
 > getFirst $ First (Just 10) <> First (Just 5)
 Just 10
+
 > getFirst $ getDual $ Dual (First (Just 10)) <> Dual (First (Just 5))
 Just 5
+
 > getFirst $ getDual $ getDual $ Dual (Dual (First (Just 10))) <> Dual (Dual (First (Just 5)))
 Just 10
+
 > getDual $ Dual [1,2,3] <> Dual [4,5,6]
 [4,5,6,1,2,3]
 ```
@@ -221,22 +238,31 @@ instance (Eq a) => Monoid (Flux a) where
 ```haskell
 > flux 1
 Flux {sides = Just (1,1), changes = 0}
+
 > flux 1 <> flux 2 <> flux 3
 Flux {sides = Just (1,3), changes = 2}
+
 > flux 1 <> flux 2 <> flux 3 <> flux 1
 Flux {sides = Just (1,1), changes = 3}
+
 > flux 1 <> mempty
 Flux {sides = Just (1,1), changes = 0}
+
 > mempty <> flux 1
 Flux {sides = Just (1,1), changes = 0}
+
 > changes $ foldMap flux [1,1,1,1]
 0
+
 > changes $ foldMap flux [1,2,1,2]
 3
+
 > changes $ foldMap flux [1,2,1,2,2,2,2]
 3
+
 > changes $ foldMap flux [1,2,1,2,2,2,2,3,2]
 5
+
 > changes $ foldMap flux [1,2,1,2,2,2,2,3,2,4]
 6
 ```
