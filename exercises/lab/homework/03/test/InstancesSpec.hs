@@ -3,6 +3,9 @@
 
 module InstancesSpec (spec) where
 
+import Prelude hiding (reverse)
+import qualified Prelude as P
+
 import Test.Hspec
 import Test.QuickCheck ((==>))
 import Test.Hspec.QuickCheck
@@ -83,6 +86,10 @@ dualSpec = describe "Dual" do
   prop "flips around operations" do
     \((x1, y1) :: ([Int], [Int])) (x2, y2) ->
       Dual (x1, y1) <> Dual (x2, y2) `shouldBe` Dual (x2 ++ x1, y2 ++ y1)
+
+  prop "reverse works" do
+    \(xs :: [Int]) -> P.reverse xs == reverse xs
+
 
 fluxSpec :: Spec
 fluxSpec = describe "Flux" do

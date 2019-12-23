@@ -2,6 +2,8 @@
 
 module Instances where
 
+import Prelude hiding (reverse)
+
 import Data.Char (isSpace)
 import Data.Function (on)
 
@@ -74,6 +76,9 @@ instance Semigroup a => Semigroup (Dual a) where
 instance Monoid a => Monoid (Dual a) where
   mempty :: Dual a
   mempty = undefined
+
+reverse :: [a] -> [a]
+reverse = undefined
 
 data Flux a = Flux
   { sides :: Maybe (a, a)
