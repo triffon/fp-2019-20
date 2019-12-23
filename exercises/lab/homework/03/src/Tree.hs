@@ -83,9 +83,9 @@ data Direction
   | R -- go right
   deriving (Show, Eq)
 
+fetch :: [Direction] -> Tree a -> Maybe a
+fetch = undefined
+
 -- hint: make a function : Tree a -> Tree (a, [Direction])
 paths :: Tree a -> [(a, [Direction])]
 paths = undefined
-
-fetch :: [Direction] -> Tree a -> Maybe a
-fetch = undefined
