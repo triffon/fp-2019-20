@@ -79,8 +79,8 @@ validateTree :: (a -> Maybe b) -> Tree a -> Maybe (Tree b)
 validateTree = undefined
 
 data Direction
-  = L
-  | R
+  = L -- go left
+  | R -- go right
   deriving (Show, Eq)
 
 -- hint: make a function : Tree a -> Tree (a, [Direction])
