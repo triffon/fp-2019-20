@@ -43,10 +43,6 @@ foldTree = undefined
 foldMapTree :: Monoid b => (a -> b) -> Tree a -> b
 foldMapTree = undefined
 
--- [] monoid hint
-treeToList :: Tree a -> [a]
-treeToList = undefined
-
 -- sum monoid hint
 sumTree :: Num a => Tree a -> a
 sumTree = undefined
@@ -54,6 +50,10 @@ sumTree = undefined
 -- all monoid hint
 allTree :: (a -> Bool) -> Tree a -> Bool
 allTree = undefined
+
+-- [] monoid hint
+treeToList :: Tree a -> [a]
+treeToList = undefined
 
 -- could use findPred
 elemTree :: Eq a => a -> Tree a -> Bool
