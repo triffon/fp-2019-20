@@ -153,6 +153,7 @@ instance (Monoid a, Monoid b) => Monoid (Pair a b) where
 > Pair (Sum 5, Product 5) <> Pair (Sum 6, Product 6)
 Pair {getPair = (Sum {getSum = 11},Product {getProduct = 30})}
 
+> matches kx (k, v) = if kx == k then Just v else Nothing
 > bimap f g (x, y) = (f x, g y) -- can import from Data.Bifunctor
 > findFirstLast k
     = bimap getFirst getLast
