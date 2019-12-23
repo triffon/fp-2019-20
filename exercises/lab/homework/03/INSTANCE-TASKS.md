@@ -190,3 +190,53 @@ Just 10
 > getDual $ Dual [1,2,3] <> Dual [4,5,6]
 [4,5,6,1,2,3]
 ```
+
+## 06. (?т.) Броене на промени
+```haskell
+data Flux a = Flux
+  { sides :: Maybe (a, a)
+  , changes :: Int
+  }
+  deriving (Show, Eq)
+
+flux :: a -> Flux a
+flux x = Flux (Just (x, x)) 0
+
+instance (Eq a) => Semigroup (Flux a) where
+
+instance (Eq a) => Monoid (Flux a) where
+```
+
+С типа `Flux` можем да броим колко пъти се сменя стойност.
+Той държи в себе си две неща:
+* `sides` - Какви са "първият" и "последният" срещан елемент, ако има такива.
+* `changes` - Колко пъти се е сменяла стойността.
+
+Имплементирайте инстанция на `Monoid` за `Flux a`, такава че
+тя операцията за слепване комбинира два `Flux`-а,
+съобразявайки се с това дали стойността се сменя (заради това
+е нужно `Eq` ограничението) между левия и десния `Flux`.
+
+Примери:
+```haskell
+> flux 1
+Flux {sides = Just (1,1), changes = 0}
+> flux 1 <> flux 2 <> flux 3
+Flux {sides = Just (1,3), changes = 2}
+> flux 1 <> flux 2 <> flux 3 <> flux 1
+Flux {sides = Just (1,1), changes = 3}
+> flux 1 <> mempty
+Flux {sides = Just (1,1), changes = 0}
+> mempty <> flux 1
+Flux {sides = Just (1,1), changes = 0}
+> changes $ foldMap flux [1,1,1,1]
+0
+> changes $ foldMap flux [1,2,1,2]
+3
+> changes $ foldMap flux [1,2,1,2,2,2,2]
+3
+> changes $ foldMap flux [1,2,1,2,2,2,2,3,2]
+5
+> changes $ foldMap flux [1,2,1,2,2,2,2,3,2,4]
+6
+```
