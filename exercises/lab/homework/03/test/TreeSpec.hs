@@ -1,11 +1,14 @@
 {-# LANGUAGE BlockArguments #-}
 {-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE CPP #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 {-# OPTIONS_GHC -fno-warn-incomplete-uni-patterns #-}
 
 module TreeSpec (spec) where
 
 import Test.Hspec
+
+#ifdef TREES
 import Test.Hspec.QuickCheck
 import Test.QuickCheck
 import Data.Maybe
@@ -22,7 +25,7 @@ instance Arbitrary a => Arbitrary (Tree a) where
       sizedTree n = Node <$> arbitrary <*> sizedTree (n - 1) <*> sizedTree (n - 1)
 
 spec :: Spec
-spec = describe "Tree" do
+spec = describe "Trees" do
   modifyMaxDiscardRatio (const 20000) $ modifyMaxSize (const 2) $ modifyMaxSuccess (const 5) $
     eqSpec
   bstSpec
@@ -105,3 +108,8 @@ pathsSpec :: Spec
 pathsSpec = describe "paths" do
   prop "you can 'fetch' the original elements by using the paths returned from 'paths'"
     \(tree :: Tree Int) -> all (\(x, pathx) -> fetch pathx tree == Just x) $ paths tree
+#else
+spec :: Spec
+spec = describe "Trees" $ it "tests are disabled" $
+  pendingWith "To enable them run with \"--flag fourth-hw:trees\""
+#endif

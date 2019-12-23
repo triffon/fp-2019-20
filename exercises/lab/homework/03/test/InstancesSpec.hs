@@ -1,12 +1,15 @@
 {-# LANGUAGE BlockArguments #-}
 {-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE CPP #-}
 
 module InstancesSpec (spec) where
 
+import Test.Hspec
+
+#ifdef INSTANCES
 import Prelude hiding (reverse)
 import qualified Prelude as P
 
-import Test.Hspec
 import Test.QuickCheck ((==>))
 import Test.Hspec.QuickCheck
 import Data.Maybe (isJust, isNothing)
@@ -101,3 +104,8 @@ fluxSpec = describe "Flux" do
         not (null xs) ==> changes (foldMap flux xs) `shouldBe` length (group xs) - 1
     it "works on an example" do
       foldMap flux [1,2,1,2,3,3,3,3,4] `shouldBe` Flux (Just (1, 4)) 5
+#else
+spec :: Spec
+spec = describe "Instances" $ it "tests are disabled" $ 
+  pendingWith "To enable them run with \"--flag fourth-hw:instances\""
+#endif

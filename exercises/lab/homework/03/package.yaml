@@ -30,11 +30,18 @@ tests:
     - fourth-hw
 
 flags:
-  nonempty:
-    description: Run nonempty tests
+  instances:
+    description: Run instances tests
+    manual: true
+    default: false
+  trees:
+    description: Run trees tests
     manual: true
     default: false
 
 when:
-- condition: flag(nonempty)
-  cpp-options: -DNONEMPTY
+- condition: flag(instances)
+  cpp-options: -DINSTANCES
+- condition: flag(trees)
+  cpp-options: -DTREES
+
