@@ -4,7 +4,7 @@
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 {-# OPTIONS_GHC -fno-warn-incomplete-uni-patterns #-}
 
-module TreeSpec (spec) where
+module TreesSpec (spec) where
 
 import Test.Hspec
 
@@ -15,7 +15,7 @@ import Data.Maybe
 import Data.List (sort, nub)
 import Data.Function (on)
 
-import Tree
+import Trees
 
 instance Arbitrary a => Arbitrary (Tree a) where
   arbitrary = scale (`rem` 10) $ sized sizedTree

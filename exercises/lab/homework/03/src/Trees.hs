@@ -1,6 +1,6 @@
 {-# LANGUAGE InstanceSigs #-}
 
-module Tree where
+module Trees where
 
 import Prelude
 import Data.Monoid (Sum(..), All(..), Any(..), First(..))
