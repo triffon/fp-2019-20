@@ -1,4 +1,5 @@
 {-# LANGUAGE InstanceSigs #-}
+{-# OPTIONS_GHC -fplugin=HLint #-} -- run hlint on build via the hlint source plugin
 
 module Instances where
 

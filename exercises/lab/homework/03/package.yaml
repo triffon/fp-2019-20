@@ -15,7 +15,6 @@ ghc-options:
 - -Wmissing-signatures      # write all your toplevel signatures!
 - -Wname-shadowing          # use different names!
 - -Wincomplete-uni-patterns # warn about incomplete patterns v2
-- -fplugin=HLint            # run hlint on build via the hlint source plugin
 
 library:
   source-dirs: src
