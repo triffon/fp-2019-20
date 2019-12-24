@@ -1,3 +1,11 @@
 resolver: lts-14.17
 packages:
 - .
+
+extra-deps:
+- git: https://github.com/ocharles/hlint-source-plugin.git
+  commit: d4cded0a7432dc2d5884b9bedd2c714ce510d3ce
+  subdirs:
+    - plugin
+
+allow-newer: true

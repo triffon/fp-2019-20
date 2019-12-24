@@ -3,7 +3,23 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    subdir: plugin
+    cabal-file:
+      size: 805
+      sha256: 22d13a1cbb21fcd17f0f16b1b7ac76294a5327dcfced64fbc056907120a892c3
+    name: hlint-source-plugin
+    version: 0.1.0.0
+    git: https://github.com/ocharles/hlint-source-plugin.git
+    pantry-tree:
+      size: 267
+      sha256: d42c4c6357eb015ac934906fd8a173e565594f3a1de9aaca4fb80b542042e872
+    commit: d4cded0a7432dc2d5884b9bedd2c714ce510d3ce
+  original:
+    subdir: plugin
+    git: https://github.com/ocharles/hlint-source-plugin.git
+    commit: d4cded0a7432dc2d5884b9bedd2c714ce510d3ce
 snapshots:
 - completed:
     size: 524799
