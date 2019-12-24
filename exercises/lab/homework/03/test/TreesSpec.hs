@@ -54,6 +54,12 @@ bstSpec = describe "BST ordering stuff" do
     \(xs :: [Int]) -> treeToList (listToBST xs) `shouldBe` sort xs
   prop "you can find all the elements from which a BST was made in it"
     \(xs :: [Int]) -> let tree = listToBST xs in all (`findBST` tree) xs
+  prop "all the elements in the left/right subtree are <=/> than the root"
+    \(xs :: [Int]) ->
+      let tree = listToBST xs
+       in isNode tree ==>
+         let Node x l r = tree
+          in allTree (<=x) l && allTree (>x) r
 
 listSpec :: Spec
 listSpec = describe "list stuff" do
@@ -101,13 +107,17 @@ validateTreeSpec = describe "validateTree" do
 
   prop "the always false validation returns Nothing" do
     \(tree :: Tree Int) ->
-      case tree of {Empty -> False; _ -> True} ==>
+      isNode tree ==>
         validateTree (const Nothing) tree `shouldBe` (Nothing :: Maybe (Tree Int))
 
 pathsSpec :: Spec
 pathsSpec = describe "paths" do
   prop "you can 'fetch' the original elements by using the paths returned from 'paths'"
     \(tree :: Tree Int) -> all (\(x, pathx) -> fetch pathx tree == Just x) $ paths tree
+
+isNode :: Tree a -> Bool
+isNode Empty = False
+isNode _ = True
 #else
 spec :: Spec
 spec = describe "Trees" $ it "tests are disabled" $
