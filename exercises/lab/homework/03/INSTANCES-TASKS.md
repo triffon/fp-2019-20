@@ -176,6 +176,8 @@ findFirstLast
 ```
 
 ## 05. (?т.) Обръщане на операцията на `Monoid`
+
+### 05.00. (?т.) `Dual`
 ```haskell
 newtype Dual a = Dual {getDual :: a}
   deriving (Show, Eq)
@@ -183,16 +185,10 @@ newtype Dual a = Dual {getDual :: a}
 instance Semigroup a => Semigroup (Dual a) where
 
 instance Monoid a => Monoid (Dual a) where
-
-reverse :: [a] -> [a]
 ```
 
 Имплементирайте инстанция на `Monoid` за `a`, такава че
 операцията на `Monoid`-а върху `a` да е с разменени аргументи.
-
-Имплементирайите `reverse` изполвзайки `foldl/foldr/foldMap` и `Dual`.
-
-Има ли значение кое от трите ще използвате за сложността на `reverse` (и ако да, кое е най-ефективно)?
 
 Примери:
 ```haskell
@@ -208,6 +204,15 @@ Just 10
 > getDual $ Dual [1,2,3] <> Dual [4,5,6]
 [4,5,6,1,2,3]
 ```
+
+### 05.01. (?т.) `reverse` чрез `Dual`
+```haskell
+reverse :: [a] -> [a]
+```
+
+Имплементирайите `reverse` изполвзайки `foldl/foldr/foldMap` и `Dual`.
+
+Има ли значение кое от трите ще използвате за сложността на `reverse` (и ако да, кое е най-ефективно)?
 
 ## 06. (?т.) Броене на промени
 ```haskell
