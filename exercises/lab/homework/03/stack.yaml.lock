@@ -20,6 +20,13 @@ packages:
     subdir: plugin
     git: https://github.com/ocharles/hlint-source-plugin.git
     commit: d4cded0a7432dc2d5884b9bedd2c714ce510d3ce
+- completed:
+    hackage: hlint-2.2.5@sha256:4d4f48ceeccf668324aa272b50a01d4a466073a57077986cfdf7a4d7bf037d89,4167
+    pantry-tree:
+      size: 5364
+      sha256: 55edbae9b9571706cfcd1da7fc7c2b3c90981eab28b18ea3eb5ab83576a7ace7
+  original:
+    hackage: hlint-2.2.5
 snapshots:
 - completed:
     size: 524799

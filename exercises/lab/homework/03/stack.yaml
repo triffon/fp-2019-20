@@ -7,5 +7,6 @@ extra-deps:
   commit: d4cded0a7432dc2d5884b9bedd2c714ce510d3ce
   subdirs:
     - plugin
+- hlint-2.2.5
 
 allow-newer: true

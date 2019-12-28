@@ -1,0 +1,5 @@
+- functions:
+  - { name: [head, tail, init, last]
+    , within: [InstancesSpec, TreesSpec]
+    , message: "Don't use partial functions!"
+    }
