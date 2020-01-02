@@ -1,0 +1,26 @@
+(define (deep-delete l)
+  (define (helper level l)
+    (cond ((null? l) '())
+          ((list? (car l))
+           (cons (helper (+ level 1) (car l))
+                 (helper level (cdr l))))
+          ((< (car l) level)
+           (helper level (cdr l)))
+          (else (cons (car l)
+                      (helper level (cdr l))))))
+
+  (helper 1 l))
+
+(load "../../../testing/check.scm")
+
+(check (deep-delete '()) => '())
+(check (deep-delete '(0)) => '())
+(check (deep-delete '(1)) => '(1))
+(check (deep-delete '(1 2 3)) => '(1 2 3))
+(check (deep-delete '(1 (2 1 0) 3)) => '(1 (2) 3))
+(check (deep-delete '(1 () ((2 2 ())) 3)) => '(1 () ((())) 3))
+(check (deep-delete '(1 (2 3) 4 ((5 ((6)))))) => '(1 (2 3) 4 ((5 ((6))))))
+(check (deep-delete '(1 (2 (2 4) 1) 0 (3 (1)))) => '(1 (2 (4)) (3 ())))
+
+(check-report)
+(check-reset!)
