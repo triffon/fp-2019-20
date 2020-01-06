@@ -117,15 +117,6 @@ findPred = undefined
 maxSumPath :: (Num a) => BTree a -> a
 maxSumPath = undefined
 
--- Намира броя на върховете на най-ниското поддърво
--- (започващо на най-ниско ниво),
--- такова че корена има стойност равна на подадено x.
--- Пример:
--- minTreeFrom 2 (Node 2 (Node 4 (Node 4 Empty Empty)) Empty) == 3
--- minTreeFrom 4 (Node 2 (Node 4 (Node 4 Empty Empty)) Empty) == 1
-minTreeFrom :: (Eq a) => BTree a -> a -> Int
-minTreeFrom = undefined
-
 -- Реализирайте функция, която за дадено двоично дърво
 -- връща списък от низове, представляващи нивата на дървото
 -- Пример:
