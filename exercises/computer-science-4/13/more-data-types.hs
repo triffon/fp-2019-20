@@ -5,6 +5,7 @@
 {-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-} -- no incomplete patterns in lambdas
 {-# LANGUAGE InstanceSigs #-}                      -- can write signatures in instance declarations
 
+import Prelude hiding (lookup)
 
 -- Друго нещо което показах беше type,
 -- за да правите псевдоними на типове (type synonyms).
