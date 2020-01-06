@@ -1,9 +1,12 @@
 # Упражнение 11 – модула Prelude
 
+Може да търсим функциите от Prelude и много други модули тук:
 https://hoogle.haskell.org
 
+Искаме да скрием следните стандартни функции, така че да ги имплементираме.
 ```hs
-import Prelude hiding (sum, length, (++), (!!), maximum, elem, reverse, take, drop, concat, zipWith, takeWhile, dropWhile)
+import Prelude hiding (sum, length, (++), (!!), maximum, elem, reverse,
+                       take, drop, concat, zipWith, takeWhile, dropWhile)
 ```
 
 Напишете типови декларации и дефиниции на следните функции от Prelude:
