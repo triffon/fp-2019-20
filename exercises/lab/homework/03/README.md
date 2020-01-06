@@ -26,8 +26,8 @@ _комплационни грешки_. Очаква се да предадет
 Извиквания на `stack`:
 * `stack build` - компилира source файловете ви
 * `stack ghci` - пуска `ghci` в което са заредени source файловете ви
-* `stack test --flag third-hw:instances` - пуска тестовете за инстанции
-* `stack test --flag third-hw:trees` - пуска тестовете за дървета
+* `stack test --flag fourth-hw:instances` - пуска тестовете за инстанции
+* `stack test --flag fourth-hw:trees` - пуска тестовете за дървета
 * `stack test --flag fourth-hw:instances --flag fourth-hw:trees` - пуска тестовете и за инстанции и за дървета
 
 Флагът `--file-watch` на `stack` е много удобен - когато го подадете към
@@ -36,8 +36,8 @@ _комплационни грешки_. Очаква се да предадет
 
 Примери:
 * `stack test --file-watch`
-* `stack test --file-watch --flag third-hw:instances`
-* `stack test --file-watch --flag third-hw:trees`
+* `stack test --file-watch --flag fourth-hw:instances`
+* `stack test --file-watch --flag fourth-hw:trees`
 
 ## Code cleanliness
 Автоматично се пуска `hlint` върху сорс файловете ви,
