@@ -153,5 +153,5 @@ bt = Node 0 (Node 1 (Node 3 (Node 7 Empty Empty)
 -- може да използвате следното:
 -- mapM_ putStrLn bt
 -- за да си принтирате елементите на нови редове
-printBT :: (Show a) => BTree Int -> [String]
+printBT :: (Show a) => BTree a -> [String]
 printBT = undefined
