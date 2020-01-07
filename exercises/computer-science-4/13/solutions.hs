@@ -105,7 +105,7 @@ maxSumPath :: (Num a, Ord a) => BTree a -> a
 maxSumPath Empty = 0
 maxSumPath (Node x l r) = x + max (maxSumPath l) (maxSumPath r)
 
--- Реализирайте функция, която за дадено двоично дърво
+-- Реализирайте функция, която за дадено балансирано двоично дърво
 -- връща списък от низове, представляващи нивата на дървото
 -- Пример:
 bt :: BTree Int
