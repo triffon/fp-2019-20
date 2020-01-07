@@ -5,6 +5,7 @@
 {-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-} -- no incomplete patterns in lambdas
 {-# LANGUAGE InstanceSigs #-}                      -- can write signatures in instance declarations
 
+import Prelude hiding (lookup)
 
 -- Друго нещо което показах беше type,
 -- за да правите псевдоними на типове (type synonyms).
@@ -117,15 +118,6 @@ findPred = undefined
 maxSumPath :: (Num a) => BTree a -> a
 maxSumPath = undefined
 
--- Намира броя на върховете на най-ниското поддърво
--- (започващо на най-ниско ниво),
--- такова че корена има стойност равна на подадено x.
--- Пример:
--- minTreeFrom 2 (Node 2 (Node 4 (Node 4 Empty Empty)) Empty) == 3
--- minTreeFrom 4 (Node 2 (Node 4 (Node 4 Empty Empty)) Empty) == 1
-minTreeFrom :: (Eq a) => BTree a -> a -> Int
-minTreeFrom = undefined
-
 -- Реализирайте функция, която за дадено двоично дърво
 -- връща списък от низове, представляващи нивата на дървото
 -- Пример:
@@ -153,5 +145,5 @@ bt = Node 0 (Node 1 (Node 3 (Node 7 Empty Empty)
 -- може да използвате следното:
 -- mapM_ putStrLn bt
 -- за да си принтирате елементите на нови редове
-printBT :: BTree Int -> [String]
+printBT :: (Show a) => BTree a -> [String]
 printBT = undefined
