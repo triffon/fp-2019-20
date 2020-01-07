@@ -115,7 +115,7 @@ findPred = undefined
 
 -- За дадено двоично дърво от числа, намира максималната сума от числата
 -- по някой път от корена до листо
-maxSumPath :: (Num a) => BTree a -> a
+maxSumPath :: (Num a, Ord a) => BTree a -> a
 maxSumPath = undefined
 
 -- Реализирайте функция, която за дадено двоично дърво
