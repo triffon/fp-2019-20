@@ -49,6 +49,9 @@ insertOrdered :: Ord a => a -> Tree a -> Tree a
 Напишете функция, която вмъква елемент в дърво, при презумцията, че то е
 двоично наредено дърво.
 
+При вмъкване на стойност, която вече присъства в дървото, се приема че
+тя се вмъква втори път.
+
 Искаме резултатното дърво също да е двоично наредено дърво.
 
 Примери:
@@ -64,6 +67,9 @@ Node 7 Empty (Node 10 Empty Empty)
 
 > insertOrdered 7 (Node 8 (Node 6 Empty Empty) Empty)
 Node 8 (Node 6 Empty (Node 7 Empty Empty)) Empty
+
+> insertOrdered 7 (Node 8 (Node 6 Empty (Node 7 Empty Empty)) Empty)
+Node 8 (Node 6 Empty (Node 7 (Node 7 Empty Empty) Empty)) Empty
 ```
 
 ### 01.01. (0.5т.) Строене от списък
