@@ -23,6 +23,7 @@ instance Measurable a => Measurable [a] where
   size = sum . map size
 
 data Weekday = Mon | Tue | Wed | Thu | Fri | Sat | Sun
+  deriving (Eq, Ord, Show, Enum, Read)
 today :: Weekday
 today = Wed
 isWeekend Sat = True
@@ -30,6 +31,7 @@ isWeekend Sun = True
 isWeekend _   = False
 
 data Player = Player { name :: String, score :: Int }
+  deriving (Eq, Ord, Show, Read)
 katniss :: Player
 katniss = Player "Katniss Everdeen" 45
 
