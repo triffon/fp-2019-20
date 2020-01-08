@@ -29,12 +29,13 @@ isWeekend Sat = True
 isWeekend Sun = True
 isWeekend _   = False
 
-type Name = String
-type Score = Int
-data Player = Player Name Score
+data Player = Player { name :: String, score :: Int }
 katniss :: Player
 katniss = Player "Katniss Everdeen" 45
 
 better (Player name1 score1) (Player name2 score2)
  | score1 > score2 = name1
  | otherwise       = name2
+
+mario :: Player
+mario = Player { score = 55, name = "Mario" }
