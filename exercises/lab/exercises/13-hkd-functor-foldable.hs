@@ -124,11 +124,11 @@ type Apply f a = f a
 --newtype Cont a = Cont {runCont :: forall r. (a -> r) -> r}
 --
 --toId :: Cont a -> a
---toId (Cont k) = k id
+--toId = undefined
 --
 --fromId :: a -> Cont a
---fromId x = Cont (\k -> k x)
+--fromId = undefined
 --
 --instance Functor Cont where
 --  fmap :: (a -> b) -> Cont a -> Cont b
---  fmap f k = fromId $ f $ toId k
+--  fmap = undefined
