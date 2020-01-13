@@ -8,8 +8,37 @@
 
 import Prelude hiding (Maybe(..), maybe, lookup, find)
 
--- records
---data Person = Person String Int
+-- типов псевдоним (type synonym), type alias.
+type Student'' = (String, String, Int)
+              -- (име, специалност, фн)
+  deriving Show
+
+-- За да достъпим информацията за студент
+-- се налага да направим функции, които изглеждат така:
+getName'' :: Student'' -> String
+getName'' (x,_,_) = x
+-- досадно е да правим това за всяко поле от типа
+
+
+-- Може да реализираме тип и така
+data Student' = MkStudent' String String Int
+-- обаче това има същия проблем
+getName' :: Student' -> String
+getName' (MkStudent' x _ _) = x
+
+-- Хаскел има синтактично захар за дефиниране на такива getter-и.
+-- Това е т.нар. record syntax.
+data Student
+  = MkStudent { getName :: String
+              , getCourse :: String
+              , getFacultyNumber :: Int
+              }
+  deriving (Show, Eq)
+-- Сега Student е същия тип като Student', освен:
+-- * създадени са автоматично функции getName, getCourse, getFacultyNumber
+--   за типа Student
+-- * Автоматично генерираната инстанция на Show за Student
+--   е различна от тази за Student'
 
 -- Може да има стойност, може да няма
 data Maybe a
