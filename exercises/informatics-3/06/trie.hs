@@ -61,3 +61,7 @@ main = putStr $ show myTrie
 -- trieUnion :: Trie -> Trie -> Trie
 
 -- trieIntersection :: Trie -> Trie -> Trie
+
+-- deleteWord :: String -> Trie -> Trie
+
+-- trieDifference :: Trie -> Trie -> Trie
