@@ -41,20 +41,26 @@ data Tree a
 -- където искахме представителите на даден тип
 -- да поддържат дадена операция.
 -- В случея обаче е по-различно,
--- Защото (Tree a) е все едно тип над произволен тип (a).
--- Или по друг начин казано - Tree е типов конструктор.
--- TODO: kinds, типови конструктори
--- TODO: примери
+-- Защото (Tree a) е тип който зависи от типа на "a".
+-- Точно както стойностите(terms) се класифицират в различни типове(types),
+-- така и типовете се класифицират във видове(kinds).
+
+-- TODO: примери :k
+-- Представете си че вместо * пише Type
+-- TODO: вида на Maybe
+-- TODO: типови конструктори (малко като функции)
 
 -- TODO: типа на fmap
 
+-- Това защо ни трябваше да го знаем?
+-- Ами можем да дефинираме клас над неща с различен вид от *
 class Functor (f :: * -> *) where
   fmap :: (a -> b) -> f a -> f b
 
--- TODO: Примери за fmap
+-- TODO: map е просто fmap за списъци
 -- TODO: инфиксен оператор <$> за fmap
 
--- Сега вече можем да си направим Maybe инстанция на Functor
+-- Вече можем да си направим Maybe инстанция на Functor
 instance Functor Maybe where
   fmap :: (a -> b) -> Maybe a -> Maybe b
   fmap _ Nothing = Nothing
@@ -66,12 +72,13 @@ instance Functor Maybe where
 -- на дърво от числа.
 -- Не може ли да е дърво от произволни елементи?
 -- Тогава те трябва да поддържат някаква бинарна операция.
+-- Като ползваме fold попринцип ни трябва и някаква начална стойност.
 class Monoid a where
   mempty :: a
   (<>) :: a -> a -> a -- mappend
 -- Методите на моноида както при други класове,
 -- трябва да изпълняват определени свойства:
--- mempty е нулев елемент
+-- mempty запазва идентитета
 -- mempty <> x == x == x <> mempty
 -- (<>) е асоциативна
 -- (x <> y) <> z == x <> (y <> z)
@@ -108,7 +115,9 @@ instance Monoid Prod where
 -- Тук можете да четете за различните типови класове в Haskell
 -- https://wiki.haskell.org/Typeclassopedia
 
--- Дефиниции за задачите
+
+-- ЗАДАЧИ
+
 data Nat
   = Zero
   | Succ Nat
@@ -125,19 +134,7 @@ instance Num Nat where
   signum = undefined
   negate = undefined
 
--- Either е друг смислен тип.
--- Мислете си за Maybe, но при провалена операция
--- ще връщаме (Left e) вместо Nothing.
--- Така не губим информация при провал.
--- Или ако искаме да върнем резултат който може да е 1 от 2 неща.
--- Пример: safeDiv 5 0 -- Left "Cannot divide by 0"
-data Either e a
-  = Left e
-  | Right a
-  deriving Show
 
-
--- ЗАДАЧИ
 
 -- Събиране за Nat
 instance Monoid Nat where
@@ -182,6 +179,30 @@ instance Functor Tree where
 foldMapTree' :: Monoid m => (a -> m) -> Tree a -> m
 foldMapTree' = undefined
 
+-- Either е друг смислен тип.
+-- Мислете си за Maybe, но при провалена операция
+-- ще връщаме (Left e) вместо Nothing.
+-- Така не губим информация при провал.
+-- Или ако искаме да върнем резултат който може да е 1 от 2 неща.
+-- Пример: safeDiv 5 0 -- Left "Cannot divide by 0"
+data Either e a
+  = Left e
+  | Right a
+  deriving Show
+
+-- Забележете как Either тук е частично прложен типов конструктор
+-- Където "e" е фиксирано за дефиницията на Functor
 instance Functor (Either e) where
   fmap :: (a -> b) -> Either e a -> Either e b
   fmap = undefined
+
+-- Да приемем че Tree е двоично наредено дърво
+-- Имплементирайте bstPath, която за дадено такова дърво и елемент
+-- Да намери път до елемента, представен като списък от посоки
+-- Just [Direction]
+-- Ако няма такъв път функцията да връща Nothing.
+data Direction = L | R
+  deriving Show
+
+bstPath :: Ord t => Tree t -> t -> Maybe [Direction]
+bstPath = undefined
