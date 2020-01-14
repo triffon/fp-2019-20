@@ -54,6 +54,12 @@ class Functor (f :: * -> *) where
 -- TODO: Примери за fmap
 -- TODO: инфиксен оператор <$> за fmap
 
+-- Сега вече можем да си направим Maybe инстанция на Functor
+instance Functor Maybe where
+  fmap :: (a -> b) -> Maybe a -> Maybe b
+  fmap _ Nothing = Nothing
+  fmap f (Just x) = Just $ f x
+
 
 -- Също така писахме прости функции за дървета
 -- Като такава, която намира сумата на елементите
@@ -104,6 +110,57 @@ instance Monoid Prod where
 -- Тук можете да четете за различните типови класове в Haskell
 -- https://wiki.haskell.org/Typeclassopedia
 
--- ЗАДАЧИ
--- TODO^
+-- Дефиниции за задачите
+data Nat
+  = Zero
+  | Succ Nat
+  deriving Show
 
+-- Да си улесним живота с писането на Nats
+instance Num Nat where
+  fromInteger :: Integer -> Nat
+  fromInteger 0 = Zero
+  fromInteger n = Succ $ fromInteger $ n - 1
+  (+) = undefined
+  (*) = undefined
+  abs = undefined
+  signum = undefined
+  negate = undefined
+
+
+-- ЗАДАЧИ
+
+-- Събиране за Nat
+instance Monoid Nat where
+  mempty :: Nat
+  mempty = undefined
+  (<>) :: Nat -> Nat -> Nat
+  (<>) = undefined
+
+-- Конкатенация на списъци
+instance Monoid [a] where
+  mempty :: [a]
+  mempty = undefined
+  (<>) :: [a] -> [a] -> [a]
+  (<>) = undefined
+
+-- fold на дърво от моноиди
+-- Вече имаме бинарна операция, с която да комбинираме елементите
+foldTree :: Monoid a => Tree a -> a
+foldTree = undefined
+
+-- повторение на моноид Nat пъти
+-- repeatMonoid (3 :: Nat) (2 :: Nat) == (6 :: Nat)
+-- repeatMonoid 3 [1,2,3] == [1,2,3,1,2,3,1,2,3]
+repeatMonoid :: Monoid a => Nat -> a -> a
+repeatMonoid = undefined
+
+-- конкатенация на списък от моноиди
+-- monoidConcat [[1,2,3],[4,5,6],[7,8,9]] == [1,2,3,4,5,6,7,8,9]
+-- monoidConcat [(1 :: Nat),2,3] == [<6 as a nat>]
+monoidConcat :: Monoid a => [a] -> a
+monoidConcat = undefined
+
+-- TODO: Functors
+
+-- TODO: foldMapTree
