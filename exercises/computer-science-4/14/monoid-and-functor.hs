@@ -7,7 +7,7 @@
 {-# OPTIONS_GHC -fwarn-name-shadowing #-}          -- use different names!
 {-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-} -- warn about incomplete patterns v2
 
-import Prelude hiding (Maybe(..), Semigroup(..), Monoid(..), Functor(..))
+import Prelude hiding (Maybe(..), Either(..), Semigroup(..), Monoid(..), Functor(..))
 
 
 -- Последно се занимавахме с Maybe и BTree
@@ -105,8 +105,6 @@ instance Monoid Prod where
   (<>) :: Prod -> Prod -> Prod
   (<>) (Prod x) (Prod y) = Prod (x * y)
 
--- TODO: Either (задачи??)
-
 -- Тук можете да четете за различните типови класове в Haskell
 -- https://wiki.haskell.org/Typeclassopedia
 
@@ -126,6 +124,17 @@ instance Num Nat where
   abs = undefined
   signum = undefined
   negate = undefined
+
+-- Either е друг смислен тип.
+-- Мислете си за Maybe, но при провалена операция
+-- ще връщаме (Left e) вместо Nothing.
+-- Така не губим информация при провал.
+-- Или ако искаме да върнем резултат който може да е 1 от 2 неща.
+-- Пример: safeDiv 5 0 -- Left "Cannot divide by 0"
+data Either e a
+  = Left e
+  | Right a
+  deriving Show
 
 
 -- ЗАДАЧИ
@@ -161,6 +170,18 @@ repeatMonoid = undefined
 monoidConcat :: Monoid a => [a] -> a
 monoidConcat = undefined
 
--- TODO: Functors
+-- Първо map и после fold на дърво
+foldMapTree :: Monoid m => (a -> m) -> Tree a -> m
+foldMapTree = undefined
 
--- TODO: foldMapTree
+instance Functor Tree where
+  fmap :: (a -> b) -> Tree a -> Tree b
+  fmap = undefined
+
+-- А сега с помощта на fmap
+foldMapTree' :: Monoid m => (a -> m) -> Tree a -> m
+foldMapTree' = undefined
+
+instance Functor (Either e) where
+  fmap :: (a -> b) -> Either e a -> Either e b
+  fmap = undefined
