@@ -23,6 +23,7 @@
 | 11  | [Prelude][11e]                                  | [Задачи за решаване][11t] |
 | 12  | [Типови класове и Алгебрични типове данни][12e] |
 | 13  | [Maybe и Двоични дървета][13e]                  |
+| 14  | [Misc][14e]                                     |
 
 [1e]: 01--introduction-to-scheme--recursion
 [1c]: 01--introduction-to-scheme--recursion/class.rkt
@@ -73,3 +74,5 @@
 [12e]: 12--haskell-type-classes-and-adts/class.hs
 
 [13e]: 13--haskell-maybe-tree/class.hs
+
+[14e]: 14--haskell-misc/problems.hs
