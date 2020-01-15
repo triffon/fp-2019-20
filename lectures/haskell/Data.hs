@@ -112,3 +112,65 @@ mapBinTree f (Node x l r) = Node (f x) (mapBinTree f l) (mapBinTree f r)
 foldrBinTree :: (a -> a -> a) -> a -> BinTree a -> a
 foldrBinTree _  nv Empty        = nv
 foldrBinTree op nv (Node x l r) = op x (op (foldrBinTree op nv l) (foldrBinTree op nv r))
+
+data Tree a = Tree { rootTree :: a, subtrees :: TreeList a }
+  deriving (Eq, Ord, Show, Read)
+data TreeList a = None | SubTree { firstTree :: Tree a, restTrees :: TreeList a }
+  deriving (Eq, Ord, Show, Read)
+
+--leafTree x = Tree x None
+leafTree :: a -> Tree a
+leafTree = (`Tree` None)
+
+tree = Tree 1 $ SubTree (leafTree 2)
+              $ SubTree (Tree 3 $ SubTree (leafTree 4) $ None)
+              $ SubTree (leafTree 5) $ None
+
+level :: Int -> Tree a -> [a]
+level 0 (Tree x _ ) = [x]
+level n (Tree x ts) = levelTrees (n-1) ts
+
+levelTrees :: Int -> TreeList a -> [a]
+levelTrees _ None           = []
+levelTrees n (SubTree t ts) = level n t ++ levelTrees n ts
+
+data SExpr = SBool Bool | SChar Char | SInt Int | SDouble Double | SList { list :: [SExpr] }
+  deriving (Eq, Ord, Read)
+
+{-
+   '((1 (2))
+     (((3) 4)
+      (5 (6))
+      ()
+      (7))
+     8))
+
+-}
+dl = SList [SList [SInt 1, SList [SInt 2]],
+            SList [SList [SList [SInt 3], SInt 4],
+                   SList [SInt 5, SList [SInt 6]],
+                   SList [],
+                   SList [SInt 7]],
+            SInt 8]
+
+instance Show SExpr where
+--  show :: SExpr -> String
+  show (SBool x) = show x
+  show (SChar x) = show x
+  show (SInt x) = show x
+  show (SDouble x) = show x
+  show (SList [])  = "()"
+  show (SList l) = "(" ++ foldl1 (\r x -> r ++ " " ++ x) (map show l) ++ ")"
+
+
+countAtoms :: SExpr -> Int
+countAtoms (SList ses) = sum (map countAtoms ses)
+countAtoms _           = 1
+
+flatten :: SExpr -> [SExpr]
+flatten (SList ses) = concatMap flatten ses
+flatten se          = [se]
+
+flatten2 :: SExpr -> SExpr
+flatten2 (SList ses) = SList (concat $ map (list . flatten2) ses)
+flatten2 se          = SList [se]
