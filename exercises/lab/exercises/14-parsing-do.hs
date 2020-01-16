@@ -27,6 +27,13 @@ import Data.Char (ord, isNumber)
 -- * arrays
 -- * objects
 data Value
+  = Null
+  | Bool Bool
+  | Number Integer
+  | String String
+  | Arrays [Value]
+  | Object [(String, Value)]
+  deriving Show
 
 -- JSON EXAMPLES:
 -- https://json.org/example.html
@@ -70,7 +77,11 @@ data Value
 -- > parse aParser "b"
 -- Nothing
 aParser :: Parser Char
-aParser = undefined
+aParser = do
+  x <- nom
+  if x == 'a'
+  then result x
+  else empty
 
 -- TODO: do usage
 -- Always parses the given character
@@ -81,7 +92,12 @@ aParser = undefined
 -- > parse (char 'l') "a"
 -- Nothing
 char :: Char -> Parser Char
-char c = undefined
+char c = do
+  x <- nom
+  if x == c
+  then result x
+  else empty
+
 
 -- TODO: alternative
 -- Always parses either an @a@ or a @b@
@@ -94,17 +110,23 @@ char c = undefined
 -- > parse aOrB "A"
 -- Nothing
 aOrB :: Parser Char
-aOrB = undefined
+aOrB = char 'a' <|> char 'b'
 
 -- TODO: backtracking
 -- Our parsers automatically "backtrack" always!
 -- In other words, if a string is consumed while using one parser,
 -- but it fails at the end, the next parser run will have access to the entire string:
 aa :: Parser [Char]
-aa = undefined
+aa = do
+  x <- char 'a'
+  y <- char 'a'
+  result [x, y]
 
 ab :: Parser [Char]
-ab = undefined
+ab = do
+  x <- char 'a'
+  y <- char 'b'
+  result [x, y]
 
 -- Th example itself:
 -- > parse aa "aa"
@@ -132,7 +154,7 @@ ab = undefined
 -- > parse aOrBStar ""
 -- Just ""
 aOrBStar :: Parser [Char]
-aOrBStar = undefined
+aOrBStar = many aOrB
 
 -- TODO: one or more; mention nonempty
 -- Parses an @a@ or a @b@ __1__ or more times
@@ -147,7 +169,7 @@ aOrBStar = undefined
 -- > parse aOrBPlus ""
 -- Nothing -- difference from aOrBStar
 aOrBPlus :: Parser [Char]
-aOrBPlus = undefined
+aOrBPlus = some aOrB
 
 -- TODO: other parse results, implement satisfy, show let binding
 -- Parses a whole number.
@@ -163,7 +185,13 @@ aOrBPlus = undefined
 -- > parse number ""
 -- Nothing
 number :: Parser Integer
-number = undefined
+number = do
+  let stringToNumber :: String -> Integer
+      stringToNumber xs =
+        foldl (\acc x -> 10 * acc + asciiToDigit x) 0 xs
+
+  xs <- some $ satisfy isNumber
+  result $ stringToNumber xs
 
 -- Parse a character that satisfies a predicate
 -- More general than 'char'
@@ -178,7 +206,11 @@ number = undefined
 -- > parse (satisfy (=='a')) "b"
 -- Nothing
 satisfy :: (Char -> Bool) -> Parser Char
-satisfy p = undefined
+satisfy p = do
+  x <- nom
+  if p x
+  then result x
+  else empty
 
 -- TODO: using the result of a parser in other parses
 -- Parses a^nb^n
@@ -191,23 +223,27 @@ satisfy p = undefined
 -- Just "aabb"
 -- > parse anbn "aab"
 -- Nothing
-anbn :: Parser [Char]
-anbn = undefined
-
--- TODO: times; mention replicate, recursive function
--- Execute the given parser three times,
--- returning the result of parses as a list
--- EXAMPLES:
--- > parse (times 3 (char 'a')) "aaa"
--- Just "aaa"
--- > parse (times 3 (char 'a')) "abb"
--- Nothing
--- > parse (times 3 (char 'a')) "aa"
--- Nothing
--- > parse (times 3 (satisfy isNumber)) "123"
--- Just "123"
+--anbn :: Parser [Char]
+--anbn = undefined
+--
+---- TODO: times; mention replicate, recursive function
+---- Execute the given parser three times,
+---- returning the result of parses as a list
+---- EXAMPLES:
+---- > parse (times 3 (char 'a')) "aaa"
+---- Just "aaa"
+---- > parse (times 3 (char 'a')) "abb"
+---- Nothing
+---- > parse (times 3 (char 'a')) "aa"
+---- Nothing
+---- > parse (times 3 (satisfy isNumber)) "123"
+---- Just "123"
 times :: Int -> Parser a -> Parser [a]
-times n p = undefined
+times 0 _ = result []
+times n p = do
+  x <- p
+  xs <- times (n - 1) p
+  result $ x:xs
 
 -- 'ord' returns the Char as an Int
 -- for ascii chars this is like getting their ascii table number
