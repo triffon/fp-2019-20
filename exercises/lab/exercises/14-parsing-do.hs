@@ -18,6 +18,43 @@ import Parser
 import Data.Char (ord, isNumber)
 
 -- TODO: explain json
+-- no spaces!
+-- CHEAT:
+-- * null
+-- * bools
+-- * numbers (only integers!)
+-- * strings (no escapes!)
+-- * arrays
+-- * objects
+data Value
+
+-- JSON EXAMPLES:
+-- https://json.org/example.html
+-- Null:
+-- * null
+-- Bools:
+-- * true
+-- * false
+-- Numbers:
+-- * 123
+-- * 023
+-- * 141
+-- Strings:
+-- * "lol"
+-- * "nice d00d"
+-- * "a#f#∞"
+-- Arrays:
+-- * [1]
+-- * [null]
+-- * [false,1,null]
+-- * [[1,true],[false],null,"lol"]
+-- * [{"heh":5},true]
+-- Objects:
+-- * {}
+-- * {"nice":"dude"}
+-- * {"nice":null}
+-- * {"heh":true,"kek":null,{"array":[1,2,3]}}
+-- * {"heh":true,"kek":null,{"array":[{"single":"thing"}]}}
 
 -- TODO: explain Parser
 -- implement stuff!
@@ -179,3 +216,258 @@ asciiToDigit c =
   if '0' <= c && c <= '9'
   then fromIntegral $ ord c - ord '0'
   else error $ "You're calling me with a non-number Char:" ++ [c]
+
+-- EXERCISE: String parser
+-- Parse the given string, and only the given string
+-- Proceed recursively!
+-- EXAMPLES:
+-- > parse (string "kami") "kami"
+-- Just "kami"
+-- > parse (string "kami") "kam"
+-- Nothing
+-- > parse (string "kami") "hair"
+-- Nothing
+-- > parse (string "kami") "kamipaper"
+-- Just "kami"
+string :: String -> Parser String
+string str = undefined
+
+-- EXERCISE: Null parser
+-- You can use ((<$) :: a -> Parser b -> Parser a) here for conciseness, if you so desire.
+-- EXAMPLES:
+-- > parse nullParser "null"
+-- Just Null
+-- > parse nullParser "nul"
+-- Nothing
+-- > parse nullParser "true"
+-- Nothing
+nullParser :: Parser Value
+nullParser = undefined
+
+-- EXERCISE: False parser
+-- EXAMPLES:
+-- > parse falseParser "false"
+-- Just (Bool False)
+-- > parse falseParser "falsE"
+-- Nothing
+-- > parse falseParser "true"
+-- Nothing
+falseParser :: Parser Value
+falseParser = undefined
+
+-- EXERCISE: True parser
+-- EXAMPLES:
+-- > parse trueParser "true"
+-- Just (Bool True)
+-- > parse trueParser "True"
+-- Nothing
+-- > parse trueParser "false"
+-- Nothing
+trueParser :: Parser Value
+trueParser = undefined
+
+-- EXERCISE: Bool parser
+-- EXAMPLES:
+-- > parse boolParser "true"
+-- Just (Bool True)
+-- > parse boolParser "false"
+-- Just (Bool False)
+-- > parse boolParser "fls"
+-- Nothing
+-- > parse boolParser "no"
+-- Nothing
+boolParser :: Parser Value
+boolParser = undefined
+
+-- EXERCISE: Number parser
+-- We already did this! (<$>)/fmap is useful here
+-- fmap :: (a -> b) -> Parser a -> Parser b
+-- EXAMPLES:
+-- > parse numberParser "69"
+-- Just (Number 69)
+-- > parse numberParser "0420"
+-- Just (Number 420)
+-- > parse numberParser "a0420"
+-- Nothing
+-- > parse numberParser "aasdf"
+-- Nothing
+
+numberParser :: Parser Value
+numberParser = undefined
+
+-- EXERCISE: Surround a parser with another one
+-- Get two parser and "surround" the second one with the first.
+-- EXAMPLES:
+-- > parse (surround (char '"') number) "\"123\""
+-- Just 123
+-- > parse (surround (char '"') number) "\"123"
+-- Nothing
+-- > parse (surround (char '"') number) "123\""
+-- Nothing
+-- > parse (surround number nullParser) "345null123"
+-- Just Null
+surround :: Parser around -> Parser b -> Parser b
+surround surrounding p = undefined
+
+-- EXERCISE: String parser
+-- You can assume that there are no double quotes in the string "
+-- EXAMPLES:
+-- > parse stringParser "\"nice d00d\""
+-- Just (String "nice d00d")
+-- > parse stringParser "\"\""
+-- Just (String "")
+-- > parse stringParser "\"bleh\""
+-- Just (String "bleh")
+-- > parse stringParser ""
+-- Nothing
+-- > parse stringParser "\"bleh"
+-- Nothing
+-- > parse stringParser "bleh\""
+-- Nothing
+stringParser :: Parser Value
+stringParser = undefined
+
+-- EXERCISE: Between
+-- Surround a parser with an opening and closing one
+-- EXAMPLES:
+-- > parse (between (char '"') (char '"') number) "\"123\""
+-- Just 123
+-- > parse (between (char '{') (char '}') (string "nice")) "{nice}"
+-- Just "nice"
+-- > parse (between (char '{') (char '}') (string "nice")) "{noice}"
+-- Nothing
+between :: Parser open -> Parser close -> Parser a -> Parser a
+between open close inside = undefined
+
+-- EXERCISE: Attempt to parse a value, returning a Nothing if we fail
+-- You will need to use (<|>) here!
+-- fmap :: (a -> b) -> Parser a -> Parser b
+-- might be useful here, to wrap our result in a Just
+-- EXAMPLES:
+-- > parse (optional (string "lol")) "lol"
+-- Just (Just "lol")
+-- > parse (optional (string "lol")) "lo"
+-- Just Nothing
+-- > parse (optional (char ',')) ",nice"
+-- Just (Just ',')
+optional :: Parser a -> Parser (Maybe a)
+optional p = undefined
+
+-- EXERCISE: A parser that runs both parser, but ignores the result of the left one.
+-- This is traditionally (<*), and is available for all Applicatives
+-- EXAMPLES:
+-- > parse (ignoreRight (char 'a') (char 'b')) "ab"
+-- Just 'a'
+-- > parse (ignoreRight (char 'a') (char 'b')) "a"
+-- Nothing
+-- > parse (ignoreRight (char 'a') (char 'b')) "ba"
+-- Nothing
+ignoreRight :: Parser a -> Parser b -> Parser a
+ignoreRight px py = undefined
+
+-- EXERCISE: Parse a value one or more times, separated by another parser.
+-- many, optional and ignoreLeft are useful here!
+-- EXAMPLES:
+-- > parse (sepBy1 nom (char ',')) "a,b,c,d"
+-- Just "abcd"
+-- > parse (sepBy1 nom (char ',')) "a,b,c,"
+-- Nothing
+-- > parse (sepBy1 nom (char ',')) "a"
+-- Just "a"
+-- > parse (sepBy1 nom (char ',')) ""
+-- Nothing
+sepBy :: Parser a -> Parser sep -> Parser [a]
+sepBy p sep = undefined
+
+-- EXERCISE: Array parser
+-- You can assume (you will write it in a second)
+-- that there already exists (it does, down below) a global valueParser,
+-- which parses any kind of json value
+-- EXAMPLES:
+-- > parse arrayParser "[]"
+-- Just (Array [])
+-- > parse arrayParser "[1,2,3]"
+-- Just (Array [Number 1,Number 2,Number 3])
+-- > parse arrayParser "[true,null,3]"
+-- Just (Array [Bool True,Null,Number 3])
+-- > parse arrayParser "[true,\"nulllol\",3]"
+-- Just (Array [Bool True,String "nulllol",Number 3])
+--
+-- ---- EXAMPLES BELOW THIS POINT REQUIRE YOU TO HAVE IMPLEMENTED objectParser
+-- > parse arrayParser "[{}]"
+-- Just (Array [Object []])
+-- > parse arrayParser "[{},{},{}]"
+-- Just (Array [Object [],Object [],Object []])
+-- > parse arrayParser "[{\"key0\":null},{\"key1\":2},{\"key2\":true}]"
+-- Just (Array [Object [("key0",Null)],Object [("key1",Number 2)],Object [("key2",Bool True)]])
+arrayParser :: Parser Value
+arrayParser = undefined
+
+-- EXERCISE: Parse a single entry in an object
+-- EXAMPLES:
+-- > parse objectElementParser "\"name\":\"val\""
+-- Just ("name",String "val")
+-- > parse objectElementParser "\"name\":null"
+-- Just ("name",Null)
+-- > parse objectElementParser "\"name\":true"
+-- Just ("name",Bool True)
+--
+-- ---- EXAMPLES BELOW THIS POINT REQUIRE YOU TO HAVE IMPLEMENTED arrayParser
+-- > parse objectElementParser "\"name\":[1,2,3]"
+-- Just ("name",Array [Number 1,Number 2,Number 3])
+-- > parse objectElementParser "\"name\":[1,null,3]"
+-- Just ("name",Array [Number 1,Null,Number 3])
+--
+-- ---- EXAMPLES BELOW THIS POINT REQUIRE YOU TO HAVE IMPLEMENTED objectParser
+-- > parse objectElementParser "\"name\":{}"
+-- Just ("name",Object [])
+-- > parse objectElementParser "\"name\":{\"nameagain\":null}"
+-- Just ("name",Object [("nameagain",Null)])
+objectElementParser :: Parser (String, Value)
+objectElementParser = undefined
+
+-- EXERCISE: Object parser
+-- This has a "dummy" implementation right now, because of technical reasons*.
+-- Delete it and write your own!
+-- It is assumed all other things are implemented in the examples!
+-- I've placed "prettified" versions of the strings before their corresponding example
+--
+-- > parse objectParser "{}"
+-- Just (Object [])
+--
+-- -- rendered normally:
+-- -- {"pesho": "krava"}
+--
+-- > parse objectParser "{\"pesho\":\"krava\"}"
+-- Just (Object [("pesho",String "krava")])
+--
+-- -- rendered normally:
+-- -- {"pesho": {"krava":null, "doggo":"Deogie"}}
+--
+-- > parse objectParser "{\"pesho\":{\"krava\":null,\"doggo\":\"Deogie\"}}"
+-- Just (Object [("pesho",Object [("krava",Null),("doggo",String "Deogie")])])
+--
+-- -- rendered normally:
+-- -- { "pesho": {"krava": null, "doggo": "Deogie"}
+-- -- , "69": [420, 1337]
+-- -- }
+--
+-- > parse objectParser "{\"pesho\":{\"krava\":null,\"doggo\":\"Deogie\"},\"69\":[420,1337]}"
+-- Just (Object [("pesho",Object [("krava",Null),("doggo",String "Deogie")]),("69",Array [Number 420,Number 1337])])
+objectParser :: Parser Value
+objectParser = do
+  char 'c'
+  result $ Object []
+-- * Technical reasons:
+-- Because arrayParser (most likely) uses 'many' to parse objects within it,
+-- and many will infinitely loop
+-- if the parser you are calling it with doesn't consume any input.
+
+valueParser :: Parser Value
+valueParser
+    = nullParser
+  <|> boolParser
+  <|> numberParser
+  <|> stringParser
+  <|> arrayParser
+  <|> objectParser
