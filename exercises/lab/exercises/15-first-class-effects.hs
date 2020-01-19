@@ -172,86 +172,9 @@ join = undefined
 bindWithJoin :: Monad m => m a -> (a -> m b) -> m b
 bindWithJoin = undefined
 
---nNumbers :: Int -> StdGen -> (StdGen, [Int])
---nNumbers 0 lastStdGen = (lastStdGen, [])
---nNumbers n seed =
---  let (nextStdGen, randomNumber) = next seed
---      (lastStdGen, numbers) = nNumbers (n - 1) nextStdGen
---   in (lastStdGen, randomNumber : numbers)
---
---num :: Randomness Int
---num = Randomness next
---
---saltR :: String -> Randomness String
---saltR password = Randomness $
---  \seed -> let (nextStdGen, randomNumber) = next seed
---            in (nextStdGen, password ++ show randomNumber)
---
---instance Functor Randomness where
---  fmap f randomA = Randomness $ \seed ->
---    let g = runRandomness randomA
---        (newStdGen, a) = g seed
---     in (newStdGen, f a)
---
----- applicative
----- why fmap doesn't work (need to "lift twice")
----- what more do we need
---genPair :: Randomness a -> Randomness b -> Randomness (a, b)
---genPair genA genB = Randomness $ \seed ->
---  let (newStdGen, x) = runRandomness genA seed
---      (lastStdGen, y) = runRandomness genB newStdGen
---   in (lastStdGen, (,) x y)
---
---multRandomN :: Int -> Randomness Int
---multRandomN 0 = Randomness $ \seed -> (seed, 1)
---multRandomN n = Randomness $ \seed ->
---  let (newStdGen, number) = runRandomness num seed
---      (lastStdGen, rest) = runRandomness (multRandomN (n - 1)) newStdGen
---   in (lastStdGen, number * rest)
---
---genRandomN :: Randomness a -> Int -> Randomness [a]
---genRandomN genOne 0 = Randomness $ \seed -> (seed, [])
---genRandomN genOne n = Randomness $ \seed ->
---  let (newStdGen, a) = runRandomness genOne seed
---      (lastStdGen, as) = runRandomness (genRandomN genOne (n - 1)) newStdGen
---   in (lastStdGen, a:as)
---
---noAction :: a -> Randomness a
---noAction x = Randomness $ \seed -> (seed, x)
---
---lift2 :: (a -> b -> c) -> Randomness a -> Randomness b -> Randomness c
---lift2 = undefined
---
----- using liftA2
---lift3 :: (a -> b -> c -> d) -> Randomness a -> Randomness b -> Randomness c -> Randomness d
---lift3 = undefined
---
---splat :: Randomness (a -> b) -> Randomness a -> Randomness b
---splat = undefined
---
----- using splat
---lift3' :: (a -> b -> c -> d) -> Randomness a -> Randomness b -> Randomness c -> Randomness d
---lift3' = undefined
---
----- monad???
----- why splat doesn't work (conditional execution)
----- what more do we need
---genRandom :: Randomness a -> Randomness [a]
---genRandom genOne = Randomness $ \seed ->
---  let (newStdGen, n) = runRandomness num seed
---   in runRandomness (genRandomN genOne n) newStdGen
---
---numPredicate :: (Int -> Bool) -> Randomness Int
---numPredicate p = Randomness $ \seed ->
---  let (newStdGen, n) = runRandomness num seed
---   in if p n
---      then (newStdGen, n)
---      else runRandomness (numPredicate p) newStdGen
---
---using :: (a -> Randomness b) -> Randomness a -> Randomness b
---using randomnessF ra = Randomness $ \seed ->
---  let (newStdGen, a) = runRandomness ra seed
---   in runRandomness (randomnessF a) newStdGen
+
+
+-- MISC.
 
 intToChar :: Int -> Char
 intToChar n = chr $ (+97) $ n `rem` 26
