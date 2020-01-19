@@ -18,7 +18,7 @@
 --
 -- TODO: DON'T BE IN A RUSH!!!!!
 
-import Prelude hiding ((=<<))
+import Prelude hiding ((=<<), forever, (*>) , (<*))
 import Random (Gen, randomInt, theGen)
 import Data.Char (chr, ord)
 
@@ -71,9 +71,11 @@ nom = undefined
 --  (<*>) :: f (a -> b) -> f a -> f b
 -- laws are scary looking, so not showing them
 
+-- genWhileEven
 -- genRandomN
 -- genSatisfying
 
+-- parseUser with decision on first arg
 -- parseParseN
 -- parseSatisfying
 
@@ -102,18 +104,36 @@ data Tree a
   deriving Show
 
 -- actually equivalent to (<*>)!
+-- Lift a function from two normal args, to instead work on two effectful args
+-- and return a computation.
+-- The idea is to consecutively execute them.
+-- Use type holes + pure/<$> + (<*>)!
 liftA2 :: Applicative f => (a -> b -> c) -> f a -> f b -> f c
-liftA2 = undefined
+liftA2 f fx fy = f <$> fx <*> fy
 
 liftA3 :: Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
 liftA3 = undefined
 
+-- Execute two actions in order, taking only the result of the left one.
+-- use type holes, liftA2 and const!
+(<*) :: Applicative f => f a -> f b -> f a
+(<*) = undefined
+
+-- Execute two actions in order, taking only the result of the right one.
+-- use type holes, liftA2 and const!
+(*>) :: Applicative f => f a -> f b -> f b
+(*>) = undefined
+
+-- Execute all the actions in order in a list which produce an 'a',
+-- producing a list of [a]s as a result
 sequenceList :: Applicative f => [f a] -> f [a]
 sequenceList = undefined
 
+-- Same as above, but for trees.
 sequenceTree :: Applicative f => Tree (f a) -> f (Tree a)
 sequenceTree = undefined
 
+-- Same as above, but we get a mapping function first.
 traverseList :: Applicative f => (a -> f b) -> [a] -> f [b]
 traverseList = undefined
 
@@ -121,20 +141,39 @@ traverseTree :: Applicative f => (a -> f b) -> Tree a -> f (Tree b)
 traverseTree = undefined
 
 -- for loop!
--- flip traverse
+-- This is just traverse, but flipped.
 forList :: Applicative f => [a] -> (a -> f b) -> f [b]
 forList = undefined
 
+-- Repeat an action a n times, producing a list of results
+replicateA :: Applicative f => Int -> f a -> f [a]
+replicateA = undefined
+
+-- Repeat an action infinitely
+-- (*>) will be useful
+forever :: Applicative f => f a -> f b
+forever = undefined
+
+-- We execute an action, ignoring its result.
 void :: Functor f => f a -> f ()
 void = undefined
 
+-- Execute all the actions in a list, ignoring the results
 sequenceList_ :: Applicative f => [f a] -> f ()
 sequenceList_ = undefined
 
-replicateA :: Applicative f => f a -> f [a]
-replicateA = undefined
+-- Same as above, but with a mapping function
+traverseList_ :: Applicative f => (a -> f b) -> [f a] -> f ()
+traverseList_ = undefined
 
 -- conditional execution
+-- We want to execute an action, but only when
+-- a condition is true.
+-- EXAMPLES:
+-- > when True $ print 5
+-- 5
+-- > when False $ print 5
+--
 when :: Applicative f => Bool -> f () -> f ()
 when = undefined
 
