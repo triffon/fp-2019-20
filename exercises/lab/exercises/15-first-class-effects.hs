@@ -96,7 +96,29 @@ nom = undefined
 -- is the same as just fmap-ing, as you aren't doing any additional effects)
 -- m >>= (\x -> k x >>= h) == (m >>= k) >>= h
 -- ((>>=) is associative, in some sense of hte word)
---
+
+
+-- Maybe are computations that have possible failure.
+-- We want to fail the entire computation to fail, if even one fails.
+data MyMaybe a
+  = MyNothing
+  | MyJust a
+  deriving Show
+
+instance Functor MyMaybe where
+  fmap :: (a -> b) -> MyMaybe a -> MyMaybe b
+  fmap = undefined
+
+instance Applicative MyMaybe where
+  pure :: a -> MyMaybe a
+  pure = undefined
+
+  (<*>) :: MyMaybe (a -> b) -> MyMaybe a -> MyMaybe b
+  (<*>) = undefined
+
+instance Monad MyMaybe where
+  (>>=) :: MyMaybe a -> (a -> MyMaybe b) -> MyMaybe b
+  (>>=) = undefined
 
 data Tree a
   = Empty
