@@ -233,6 +233,10 @@ join = undefined
 bindWithJoin :: Monad m => m a -> (a -> m b) -> m b
 bindWithJoin = undefined
 
+-- repeat an action while its result evaluates to True
+whileM :: Monad m => m Bool -> m ()
+whileM = undefined
+
 
 
 -- MISC.
