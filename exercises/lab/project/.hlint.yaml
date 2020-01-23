@@ -1,0 +1,5 @@
+- functions:
+  - { name: [head, tail, init, last, fromJust]
+    , within: []
+    , message: "＼(｀0´)／ Don't use partial functions - do case analysis instead!"
+    }
