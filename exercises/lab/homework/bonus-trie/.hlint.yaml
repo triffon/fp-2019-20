@@ -1,0 +1,7 @@
+- functions:
+  - { name: [head, tail, init, last, fromJust]
+    , within: []
+    , message: "Don't use partial functions!"
+    }
+
+- ignore: {name: Unused LANGUAGE pragma}

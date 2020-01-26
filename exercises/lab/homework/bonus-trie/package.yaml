@@ -1,0 +1,36 @@
+name: bonus-trie
+
+dependencies:
+- base >= 4.7 && < 5
+- QuickCheck
+- hspec
+- hspec-discover
+- hlint-source-plugin
+- quickcheck-classes
+
+ghc-options:
+- -Werror                   # warnings are errors
+- -Wincomplete-patterns     # cover all cases!
+- -Wunused-binds            # use all your bindings
+- -Wunused-matches          # use all your pattern matches!
+- -Wmissing-signatures      # write all your toplevel signatures!
+- -Wname-shadowing          # use different names!
+- -Wincomplete-uni-patterns # warn about incomplete patterns v2
+- -fplugin=HLint -Wall      # run hlint
+
+extra-source-files: # track hlint file changes
+- .hlint.yaml
+
+library:
+  source-dirs: src
+
+tests:
+  test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - bonus-trie
