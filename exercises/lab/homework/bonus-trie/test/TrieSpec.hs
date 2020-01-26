@@ -19,7 +19,7 @@ import Data.Proxy (Proxy(..))
 import Test.Hspec
 import Test.Hspec.QuickCheck
 import Test.QuickCheck
-import Test.QuickCheck.Classes (Laws(..), lawsCheck, functorLaws, foldableLaws)
+import Test.QuickCheck.Classes (Laws(..), functorLaws, foldableLaws)
 import Trie
 
 spec :: Spec
