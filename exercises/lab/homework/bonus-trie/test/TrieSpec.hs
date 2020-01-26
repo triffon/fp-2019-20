@@ -2,6 +2,8 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeApplications #-}
 
+{-# OPTIONS_GHC -fno-warn-orphans #-}
+
 module TrieSpec
   ( spec
   ) where
