@@ -51,3 +51,6 @@ toAssocList = undefined
 
 fromAssocList :: [(String, a)] -> Trie a
 fromAssocList = undefined
+
+subTrie :: String -> Trie a -> Maybe (Trie a)
+subTrie = undefined

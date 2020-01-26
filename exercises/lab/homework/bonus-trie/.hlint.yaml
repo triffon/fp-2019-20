@@ -1,6 +1,6 @@
 - functions:
   - { name: [head, tail, init, last, fromJust]
-    , within: []
+    , within: [TrieSpec]
     , message: "Don't use partial functions!"
     }
 

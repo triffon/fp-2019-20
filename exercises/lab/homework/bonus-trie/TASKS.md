@@ -276,3 +276,24 @@ toAssocList :: Trie a -> [(String, a)]
 > toAssocList $ fromAssocList [("lol", 5), ("nice", 10), ("nic", 3)]
 [("lol",5),("nic",3),("nice",10)]
 ```
+
+## 07. (?т.) `subTrie`
+
+Вземете "под-`Trie`", на даденото, по подаден низ (ключ):
+```haskell
+subTrie :: String -> Trie a -> Maybe (Trie a)
+```
+
+Ключът може и да не присъства, затова връщаме `Maybe`.
+
+Примери:
+```haskell
+> fmap toAssocList $ subTrie "" $ fromAssocList [("as", 5), ("ad", 10)]
+Just [("as",5),("ad",10)]
+> fmap toAssocList $ subTrie "a" $ fromAssocList [("as", 5), ("ad", 10)]
+Just [("s",5),("d",10)]
+> fmap toAssocList $ subTrie "nope" $ fromAssocList [("as", 5), ("ad", 10)]
+Nothing
+> fmap toAssocList $ subTrie "as" $ fromAssocList [("as", 5), ("ad", 10)]
+Just [("",5)]
+```

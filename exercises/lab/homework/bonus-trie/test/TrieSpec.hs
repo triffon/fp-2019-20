@@ -1,6 +1,7 @@
 {-# LANGUAGE NamedFieldPuns #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeApplications #-}
+{-# LANGUAGE TupleSections #-}
 
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
@@ -12,7 +13,7 @@ import Control.Applicative (liftA2)
 import Control.Monad (unless)
 import Data.Foldable (traverse_)
 import Data.Function (on)
-import Data.List (nub, sort, nubBy, deleteBy, insertBy)
+import Data.List (nub, sort, nubBy, deleteBy, insertBy, stripPrefix)
 import Data.Maybe
 import Data.Monoid (All(..))
 import Data.Proxy (Proxy(..))
@@ -39,6 +40,9 @@ spec = describe "Trie tests" $ do
 
   assocListRoundtrip
   toAssocListSameMapAsList
+
+  describe "subTrie"
+    subTrieSameAsParentIfStripped
 
 instance (Arbitrary a) => Arbitrary (Trie a) where
   arbitrary = scale (`rem` 10) $ sized arbitraryTrie
@@ -103,6 +107,19 @@ toAssocListSameMapAsList = prop "toAssocList creates a trie which contains all t
     let list' = nubBy ((==) `on` fst) list
         trie' = fromAssocList list'
      in getAll $ foldMap (\(k, v) -> All $ lookupTrie k trie' == Just v) list'
+
+subTrieSameAsParentIfStripped :: Spec
+subTrieSameAsParentIfStripped =
+  prop "taking the sub-tries of a trie results in tries that contain values from the original trie,\n\
+       \      but with \"stripped\" keys (corresponding to what subtrie you've taken)" $
+    \(trie :: Trie Int) ->
+      let list = toAssocList trie
+          keys = map fst list
+          subTrieIsSubset k =
+            let subtrie = fromJust $ subTrie k trie
+             in
+              toAssocList subtrie `setOnKeysShouldBe` mapMaybe (\(k', v) -> (,v) <$> stripPrefix k k') list
+       in traverse_ subTrieIsSubset keys
 
 lawsToSpec :: Laws -> Spec
 lawsToSpec Laws{lawsTypeclass, lawsProperties} =
