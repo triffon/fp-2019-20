@@ -2,6 +2,8 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE TupleSections #-}
+{-# LANGUAGE StandaloneDeriving #-}
+{-# LANGUAGE DeriveGeneric #-}
 
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
@@ -22,6 +24,7 @@ import Test.Hspec.QuickCheck
 import Test.QuickCheck
 import Test.QuickCheck.Classes (Laws(..), functorLaws, foldableLaws)
 import Trie
+import GHC.Generics (Generic)
 
 spec :: Spec
 spec = describe "Trie tests" $ do
@@ -44,8 +47,11 @@ spec = describe "Trie tests" $ do
   describe "subTrie"
     subTrieSameAsParentIfStripped
 
+deriving instance Generic (Trie a)
+
 instance (Arbitrary a) => Arbitrary (Trie a) where
   arbitrary = scale (`rem` 10) $ sized arbitraryTrie
+  shrink = genericShrink
 
 arbitraryTrie :: Arbitrary a => Int -> Gen (Trie a)
 arbitraryTrie n = do
