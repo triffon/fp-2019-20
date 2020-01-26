@@ -38,6 +38,7 @@ spec = describe "Trie tests" $ do
     insertIsNubByAfterInsertBy
 
   assocListRoundtrip
+  toAssocListSameMapAsList
 
 instance (Arbitrary a) => Arbitrary (Trie a) where
   arbitrary = scale (`rem` 10) $ sized arbitraryTrie
@@ -95,11 +96,13 @@ assocListRoundtrip = describe "converting to and from assoc lists" $ do
         unless (toAssocList trie' `setOnKeysEq` toAssocList trie) $
           expectationFailure $ show trie' ++ "\nshould be the same trie as\n" ++ show trie
 
-  prop "toAssocList creates a trie which contains all the kvs from the list" $
-    \(list :: [(String, Int)]) ->
-      let list' = nubBy ((==) `on` fst) list
-          trie' = fromAssocList list'
-       in getAll $ foldMap (\(k, v) -> All $ lookupTrie k trie' == Just v) list'
+
+toAssocListSameMapAsList :: Spec
+toAssocListSameMapAsList = prop "toAssocList creates a trie which contains all the kvs from the list" $
+  \(list :: [(String, Int)]) ->
+    let list' = nubBy ((==) `on` fst) list
+        trie' = fromAssocList list'
+     in getAll $ foldMap (\(k, v) -> All $ lookupTrie k trie' == Just v) list'
 
 lawsToSpec :: Laws -> Spec
 lawsToSpec Laws{lawsTypeclass, lawsProperties} =
