@@ -60,7 +60,7 @@ lookupAfterInsertSucceeds = prop "lookup after insertion retrieves the inserted 
   \(trie :: Trie Int) key val -> Just val == lookupTrie key (insert key val trie)
 
 lookupTrieIsLookup :: Spec
-lookupTrieIsLookup = prop "lookupTrie behaves like lookup (for lists) after toAssocList" $ do
+lookupTrieIsLookup = prop "lookupTrie behaves like lookup (for lists) after toAssocList" $
   \(trie :: Trie Int) key -> lookupTrie key trie `shouldBe` lookup key (toAssocList trie)
 
 insertOverwritesOldValue :: Spec
@@ -72,10 +72,12 @@ insertIsNubByAfterInsertBy = prop "insert is the same as insertBy for lists (wit
   \(trie :: Trie Int) key val ->
     toAssocList (insert key val trie)
     `setOnKeysShouldBe`
-    ( insertBy (compare `on` fst) (key, val)
-    $ deleteBy ((==) `on` fst) (key, error "shouldn't need this")
-    $ toAssocList trie
-    )
+    insertBy
+      (compare `on` fst)
+      (key, val)
+      ( deleteBy ((==) `on` fst) (key, error "shouldn't need this")
+      $ toAssocList trie
+      )
 
 assocListRoundtrip :: Spec
 assocListRoundtrip = describe "converting to and from assoc lists" $ do
@@ -105,7 +107,7 @@ setOnKeysEq :: (Ord k, Ord v) => [(k, v)] -> [(k, v)] -> Bool
 setOnKeysEq = (==) `on` mkSetOnKeys
 
 mkSetOnKeys :: (Ord k, Ord v) => [(k, v)] -> [(k, v)]
-mkSetOnKeys = (nubBy ((==) `on` fst) . sort)
+mkSetOnKeys = nubBy ((==) `on` fst) . sort
 
 setOnKeysShouldBe :: (Show k, Show v, Ord k, Ord v) => [(k, v)] -> [(k, v)] -> Expectation
 setOnKeysShouldBe xs ys =
