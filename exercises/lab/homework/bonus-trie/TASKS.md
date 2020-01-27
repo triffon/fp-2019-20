@@ -116,7 +116,7 @@ Node
                             Node {val = Just 1337, children = []})]})]})]})]}
 ```
 
-## 00. (?т.) `Functor`
+## 00. (1т.) `Functor`
 
 Направете инстанция на `Functor` за `Trie`:
 
@@ -133,7 +133,7 @@ Node {val = Just 43, children = []}
 Node {val = Just 43, children = [('a',Node {val = Just 70, children = []}),('b',Node {val = Just 1338, children = []})]}
 ```
 
-## 01. (?т.) `Foldable`
+## 01. (4т.) `Foldable`
 
 Направете инстанция на `Foldable` за `Trie`:
 
@@ -162,7 +162,7 @@ instance Foldable Trie where
 False
 ```
 
-## 02. (?т.) `modify`
+## 02. (1т.) `modify`
 В асоциативен списък, модифицирайте стойността на подадения ключ,
 да е като подадената стойност.
 
@@ -182,7 +182,7 @@ modify :: Eq k => k -> v -> [(k, v)] -> [(k, v)]
 [("lol",13),("asdf",10)]
 ```
 
-## 03. (?т.) `insert`
+## 03. (3т.) `insert`
 
 Вмъкнете подадената стойност в `Trie`, така че ключът ѝ да е подаденият `String`.
 
@@ -210,7 +210,7 @@ Node
              ('s', Node {val = Just 2, children = []})]})]}
 ```
 
-## 04. (?т.) `lookupTrie`
+## 04. (2т.) `lookupTrie`
 
 Извлечете стойността от `Trie` по подадения низ (ключ):
 
@@ -232,7 +232,7 @@ Just 10
 Nothing
 ```
 
-## 05. (?т.) `fromAssocList`
+## 05. (1т.) `fromAssocList`
 
 Направете `Trie` по подадения асоциативен списък:
 ```haskell
@@ -255,7 +255,7 @@ Node {val = Nothing, children = [('a',Node {val = Just True, children = [('s',No
  = Just True, children = []})]})]}
 ```
 
-## 06. (?т.) `toAssocList`
+## 06. (2т.) `toAssocList`
 
 Направете асоциативен списък по подаденото `Trie`:
 ```haskell
@@ -277,7 +277,7 @@ toAssocList :: Trie a -> [(String, a)]
 [("lol",5),("nic",3),("nice",10)]
 ```
 
-## 07. (?т.) `subTrie`
+## 07. (2т.) `subTrie`
 
 Вземете "под-`Trie`", на даденото, по подаден низ (ключ):
 ```haskell
