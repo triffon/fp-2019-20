@@ -147,7 +147,7 @@ instance Foldable Trie where
   -- foldr :: (a -> b -> b) -> b -> Trie a -> b
 ```
 
-Ще ви е полезно да извиквате и за типовете, които държи `Node` `foldMap`.
+Ще ви е полезно да извиквате `foldMap` и за типовете, които държи в себе си `Node`.
 
 Примери:
 ```haskell
