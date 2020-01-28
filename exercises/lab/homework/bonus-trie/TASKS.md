@@ -68,7 +68,10 @@ data Trie a = Node
 Примери за `Trie`-та:
 
 Празно `Trie`:
-```haskell Node {val = Nothing, children = []} ```
+
+```haskell
+Node {val = Nothing, children = []}
+```
 
 `Trie` с една стойност `42`, с ключ `""` (празен низ):
 ```haskell
