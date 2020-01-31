@@ -404,14 +404,14 @@ ignoreRight px py = undefined
 -- EXERCISE: Parse a value one or more times, separated by another parser.
 -- many, optional and ignoreLeft are useful here!
 -- EXAMPLES:
--- > parse (sepBy1 nom (char ',')) "a,b,c,d"
+-- > parse (sepBy nom (char ',')) "a,b,c,d"
 -- Just "abcd"
--- > parse (sepBy1 nom (char ',')) "a,b,c,"
+-- > parse (sepBy nom (char ',')) "a,b,c,"
 -- Nothing
--- > parse (sepBy1 nom (char ',')) "a"
+-- > parse (sepBy nom (char ',')) "a"
 -- Just "a"
--- > parse (sepBy1 nom (char ',')) ""
--- Nothing
+-- > parse (sepBy nom (char ',')) ""
+-- Just ""
 sepBy :: Parser a -> Parser sep -> Parser [a]
 sepBy p sep = undefined
 
