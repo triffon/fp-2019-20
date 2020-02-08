@@ -6,7 +6,8 @@
 {-# OPTIONS_GHC -fwarn-name-shadowing #-}          -- use different names!
 {-# OPTIONS_GHC -fwarn-incomplete-uni-patterns #-} -- warn about incomplete patterns v2
 
--- Връща списък от всички подмасиви на даден списък
+-- Връща списък от всички подмасиви на даден списък.
+-- Наредбата в резултатния списък може да ви е различна от примера.
 --
 -- subarrays [1,2,3] == [[], [1],[2],[3], [1,2],[2,3], [1,2,3]]
 subarrays :: [a] -> [[a]]
@@ -14,12 +15,14 @@ subarrays = undefined
 
 -- Връща списък от всички подредици на даден списък.
 -- Каква е разликата с subarrays и subsets?
+-- Наредбата в резултатния списък може да ви е различна от примера.
 --
 -- subsequnces [1,2,3] == [[], [1],[2],[3], [1,2],[1,3],[2,3], [1,2,3]]
 subsequences :: [a] -> [[a]]
 subsequences = undefined
 
--- връща списък от всички пермутации на даден списък
+-- Връща списък от всички пермутации на даден списък.
+-- Наредбата в резултатния списък може да ви е различна от примера.
 --
 -- permutations [1,2,3] == [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 permutations :: [a] -> [[a]]
@@ -65,13 +68,15 @@ isBST = undefined
 data BotTop a = Bot | Val a | Top
   deriving (Show, Eq{-, Ord-})
 -- Автоматично генерираната инстанция на Ord прави точно това
+-- защото сме подредили конструкторите на BotTop така,
+-- първо Bot, след това Val и накрая Top.
 instance Ord a => Ord BotTop where
   compare :: BotTop a -> BotTop a -> Ordering
   compare Bot     Bot     = EQ
   compare Bot     _       = LT
   compare (Val x) (Val y) = compare x y
   compare Top     Top     = EQ
-  comapre _       _       = GT
+  compare _       _       = GT
 
 -- Сега ако имплементираме следната функция
 -- която проверява дали дадено дърво е между подадените граници
