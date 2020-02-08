@@ -197,7 +197,7 @@ eval = undefined
 
 data BTree a
   = Empty
-  | BNode (BTree a) (BTree a)
+  | BNode a (BTree a) (BTree a)
 
 
 
