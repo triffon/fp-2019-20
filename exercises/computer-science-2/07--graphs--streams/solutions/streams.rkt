@@ -27,7 +27,8 @@
 (define (filter-stream p? xs)
   (if (p? (head xs))
       (cons-stream (head xs)
-                   (filter-stream p? (tail xs)))))
+                   (filter-stream p? (tail xs)))
+      (filter-stream p? (tail xs))))
 
 (define (zip-streams-with op xs ys)
   (cons-stream (op (head xs) (head ys))
@@ -74,3 +75,48 @@
                                        (tail xs))))))
 
 (define primes (sieve (from 2)))
+
+;; 6 - pythagoren-triples
+(define (1+ n) (+ n 1))
+
+; списък от числата между a и b
+(define (between a b)
+  (if (> a b)
+      '()
+      (cons a (between (1+ a) b))))
+
+; списък от наредени двойки (n,m), за които n <= m и n,m са между a, b
+(define (pairs-between a b)
+  (if (> a b)
+      '()
+      (append (map (lambda (m) (cons a m))
+                   (between a b))
+              (pairs-between (1+ a) b))))
+
+(define (sq x) (* x x))
+(define (car#f xs)
+  (if (null? xs)
+      #f
+      (car xs)))
+
+; намира първата наредена двойка от естествени числа (a,b), за която a^2 + b^2 = c^2
+; ако няма такава, връща #f
+(define (find-first-pair c)
+  (car#f (filter (lambda (p)
+                   (let ((a (car p))
+                         (b (cdr p)))
+                     (= (+ (sq a) (sq b))
+                        (sq c))))
+                 (pairs-between 1 (- c 1)))))
+
+(define pythagorean-triples
+  ; премахва #f
+  (filter-stream (lambda (q) q)
+                 ; на всяко естествено число c съпоставя тройка (a,b,c),
+                 ; за която a^2 + b^2 = c^2. Ако няма такава, слага #f.
+                 (map-stream (lambda (c)
+                               (let ((q (find-first-pair c)))
+                                 (if q
+                                     (list (car q) (cdr q) c)
+                                     #f)))
+                             nats)))
